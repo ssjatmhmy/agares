@@ -1,0 +1,1356 @@
+=============================== Back Test Report ===============================
+Strategy: 'Standard MACD strategy no.1'
+ 
+    The standard MACD strategy on daily candlestick data.
+    Buy an asset when dif rises above dea,
+    and sell it vice versa.
+    
+Time Scope: from 1997-01-02 00:00:00 to 2016-01-26 00:00:00
+Stock: 000001.sz
+Initial capital in account: cash[1000000.00]
+Final equity in account: share[0 Board Lot], cash[7573923.66]
+Final equity convert into cash: 7573923.66
+Profit: 6573923.66
+Rate of return: 657.39%
+Maximum withdraw: 2028520.13
+Maximum withdraw ratio: 38.15%
+Commission Charge: 253269.34
+Stamp Tax: 0.00
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+=================================== Blotter ====================================
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-01-10 00:00:00] Buy 10 board lot shares at price 918.40 (per share)
+Commission charge: 229.60
+Account: share[10 Board Lot], cash[81370.40]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-04-11 00:00:00] Sell 10 board lot shares at price 1278.53 (per share)
+Commission charge: 319.63,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1359580.77]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-04-14 00:00:00] Buy 10 board lot shares at price 1316.92 (per share)
+Commission charge: 329.23
+Account: share[10 Board Lot], cash[42331.54]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-04-28 00:00:00] Sell 10 board lot shares at price 1352.00 (per share)
+Commission charge: 338.00,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1393993.54]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-05-05 00:00:00] Buy 9 board lot shares at price 1448.93 (per share)
+Commission charge: 326.01
+Account: share[9 Board Lot], cash[89630.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-05-14 00:00:00] Sell 9 board lot shares at price 1379.22 (per share)
+Commission charge: 310.32,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1330618.20]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-06-05 00:00:00] Buy 9 board lot shares at price 1360.23 (per share)
+Commission charge: 306.05
+Account: share[9 Board Lot], cash[106105.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-06-06 00:00:00] Sell 9 board lot shares at price 1275.30 (per share)
+Commission charge: 286.94,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1253588.21]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-06-20 00:00:00] Buy 9 board lot shares at price 1291.20 (per share)
+Commission charge: 290.52
+Account: share[9 Board Lot], cash[91217.69]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-07-02 00:00:00] Sell 9 board lot shares at price 1199.06 (per share)
+Commission charge: 269.79,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1170101.90]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-07-15 00:00:00] Buy 9 board lot shares at price 1200.10 (per share)
+Commission charge: 270.02
+Account: share[9 Board Lot], cash[89741.88]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-08-13 00:00:00] Sell 9 board lot shares at price 1120.13 (per share)
+Commission charge: 252.03,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1097606.85]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-08-22 00:00:00] Buy 9 board lot shares at price 1171.83 (per share)
+Commission charge: 263.66
+Account: share[9 Board Lot], cash[42696.19]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-09-15 00:00:00] Sell 9 board lot shares at price 1179.29 (per share)
+Commission charge: 265.34,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1103791.85]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-10-10 00:00:00] Buy 9 board lot shares at price 1130.79 (per share)
+Commission charge: 254.43
+Account: share[9 Board Lot], cash[85826.42]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-11-12 00:00:00] Sell 9 board lot shares at price 1174.19 (per share)
+Commission charge: 264.19,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1142333.23]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1997-12-10 00:00:00] Buy 9 board lot shares at price 1157.83 (per share)
+Commission charge: 260.51
+Account: share[9 Board Lot], cash[100025.72]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-01-14 00:00:00] Sell 9 board lot shares at price 1202.21 (per share)
+Commission charge: 270.50,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1181744.22]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-02-09 00:00:00] Buy 9 board lot shares at price 1248.04 (per share)
+Commission charge: 280.81
+Account: share[9 Board Lot], cash[58227.41]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-02-18 00:00:00] Sell 9 board lot shares at price 1229.83 (per share)
+Commission charge: 276.71,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1164797.70]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-03-27 00:00:00] Buy 9 board lot shares at price 1223.57 (per share)
+Commission charge: 275.30
+Account: share[9 Board Lot], cash[63309.39]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-04-20 00:00:00] Sell 9 board lot shares at price 1296.01 (per share)
+Commission charge: 291.60,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1229426.79]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-05-04 00:00:00] Buy 9 board lot shares at price 1352.93 (per share)
+Commission charge: 304.41
+Account: share[9 Board Lot], cash[11485.38]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-05-07 00:00:00] Sell 9 board lot shares at price 1327.87 (per share)
+Commission charge: 298.77,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1206269.61]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-05-27 00:00:00] Buy 8 board lot shares at price 1399.54 (per share)
+Commission charge: 279.91
+Account: share[8 Board Lot], cash[86357.70]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-06-05 00:00:00] Sell 8 board lot shares at price 1408.61 (per share)
+Commission charge: 281.72,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1212963.98]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-06-24 00:00:00] Buy 8 board lot shares at price 1401.74 (per share)
+Commission charge: 280.35
+Account: share[8 Board Lot], cash[91291.63]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-06-25 00:00:00] Sell 8 board lot shares at price 1382.04 (per share)
+Commission charge: 276.41,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1196647.23]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-07-13 00:00:00] Buy 8 board lot shares at price 1358.81 (per share)
+Commission charge: 271.76
+Account: share[8 Board Lot], cash[109327.46]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-07-14 00:00:00] Sell 8 board lot shares at price 1336.56 (per share)
+Commission charge: 267.31,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1178308.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-07-27 00:00:00] Buy 8 board lot shares at price 1321.90 (per share)
+Commission charge: 264.38
+Account: share[8 Board Lot], cash[120523.77]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-08-04 00:00:00] Sell 8 board lot shares at price 1293.46 (per share)
+Commission charge: 258.69,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1155033.08]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-08-05 00:00:00] Buy 8 board lot shares at price 1307.44 (per share)
+Commission charge: 261.49
+Account: share[8 Board Lot], cash[108819.59]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-08-06 00:00:00] Sell 8 board lot shares at price 1294.16 (per share)
+Commission charge: 258.83,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1143888.76]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-08-25 00:00:00] Buy 9 board lot shares at price 1179.07 (per share)
+Commission charge: 265.29
+Account: share[9 Board Lot], cash[82460.47]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-10-21 00:00:00] Sell 9 board lot shares at price 1207.83 (per share)
+Commission charge: 271.76,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1169235.71]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-11-05 00:00:00] Buy 9 board lot shares at price 1253.28 (per share)
+Commission charge: 281.99
+Account: share[9 Board Lot], cash[41001.72]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1998-11-23 00:00:00] Sell 9 board lot shares at price 1273.79 (per share)
+Commission charge: 286.60,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1187126.12]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-01-08 00:00:00] Buy 10 board lot shares at price 1168.81 (per share)
+Commission charge: 292.20
+Account: share[10 Board Lot], cash[18023.91]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-02-01 00:00:00] Sell 10 board lot shares at price 1120.53 (per share)
+Commission charge: 280.13,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1138273.78]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-03-03 00:00:00] Buy 10 board lot shares at price 1128.74 (per share)
+Commission charge: 282.19
+Account: share[10 Board Lot], cash[9251.60]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-04-14 00:00:00] Sell 10 board lot shares at price 1181.52 (per share)
+Commission charge: 295.38,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1190476.22]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-05-20 00:00:00] Buy 10 board lot shares at price 1147.71 (per share)
+Commission charge: 286.93
+Account: share[10 Board Lot], cash[42479.29]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-07-02 00:00:00] Sell 10 board lot shares at price 1613.53 (per share)
+Commission charge: 403.38,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1655605.91]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-08-04 00:00:00] Buy 10 board lot shares at price 1649.13 (per share)
+Commission charge: 412.28
+Account: share[10 Board Lot], cash[6063.62]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-08-10 00:00:00] Sell 10 board lot shares at price 1602.15 (per share)
+Commission charge: 400.54,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1607813.09]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-08-24 00:00:00] Buy 9 board lot shares at price 1648.47 (per share)
+Commission charge: 370.91
+Account: share[9 Board Lot], cash[123819.18]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-08-30 00:00:00] Sell 9 board lot shares at price 1619.04 (per share)
+Commission charge: 364.28,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1580590.90]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-09-10 00:00:00] Buy 9 board lot shares at price 1659.93 (per share)
+Commission charge: 373.48
+Account: share[9 Board Lot], cash[86280.41]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-09-21 00:00:00] Sell 9 board lot shares at price 1625.59 (per share)
+Commission charge: 365.76,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1548945.65]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-10-27 00:00:00] Buy 10 board lot shares at price 1536.82 (per share)
+Commission charge: 384.20
+Account: share[10 Board Lot], cash[11741.45]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-11-10 00:00:00] Sell 10 board lot shares at price 1450.15 (per share)
+Commission charge: 362.54,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1461528.91]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-11-15 00:00:00] Buy 10 board lot shares at price 1451.54 (per share)
+Commission charge: 362.88
+Account: share[10 Board Lot], cash[9626.03]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-11-16 00:00:00] Sell 10 board lot shares at price 1431.32 (per share)
+Commission charge: 357.83,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1440588.20]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-11-17 00:00:00] Buy 9 board lot shares at price 1462.79 (per share)
+Commission charge: 329.13
+Account: share[9 Board Lot], cash[123748.07]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-12-09 00:00:00] Sell 9 board lot shares at price 1416.73 (per share)
+Commission charge: 318.76,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1398486.31]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-12-10 00:00:00] Buy 9 board lot shares at price 1428.94 (per share)
+Commission charge: 321.51
+Account: share[9 Board Lot], cash[112118.79]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[1999-12-22 00:00:00] Sell 9 board lot shares at price 1387.51 (per share)
+Commission charge: 312.19,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1360565.60]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-01-04 00:00:00] Buy 9 board lot shares at price 1406.37 (per share)
+Commission charge: 316.43
+Account: share[9 Board Lot], cash[94516.17]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-03-07 00:00:00] Sell 9 board lot shares at price 1694.80 (per share)
+Commission charge: 381.33,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1619454.84]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-03-27 00:00:00] Buy 9 board lot shares at price 1775.91 (per share)
+Commission charge: 399.58
+Account: share[9 Board Lot], cash[20736.26]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-04-05 00:00:00] Sell 9 board lot shares at price 1771.20 (per share)
+Commission charge: 398.52,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1614417.74]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-04-07 00:00:00] Buy 8 board lot shares at price 1819.90 (per share)
+Commission charge: 363.98
+Account: share[8 Board Lot], cash[158133.76]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-04-12 00:00:00] Sell 8 board lot shares at price 1807.33 (per share)
+Commission charge: 361.47,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1603636.29]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-05-23 00:00:00] Buy 8 board lot shares at price 1832.08 (per share)
+Commission charge: 366.42
+Account: share[8 Board Lot], cash[137605.88]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-06-19 00:00:00] Sell 8 board lot shares at price 1915.20 (per share)
+Commission charge: 383.04,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1669382.84]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-07-12 00:00:00] Buy 8 board lot shares at price 1973.37 (per share)
+Commission charge: 394.67
+Account: share[8 Board Lot], cash[90292.16]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-08-23 00:00:00] Sell 8 board lot shares at price 2057.92 (per share)
+Commission charge: 411.58,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1736216.58]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-10-10 00:00:00] Buy 8 board lot shares at price 1942.15 (per share)
+Commission charge: 388.43
+Account: share[8 Board Lot], cash[182108.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2000-11-27 00:00:00] Sell 8 board lot shares at price 2049.67 (per share)
+Commission charge: 409.93,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1821434.22]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-01-02 00:00:00] Buy 8 board lot shares at price 2103.46 (per share)
+Commission charge: 420.69
+Account: share[8 Board Lot], cash[138245.52]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-01-15 00:00:00] Sell 8 board lot shares at price 2032.44 (per share)
+Commission charge: 406.49,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1763791.04]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-02-27 00:00:00] Buy 8 board lot shares at price 1962.04 (per share)
+Commission charge: 392.41
+Account: share[8 Board Lot], cash[193766.63]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-04-23 00:00:00] Sell 8 board lot shares at price 2150.42 (per share)
+Commission charge: 430.08,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1913672.54]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-05-15 00:00:00] Buy 8 board lot shares at price 2191.06 (per share)
+Commission charge: 438.21
+Account: share[8 Board Lot], cash[160386.33]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-05-28 00:00:00] Sell 8 board lot shares at price 2179.69 (per share)
+Commission charge: 435.94,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1903702.39]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-06-04 00:00:00] Buy 8 board lot shares at price 2226.78 (per share)
+Commission charge: 445.36
+Account: share[8 Board Lot], cash[121833.04]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-06-11 00:00:00] Sell 8 board lot shares at price 2214.62 (per share)
+Commission charge: 442.92,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1893086.11]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-06-27 00:00:00] Buy 8 board lot shares at price 2229.83 (per share)
+Commission charge: 445.97
+Account: share[8 Board Lot], cash[108776.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-07-02 00:00:00] Sell 8 board lot shares at price 2205.98 (per share)
+Commission charge: 441.20,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1873118.95]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-08-15 00:00:00] Buy 9 board lot shares at price 1947.36 (per share)
+Commission charge: 438.16
+Account: share[9 Board Lot], cash[120056.80]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-08-27 00:00:00] Sell 9 board lot shares at price 1827.25 (per share)
+Commission charge: 411.13,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1764170.67]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-09-04 00:00:00] Buy 9 board lot shares at price 1862.36 (per share)
+Commission charge: 419.03
+Account: share[9 Board Lot], cash[87627.63]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-09-27 00:00:00] Sell 9 board lot shares at price 1764.93 (per share)
+Commission charge: 397.11,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1675667.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-10-24 00:00:00] Buy 9 board lot shares at price 1718.06 (per share)
+Commission charge: 386.56
+Account: share[9 Board Lot], cash[129026.96]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-11-13 00:00:00] Sell 9 board lot shares at price 1615.93 (per share)
+Commission charge: 363.58,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1583000.38]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-11-14 00:00:00] Buy 9 board lot shares at price 1617.10 (per share)
+Commission charge: 363.85
+Account: share[9 Board Lot], cash[127246.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2001-12-12 00:00:00] Sell 9 board lot shares at price 1715.17 (per share)
+Commission charge: 385.91,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1670513.62]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-01-31 00:00:00] Buy 11 board lot shares at price 1491.67 (per share)
+Commission charge: 410.21
+Account: share[11 Board Lot], cash[29266.41]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-03-27 00:00:00] Sell 11 board lot shares at price 1654.23 (per share)
+Commission charge: 454.91,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1848464.49]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-04-30 00:00:00] Buy 11 board lot shares at price 1667.74 (per share)
+Commission charge: 458.63
+Account: share[11 Board Lot], cash[13491.87]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-05-10 00:00:00] Sell 11 board lot shares at price 1638.20 (per share)
+Commission charge: 450.50,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1815061.36]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-06-11 00:00:00] Buy 11 board lot shares at price 1530.96 (per share)
+Commission charge: 421.01
+Account: share[11 Board Lot], cash[130584.35]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-07-12 00:00:00] Sell 11 board lot shares at price 1698.29 (per share)
+Commission charge: 467.03,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1998236.32]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-08-21 00:00:00] Buy 11 board lot shares at price 1673.54 (per share)
+Commission charge: 460.22
+Account: share[11 Board Lot], cash[156882.09]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-09-05 00:00:00] Sell 11 board lot shares at price 1641.81 (per share)
+Commission charge: 451.50,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1962421.60]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-10-22 00:00:00] Buy 12 board lot shares at price 1548.10 (per share)
+Commission charge: 464.43
+Account: share[12 Board Lot], cash[104237.17]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-11-13 00:00:00] Sell 12 board lot shares at price 1490.46 (per share)
+Commission charge: 447.14,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1892342.03]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-12-03 00:00:00] Buy 13 board lot shares at price 1408.84 (per share)
+Commission charge: 457.87
+Account: share[13 Board Lot], cash[60392.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2002-12-31 00:00:00] Sell 13 board lot shares at price 1357.65 (per share)
+Commission charge: 441.24,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1824895.92]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-01-09 00:00:00] Buy 13 board lot shares at price 1397.38 (per share)
+Commission charge: 454.15
+Account: share[13 Board Lot], cash[7847.77]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-02-20 00:00:00] Sell 13 board lot shares at price 1509.49 (per share)
+Commission charge: 490.58,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1969694.19]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-03-28 00:00:00] Buy 13 board lot shares at price 1491.94 (per share)
+Commission charge: 484.88
+Account: share[13 Board Lot], cash[29687.31]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-04-23 00:00:00] Sell 13 board lot shares at price 1541.96 (per share)
+Commission charge: 501.14,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[2033734.17]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-05-23 00:00:00] Buy 13 board lot shares at price 1560.95 (per share)
+Commission charge: 507.31
+Account: share[13 Board Lot], cash[3991.86]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-06-06 00:00:00] Sell 13 board lot shares at price 1538.92 (per share)
+Commission charge: 500.15,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[2004087.71]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-07-10 00:00:00] Buy 13 board lot shares at price 1531.93 (per share)
+Commission charge: 497.88
+Account: share[13 Board Lot], cash[12080.83]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-07-22 00:00:00] Sell 13 board lot shares at price 1498.48 (per share)
+Commission charge: 487.01,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1959617.83]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-08-05 00:00:00] Buy 13 board lot shares at price 1494.31 (per share)
+Commission charge: 485.65
+Account: share[13 Board Lot], cash[16529.18]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-08-11 00:00:00] Sell 13 board lot shares at price 1474.41 (per share)
+Commission charge: 479.18,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1932782.99]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-08-12 00:00:00] Buy 13 board lot shares at price 1479.28 (per share)
+Commission charge: 480.77
+Account: share[13 Board Lot], cash[9238.23]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-08-13 00:00:00] Sell 13 board lot shares at price 1465.83 (per share)
+Commission charge: 476.39,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1914340.83]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-09-01 00:00:00] Buy 13 board lot shares at price 1449.82 (per share)
+Commission charge: 471.19
+Account: share[13 Board Lot], cash[29103.64]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-09-15 00:00:00] Sell 13 board lot shares at price 1397.54 (per share)
+Commission charge: 454.20,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1845451.44]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-10-10 00:00:00] Buy 13 board lot shares at price 1404.01 (per share)
+Commission charge: 456.30
+Account: share[13 Board Lot], cash[19782.14]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-10-30 00:00:00] Sell 13 board lot shares at price 1344.63 (per share)
+Commission charge: 437.00,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1767364.13]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-11-04 00:00:00] Buy 12 board lot shares at price 1389.55 (per share)
+Commission charge: 416.87
+Account: share[12 Board Lot], cash[99487.27]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-11-07 00:00:00] Sell 12 board lot shares at price 1335.20 (per share)
+Commission charge: 400.56,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1701326.71]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-11-20 00:00:00] Buy 12 board lot shares at price 1376.51 (per share)
+Commission charge: 412.95
+Account: share[12 Board Lot], cash[49101.75]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-12-19 00:00:00] Sell 12 board lot shares at price 1446.29 (per share)
+Commission charge: 433.89,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1784215.87]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2003-12-22 00:00:00] Buy 11 board lot shares at price 1492.96 (per share)
+Commission charge: 410.56
+Account: share[11 Board Lot], cash[141549.30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-01-30 00:00:00] Sell 11 board lot shares at price 1590.73 (per share)
+Commission charge: 437.45,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1890914.85]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-02-03 00:00:00] Buy 11 board lot shares at price 1649.28 (per share)
+Commission charge: 453.55
+Account: share[11 Board Lot], cash[76253.30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-02-12 00:00:00] Sell 11 board lot shares at price 1663.83 (per share)
+Commission charge: 457.55,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1906008.75]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-03-15 00:00:00] Buy 10 board lot shares at price 1736.22 (per share)
+Commission charge: 434.06
+Account: share[10 Board Lot], cash[169354.69]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-03-29 00:00:00] Sell 10 board lot shares at price 1719.67 (per share)
+Commission charge: 429.92,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1888594.77]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-04-02 00:00:00] Buy 10 board lot shares at price 1768.65 (per share)
+Commission charge: 442.16
+Account: share[10 Board Lot], cash[119502.61]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-04-09 00:00:00] Sell 10 board lot shares at price 1727.35 (per share)
+Commission charge: 431.84,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1846420.77]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-05-27 00:00:00] Buy 11 board lot shares at price 1557.18 (per share)
+Commission charge: 428.22
+Account: share[11 Board Lot], cash[133094.55]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-06-09 00:00:00] Sell 11 board lot shares at price 1468.07 (per share)
+Commission charge: 403.72,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1747567.83]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-07-01 00:00:00] Buy 12 board lot shares at price 1441.07 (per share)
+Commission charge: 432.32
+Account: share[12 Board Lot], cash[17851.51]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-07-27 00:00:00] Sell 12 board lot shares at price 1384.13 (per share)
+Commission charge: 415.24,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1678392.27]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-08-05 00:00:00] Buy 12 board lot shares at price 1389.04 (per share)
+Commission charge: 416.71
+Account: share[12 Board Lot], cash[11127.56]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-08-16 00:00:00] Sell 12 board lot shares at price 1354.51 (per share)
+Commission charge: 406.35,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1636133.21]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-09-02 00:00:00] Buy 12 board lot shares at price 1327.93 (per share)
+Commission charge: 398.38
+Account: share[12 Board Lot], cash[42218.83]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-09-09 00:00:00] Sell 12 board lot shares at price 1284.31 (per share)
+Commission charge: 385.29,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1583005.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-09-15 00:00:00] Buy 11 board lot shares at price 1355.23 (per share)
+Commission charge: 372.69
+Account: share[11 Board Lot], cash[91879.85]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-10-12 00:00:00] Sell 11 board lot shares at price 1384.44 (per share)
+Commission charge: 380.72,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1614383.12]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-11-10 00:00:00] Buy 11 board lot shares at price 1354.39 (per share)
+Commission charge: 372.46
+Account: share[11 Board Lot], cash[124181.67]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2004-11-30 00:00:00] Sell 11 board lot shares at price 1340.77 (per share)
+Commission charge: 368.71,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1598659.96]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-01-12 00:00:00] Buy 12 board lot shares at price 1256.92 (per share)
+Commission charge: 377.08
+Account: share[12 Board Lot], cash[89978.88]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-01-17 00:00:00] Sell 12 board lot shares at price 1216.65 (per share)
+Commission charge: 365.00,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1549593.88]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-01-24 00:00:00] Buy 12 board lot shares at price 1255.78 (per share)
+Commission charge: 376.73
+Account: share[12 Board Lot], cash[42281.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-01-31 00:00:00] Sell 12 board lot shares at price 1191.82 (per share)
+Commission charge: 357.55,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1472107.60]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-02-02 00:00:00] Buy 11 board lot shares at price 1252.50 (per share)
+Commission charge: 344.44
+Account: share[11 Board Lot], cash[94013.17]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-03-11 00:00:00] Sell 11 board lot shares at price 1289.94 (per share)
+Commission charge: 354.73,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1512592.43]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-04-07 00:00:00] Buy 12 board lot shares at price 1225.49 (per share)
+Commission charge: 367.65
+Account: share[12 Board Lot], cash[41636.79]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-04-20 00:00:00] Sell 12 board lot shares at price 1184.19 (per share)
+Commission charge: 355.26,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1462309.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-06-08 00:00:00] Buy 13 board lot shares at price 1115.58 (per share)
+Commission charge: 362.56
+Account: share[13 Board Lot], cash[11692.97]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-07-01 00:00:00] Sell 13 board lot shares at price 1055.59 (per share)
+Commission charge: 343.07,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1383616.90]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-07-22 00:00:00] Buy 13 board lot shares at price 1046.32 (per share)
+Commission charge: 340.05
+Account: share[13 Board Lot], cash[23060.85]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-08-23 00:00:00] Sell 13 board lot shares at price 1149.96 (per share)
+Commission charge: 373.74,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1517635.11]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-09-14 00:00:00] Buy 12 board lot shares at price 1217.26 (per share)
+Commission charge: 365.18
+Account: share[12 Board Lot], cash[56557.93]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-09-21 00:00:00] Sell 12 board lot shares at price 1187.99 (per share)
+Commission charge: 356.40,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1481789.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-11-08 00:00:00] Buy 13 board lot shares at price 1110.15 (per share)
+Commission charge: 360.80
+Account: share[13 Board Lot], cash[38233.73]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-12-05 00:00:00] Sell 13 board lot shares at price 1079.20 (per share)
+Commission charge: 350.74,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1440842.99]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2005-12-07 00:00:00] Buy 13 board lot shares at price 1099.62 (per share)
+Commission charge: 357.38
+Account: share[13 Board Lot], cash[10979.62]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-02-14 00:00:00] Sell 13 board lot shares at price 1286.33 (per share)
+Commission charge: 418.06,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1682790.56]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-02-15 00:00:00] Buy 12 board lot shares at price 1299.17 (per share)
+Commission charge: 389.75
+Account: share[12 Board Lot], cash[123396.81]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-02-16 00:00:00] Sell 12 board lot shares at price 1270.63 (per share)
+Commission charge: 381.19,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[1647771.62]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-03-22 00:00:00] Buy 12 board lot shares at price 1296.71 (per share)
+Commission charge: 389.01
+Account: share[12 Board Lot], cash[91330.61]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-05-25 00:00:00] Sell 12 board lot shares at price 1591.43 (per share)
+Commission charge: 477.43,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[2000569.18]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-06-27 00:00:00] Buy 12 board lot shares at price 1639.55 (per share)
+Commission charge: 491.87
+Account: share[12 Board Lot], cash[32617.31]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-07-14 00:00:00] Sell 12 board lot shares at price 1665.21 (per share)
+Commission charge: 499.56,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[2030369.75]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-08-17 00:00:00] Buy 12 board lot shares at price 1603.33 (per share)
+Commission charge: 481.00
+Account: share[12 Board Lot], cash[105892.75]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-10-17 00:00:00] Sell 12 board lot shares at price 1763.90 (per share)
+Commission charge: 529.17,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[2222043.58]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2006-10-31 00:00:00] Buy 12 board lot shares at price 1837.99 (per share)
+Commission charge: 551.40
+Account: share[12 Board Lot], cash[15904.19]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-01-18 00:00:00] Sell 12 board lot shares at price 2756.98 (per share)
+Commission charge: 827.09,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3323453.09]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-01-23 00:00:00] Buy 11 board lot shares at price 2949.14 (per share)
+Commission charge: 811.01
+Account: share[11 Board Lot], cash[78588.08]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-01-25 00:00:00] Sell 11 board lot shares at price 2857.36 (per share)
+Commission charge: 785.77,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3220898.30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-02-15 00:00:00] Buy 10 board lot shares at price 2993.01 (per share)
+Commission charge: 748.25
+Account: share[10 Board Lot], cash[227140.05]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-02-28 00:00:00] Sell 10 board lot shares at price 2881.07 (per share)
+Commission charge: 720.27,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3107489.78]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-03-12 00:00:00] Buy 10 board lot shares at price 2954.91 (per share)
+Commission charge: 738.73
+Account: share[10 Board Lot], cash[151841.06]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-03-16 00:00:00] Sell 10 board lot shares at price 2930.48 (per share)
+Commission charge: 732.62,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3081588.44]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-03-19 00:00:00] Buy 10 board lot shares at price 3014.44 (per share)
+Commission charge: 753.61
+Account: share[10 Board Lot], cash[66394.83]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-05-16 00:00:00] Sell 10 board lot shares at price 3986.04 (per share)
+Commission charge: 996.51,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4051438.32]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-05-28 00:00:00] Buy 9 board lot shares at price 4272.11 (per share)
+Commission charge: 961.22
+Account: share[9 Board Lot], cash[205578.09]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-05-30 00:00:00] Sell 9 board lot shares at price 4053.09 (per share)
+Commission charge: 911.95,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3852447.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-06-18 00:00:00] Buy 9 board lot shares at price 4253.35 (per share)
+Commission charge: 957.00
+Account: share[9 Board Lot], cash[23475.14]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-06-25 00:00:00] Sell 9 board lot shares at price 3941.08 (per share)
+Commission charge: 886.74,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3569560.40]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-07-17 00:00:00] Buy 9 board lot shares at price 3896.19 (per share)
+Commission charge: 876.64
+Account: share[9 Board Lot], cash[62112.76]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-09-07 00:00:00] Sell 9 board lot shares at price 5277.18 (per share)
+Commission charge: 1187.37,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4810387.39]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-10-09 00:00:00] Buy 8 board lot shares at price 5715.89 (per share)
+Commission charge: 1143.18
+Account: share[8 Board Lot], cash[236532.21]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-10-22 00:00:00] Sell 8 board lot shares at price 5667.33 (per share)
+Commission charge: 1133.47,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4769262.75]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2007-12-06 00:00:00] Buy 9 board lot shares at price 5035.07 (per share)
+Commission charge: 1132.89
+Account: share[9 Board Lot], cash[236566.86]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-01-17 00:00:00] Sell 9 board lot shares at price 5151.63 (per share)
+Commission charge: 1159.12,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4871874.74]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-02-18 00:00:00] Buy 10 board lot shares at price 4568.15 (per share)
+Commission charge: 1142.04
+Account: share[10 Board Lot], cash[302582.70]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-02-25 00:00:00] Sell 10 board lot shares at price 4192.53 (per share)
+Commission charge: 1048.13,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4494064.57]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-02-29 00:00:00] Buy 10 board lot shares at price 4348.54 (per share)
+Commission charge: 1087.13
+Account: share[10 Board Lot], cash[144437.43]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-03-12 00:00:00] Sell 10 board lot shares at price 4070.12 (per share)
+Commission charge: 1017.53,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4213539.90]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-04-07 00:00:00] Buy 11 board lot shares at price 3599.62 (per share)
+Commission charge: 989.90
+Account: share[11 Board Lot], cash[252968.01]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-04-18 00:00:00] Sell 11 board lot shares at price 3094.67 (per share)
+Commission charge: 851.03,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3656253.97]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-04-23 00:00:00] Buy 11 board lot shares at price 3278.33 (per share)
+Commission charge: 901.54
+Account: share[11 Board Lot], cash[49189.43]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-05-22 00:00:00] Sell 11 board lot shares at price 3485.63 (per share)
+Commission charge: 958.55,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3882423.89]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-07-04 00:00:00] Buy 14 board lot shares at price 2669.89 (per share)
+Commission charge: 934.46
+Account: share[14 Board Lot], cash[143643.42]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-08-05 00:00:00] Sell 14 board lot shares at price 2690.75 (per share)
+Commission charge: 941.76,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3909751.66]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-08-29 00:00:00] Buy 16 board lot shares at price 2397.37 (per share)
+Commission charge: 958.95
+Account: share[16 Board Lot], cash[73000.71]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-09-05 00:00:00] Sell 16 board lot shares at price 2202.45 (per share)
+Commission charge: 880.98,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3596039.73]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-09-22 00:00:00] Buy 16 board lot shares at price 2236.41 (per share)
+Commission charge: 894.56
+Account: share[16 Board Lot], cash[16889.17]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-10-15 00:00:00] Sell 16 board lot shares at price 1994.67 (per share)
+Commission charge: 797.87,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3207563.30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-11-06 00:00:00] Buy 18 board lot shares at price 1717.72 (per share)
+Commission charge: 772.97
+Account: share[18 Board Lot], cash[114894.33]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-12-17 00:00:00] Sell 18 board lot shares at price 1976.82 (per share)
+Commission charge: 889.57,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3672280.76]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-12-19 00:00:00] Buy 18 board lot shares at price 2018.46 (per share)
+Commission charge: 908.31
+Account: share[18 Board Lot], cash[38144.45]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2008-12-22 00:00:00] Sell 18 board lot shares at price 1987.76 (per share)
+Commission charge: 894.49,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3615217.96]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-01-12 00:00:00] Buy 19 board lot shares at price 1900.35 (per share)
+Commission charge: 902.67
+Account: share[19 Board Lot], cash[3650.29]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-01-13 00:00:00] Sell 19 board lot shares at price 1863.37 (per share)
+Commission charge: 885.10,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3543168.19]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-01-14 00:00:00] Buy 18 board lot shares at price 1928.87 (per share)
+Commission charge: 867.99
+Account: share[18 Board Lot], cash[70334.20]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-02-24 00:00:00] Sell 18 board lot shares at price 2200.65 (per share)
+Commission charge: 990.29,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4030513.91]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-03-19 00:00:00] Buy 17 board lot shares at price 2265.76 (per share)
+Commission charge: 962.95
+Account: share[17 Board Lot], cash[177758.96]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-04-22 00:00:00] Sell 17 board lot shares at price 2461.35 (per share)
+Commission charge: 1046.07,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4361007.89]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-05-06 00:00:00] Buy 16 board lot shares at price 2592.52 (per share)
+Commission charge: 1037.01
+Account: share[16 Board Lot], cash[211938.88]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-05-21 00:00:00] Sell 16 board lot shares at price 2610.62 (per share)
+Commission charge: 1044.25,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4387886.63]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-06-02 00:00:00] Buy 16 board lot shares at price 2724.30 (per share)
+Commission charge: 1089.72
+Account: share[16 Board Lot], cash[27916.91]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-06-16 00:00:00] Sell 16 board lot shares at price 2776.02 (per share)
+Commission charge: 1110.41,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4468438.50]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-06-18 00:00:00] Buy 15 board lot shares at price 2853.90 (per share)
+Commission charge: 1070.21
+Account: share[15 Board Lot], cash[186518.29]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-07-30 00:00:00] Sell 15 board lot shares at price 3321.56 (per share)
+Commission charge: 1245.59,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5167612.71]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-07-31 00:00:00] Buy 15 board lot shares at price 3412.06 (per share)
+Commission charge: 1279.52
+Account: share[15 Board Lot], cash[48243.18]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-08-06 00:00:00] Sell 15 board lot shares at price 3356.33 (per share)
+Commission charge: 1258.62,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5081479.56]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-09-08 00:00:00] Buy 17 board lot shares at price 2930.48 (per share)
+Commission charge: 1245.45
+Account: share[17 Board Lot], cash[98418.11]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-09-24 00:00:00] Sell 17 board lot shares at price 2853.55 (per share)
+Commission charge: 1212.76,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4948240.35]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-10-12 00:00:00] Buy 17 board lot shares at price 2894.48 (per share)
+Commission charge: 1230.15
+Account: share[17 Board Lot], cash[26394.19]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-11-26 00:00:00] Sell 17 board lot shares at price 3170.98 (per share)
+Commission charge: 1347.67,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5415712.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2009-12-30 00:00:00] Buy 16 board lot shares at price 3262.60 (per share)
+Commission charge: 1305.04
+Account: share[16 Board Lot], cash[194247.49]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-01-13 00:00:00] Sell 16 board lot shares at price 3172.66 (per share)
+Commission charge: 1269.06,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5269234.42]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-01-18 00:00:00] Buy 16 board lot shares at price 3237.10 (per share)
+Commission charge: 1294.84
+Account: share[16 Board Lot], cash[88579.58]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-01-20 00:00:00] Sell 16 board lot shares at price 3151.85 (per share)
+Commission charge: 1260.74,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5130278.84]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-02-12 00:00:00] Buy 16 board lot shares at price 3018.13 (per share)
+Commission charge: 1207.25
+Account: share[16 Board Lot], cash[300063.59]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-03-15 00:00:00] Sell 16 board lot shares at price 2976.94 (per share)
+Commission charge: 1190.78,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5061976.81]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-03-17 00:00:00] Buy 16 board lot shares at price 3050.48 (per share)
+Commission charge: 1220.19
+Account: share[16 Board Lot], cash[179988.62]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-04-19 00:00:00] Sell 16 board lot shares at price 2980.30 (per share)
+Commission charge: 1192.12,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4947276.50]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-05-25 00:00:00] Buy 18 board lot shares at price 2622.63 (per share)
+Commission charge: 1180.18
+Account: share[18 Board Lot], cash[225362.32]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-06-30 00:00:00] Sell 18 board lot shares at price 2398.37 (per share)
+Commission charge: 1079.27,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4541349.05]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-07-09 00:00:00] Buy 18 board lot shares at price 2470.92 (per share)
+Commission charge: 1111.91
+Account: share[18 Board Lot], cash[92581.14]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-08-12 00:00:00] Sell 18 board lot shares at price 2575.48 (per share)
+Commission charge: 1158.97,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4727286.17]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-08-17 00:00:00] Buy 17 board lot shares at price 2671.89 (per share)
+Commission charge: 1135.55
+Account: share[17 Board Lot], cash[183937.62]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-08-23 00:00:00] Sell 17 board lot shares at price 2639.37 (per share)
+Commission charge: 1121.73,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4669744.89]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-09-06 00:00:00] Buy 17 board lot shares at price 2696.25 (per share)
+Commission charge: 1145.91
+Account: share[17 Board Lot], cash[84973.98]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-09-15 00:00:00] Sell 17 board lot shares at price 2652.50 (per share)
+Commission charge: 1127.31,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4593096.67]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-10-08 00:00:00] Buy 16 board lot shares at price 2738.74 (per share)
+Commission charge: 1095.50
+Account: share[16 Board Lot], cash[210017.17]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-11-03 00:00:00] Sell 16 board lot shares at price 3030.99 (per share)
+Commission charge: 1212.40,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5058388.78]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-11-05 00:00:00] Buy 16 board lot shares at price 3129.50 (per share)
+Commission charge: 1251.80
+Account: share[16 Board Lot], cash[49936.98]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-11-12 00:00:00] Sell 16 board lot shares at price 2985.44 (per share)
+Commission charge: 1194.18,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4825446.80]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-12-13 00:00:00] Buy 16 board lot shares at price 2922.95 (per share)
+Commission charge: 1169.18
+Account: share[16 Board Lot], cash[147557.62]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2010-12-24 00:00:00] Sell 16 board lot shares at price 2835.16 (per share)
+Commission charge: 1134.06,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4682679.56]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-01-05 00:00:00] Buy 16 board lot shares at price 2838.59 (per share)
+Commission charge: 1135.44
+Account: share[16 Board Lot], cash[139800.12]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-01-17 00:00:00] Sell 16 board lot shares at price 2706.66 (per share)
+Commission charge: 1082.66,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4469373.46]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-01-28 00:00:00] Buy 16 board lot shares at price 2752.75 (per share)
+Commission charge: 1101.10
+Account: share[16 Board Lot], cash[63872.36]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-03-14 00:00:00] Sell 16 board lot shares at price 2937.63 (per share)
+Commission charge: 1175.05,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4762905.30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-03-28 00:00:00] Buy 15 board lot shares at price 2984.01 (per share)
+Commission charge: 1119.00
+Account: share[15 Board Lot], cash[285771.30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-03-30 00:00:00] Sell 15 board lot shares at price 2955.77 (per share)
+Commission charge: 1108.41,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4718317.89]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-04-06 00:00:00] Buy 15 board lot shares at price 3001.36 (per share)
+Commission charge: 1125.51
+Account: share[15 Board Lot], cash[215152.38]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-04-20 00:00:00] Sell 15 board lot shares at price 3007.04 (per share)
+Commission charge: 1127.64,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4724584.74]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-06-08 00:00:00] Buy 17 board lot shares at price 2750.29 (per share)
+Commission charge: 1168.87
+Account: share[17 Board Lot], cash[47922.86]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-06-17 00:00:00] Sell 17 board lot shares at price 2642.82 (per share)
+Commission charge: 1123.20,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4539593.66]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-06-23 00:00:00] Buy 16 board lot shares at price 2688.25 (per share)
+Commission charge: 1075.30
+Account: share[16 Board Lot], cash[237318.36]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-07-21 00:00:00] Sell 16 board lot shares at price 2765.89 (per share)
+Commission charge: 1106.36,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4661636.01]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-08-25 00:00:00] Buy 17 board lot shares at price 2615.26 (per share)
+Commission charge: 1111.49
+Account: share[17 Board Lot], cash[214582.52]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-09-05 00:00:00] Sell 17 board lot shares at price 2478.74 (per share)
+Commission charge: 1053.46,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4427387.06]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-09-16 00:00:00] Buy 17 board lot shares at price 2482.34 (per share)
+Commission charge: 1054.99
+Account: share[17 Board Lot], cash[206354.06]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-09-19 00:00:00] Sell 17 board lot shares at price 2437.80 (per share)
+Commission charge: 1036.07,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4349578.00]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-09-21 00:00:00] Buy 17 board lot shares at price 2512.96 (per share)
+Commission charge: 1068.01
+Account: share[17 Board Lot], cash[76477.99]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-09-26 00:00:00] Sell 17 board lot shares at price 2393.18 (per share)
+Commission charge: 1017.10,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4143866.89]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-10-13 00:00:00] Buy 16 board lot shares at price 2438.79 (per share)
+Commission charge: 975.52
+Account: share[16 Board Lot], cash[240827.37]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-10-21 00:00:00] Sell 16 board lot shares at price 2317.28 (per share)
+Commission charge: 926.91,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3947548.46]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-10-24 00:00:00] Buy 16 board lot shares at price 2370.33 (per share)
+Commission charge: 948.13
+Account: share[16 Board Lot], cash[154072.33]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-11-17 00:00:00] Sell 16 board lot shares at price 2463.05 (per share)
+Commission charge: 985.22,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4093967.11]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2011-12-30 00:00:00] Buy 18 board lot shares at price 2199.42 (per share)
+Commission charge: 989.74
+Account: share[18 Board Lot], cash[134021.37]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-03-06 00:00:00] Sell 18 board lot shares at price 2410.45 (per share)
+Commission charge: 1084.70,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4471746.67]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-04-13 00:00:00] Buy 18 board lot shares at price 2359.16 (per share)
+Commission charge: 1061.62
+Account: share[18 Board Lot], cash[224197.05]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-05-11 00:00:00] Sell 18 board lot shares at price 2394.98 (per share)
+Commission charge: 1077.74,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4534083.31]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-06-01 00:00:00] Buy 19 board lot shares at price 2373.44 (per share)
+Commission charge: 1127.38
+Account: share[19 Board Lot], cash[23419.92]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-06-04 00:00:00] Sell 19 board lot shares at price 2308.55 (per share)
+Commission charge: 1096.56,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4408568.36]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-07-19 00:00:00] Buy 20 board lot shares at price 2184.84 (per share)
+Commission charge: 1092.42
+Account: share[20 Board Lot], cash[37795.94]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-07-26 00:00:00] Sell 20 board lot shares at price 2126.00 (per share)
+Commission charge: 1063.00,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4288732.94]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-08-02 00:00:00] Buy 20 board lot shares at price 2111.18 (per share)
+Commission charge: 1055.59
+Account: share[20 Board Lot], cash[65317.35]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-08-24 00:00:00] Sell 20 board lot shares at price 2092.10 (per share)
+Commission charge: 1046.05,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4248471.30]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-09-07 00:00:00] Buy 19 board lot shares at price 2127.76 (per share)
+Commission charge: 1010.69
+Account: share[19 Board Lot], cash[204716.61]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-09-20 00:00:00] Sell 19 board lot shares at price 2024.84 (per share)
+Commission charge: 961.80,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4050950.81]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-09-28 00:00:00] Buy 19 board lot shares at price 2086.17 (per share)
+Commission charge: 990.93
+Account: share[19 Board Lot], cash[86236.88]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-10-26 00:00:00] Sell 19 board lot shares at price 2066.21 (per share)
+Commission charge: 981.45,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4011054.43]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-11-05 00:00:00] Buy 18 board lot shares at price 2114.03 (per share)
+Commission charge: 951.31
+Account: share[18 Board Lot], cash[204849.12]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-11-08 00:00:00] Sell 18 board lot shares at price 2071.51 (per share)
+Commission charge: 932.18,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[3932634.94]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2012-12-05 00:00:00] Buy 19 board lot shares at price 2031.91 (per share)
+Commission charge: 965.16
+Account: share[19 Board Lot], cash[71040.78]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-01-18 00:00:00] Sell 19 board lot shares at price 2317.07 (per share)
+Commission charge: 1100.61,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4472373.18]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-01-31 00:00:00] Buy 18 board lot shares at price 2385.42 (per share)
+Commission charge: 1073.44
+Account: share[18 Board Lot], cash[177543.74]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-02-19 00:00:00] Sell 18 board lot shares at price 2382.91 (per share)
+Commission charge: 1072.31,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4465709.43]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-03-22 00:00:00] Buy 19 board lot shares at price 2328.28 (per share)
+Commission charge: 1105.93
+Account: share[19 Board Lot], cash[40871.49]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-03-28 00:00:00] Sell 19 board lot shares at price 2236.30 (per share)
+Commission charge: 1062.24,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4288779.25]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-04-19 00:00:00] Buy 19 board lot shares at price 2244.64 (per share)
+Commission charge: 1066.20
+Account: share[19 Board Lot], cash[22897.05]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-05-02 00:00:00] Sell 19 board lot shares at price 2174.12 (per share)
+Commission charge: 1032.71,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4152692.34]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-05-03 00:00:00] Buy 18 board lot shares at price 2205.50 (per share)
+Commission charge: 992.48
+Account: share[18 Board Lot], cash[181799.87]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-06-04 00:00:00] Sell 18 board lot shares at price 2272.42 (per share)
+Commission charge: 1022.59,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4271133.28]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-07-09 00:00:00] Buy 21 board lot shares at price 1965.45 (per share)
+Commission charge: 1031.86
+Account: share[21 Board Lot], cash[142656.42]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-09-25 00:00:00] Sell 21 board lot shares at price 2198.52 (per share)
+Commission charge: 1154.22,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4758394.19]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-11-18 00:00:00] Buy 21 board lot shares at price 2197.22 (per share)
+Commission charge: 1153.54
+Account: share[21 Board Lot], cash[143078.65]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2013-12-12 00:00:00] Sell 21 board lot shares at price 2202.80 (per share)
+Commission charge: 1156.47,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4767802.18]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-01-22 00:00:00] Buy 23 board lot shares at price 2051.75 (per share)
+Commission charge: 1179.76
+Account: share[23 Board Lot], cash[47597.43]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-02-25 00:00:00] Sell 23 board lot shares at price 2034.22 (per share)
+Commission charge: 1169.68,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4725133.75]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-03-21 00:00:00] Buy 23 board lot shares at price 2047.62 (per share)
+Commission charge: 1177.38
+Account: share[23 Board Lot], cash[14430.37]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-04-21 00:00:00] Sell 23 board lot shares at price 2065.83 (per share)
+Commission charge: 1187.85,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4764651.52]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-05-14 00:00:00] Buy 23 board lot shares at price 2047.91 (per share)
+Commission charge: 1177.55
+Account: share[23 Board Lot], cash[53280.97]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-05-19 00:00:00] Sell 23 board lot shares at price 2005.18 (per share)
+Commission charge: 1152.98,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4664041.99]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-05-23 00:00:00] Buy 22 board lot shares at price 2034.57 (per share)
+Commission charge: 1119.01
+Account: share[22 Board Lot], cash[186868.98]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-06-20 00:00:00] Sell 22 board lot shares at price 2026.67 (per share)
+Commission charge: 1114.67,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4644428.31]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-07-01 00:00:00] Buy 22 board lot shares at price 2050.38 (per share)
+Commission charge: 1127.71
+Account: share[22 Board Lot], cash[132464.60]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-07-10 00:00:00] Sell 22 board lot shares at price 2038.34 (per share)
+Commission charge: 1121.09,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4615691.51]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-07-14 00:00:00] Buy 22 board lot shares at price 2066.65 (per share)
+Commission charge: 1136.66
+Account: share[22 Board Lot], cash[67924.85]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-08-15 00:00:00] Sell 22 board lot shares at price 2226.73 (per share)
+Commission charge: 1224.70,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4965506.15]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-08-18 00:00:00] Buy 22 board lot shares at price 2239.47 (per share)
+Commission charge: 1231.71
+Account: share[22 Board Lot], cash[37440.44]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-08-20 00:00:00] Sell 22 board lot shares at price 2240.21 (per share)
+Commission charge: 1232.12,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4964670.33]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-09-04 00:00:00] Buy 21 board lot shares at price 2306.86 (per share)
+Commission charge: 1211.10
+Account: share[21 Board Lot], cash[119053.23]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-09-17 00:00:00] Sell 21 board lot shares at price 2307.89 (per share)
+Commission charge: 1211.64,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4964410.58]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-09-30 00:00:00] Buy 21 board lot shares at price 2363.87 (per share)
+Commission charge: 1241.03
+Account: share[21 Board Lot], cash[-957.45]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-10-14 00:00:00] Sell 21 board lot shares at price 2359.48 (per share)
+Commission charge: 1238.73,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[4952711.83]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-10-31 00:00:00] Buy 20 board lot shares at price 2420.18 (per share)
+Commission charge: 1210.09
+Account: share[20 Board Lot], cash[111141.74]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-11-20 00:00:00] Sell 20 board lot shares at price 2452.66 (per share)
+Commission charge: 1226.33,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5015235.41]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-11-24 00:00:00] Buy 19 board lot shares at price 2532.88 (per share)
+Commission charge: 1203.12
+Account: share[19 Board Lot], cash[201560.29]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-12-24 00:00:00] Sell 19 board lot shares at price 2972.53 (per share)
+Commission charge: 1411.95,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5847955.34]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2014-12-31 00:00:00] Buy 18 board lot shares at price 3234.68 (per share)
+Commission charge: 1455.61
+Account: share[18 Board Lot], cash[24075.73]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-01-12 00:00:00] Sell 18 board lot shares at price 3229.32 (per share)
+Commission charge: 1453.19,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[5835398.54]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-02-26 00:00:00] Buy 17 board lot shares at price 3298.36 (per share)
+Commission charge: 1401.80
+Account: share[17 Board Lot], cash[226784.73]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-05-04 00:00:00] Sell 17 board lot shares at price 4480.46 (per share)
+Commission charge: 1904.20,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[7841662.54]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-05-22 00:00:00] Buy 16 board lot shares at price 4657.60 (per share)
+Commission charge: 1863.04
+Account: share[16 Board Lot], cash[387639.50]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-06-16 00:00:00] Sell 16 board lot shares at price 4887.43 (per share)
+Commission charge: 1954.97,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[8205572.53]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-07-17 00:00:00] Buy 20 board lot shares at price 3957.35 (per share)
+Commission charge: 1978.67
+Account: share[20 Board Lot], cash[288893.85]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-08-03 00:00:00] Sell 20 board lot shares at price 3622.91 (per share)
+Commission charge: 1811.45,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[7532902.40]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-08-04 00:00:00] Buy 20 board lot shares at price 3756.54 (per share)
+Commission charge: 1878.27
+Account: share[20 Board Lot], cash[17944.13]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-08-21 00:00:00] Sell 20 board lot shares at price 3507.74 (per share)
+Commission charge: 1753.87,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[7031670.26]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-09-10 00:00:00] Buy 21 board lot shares at price 3197.89 (per share)
+Commission charge: 1678.89
+Account: share[21 Board Lot], cash[314422.36]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-11-03 00:00:00] Sell 21 board lot shares at price 3316.70 (per share)
+Commission charge: 1741.27,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[7277751.10]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-11-04 00:00:00] Buy 21 board lot shares at price 3459.64 (per share)
+Commission charge: 1816.31
+Account: share[21 Board Lot], cash[10690.78]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-11-23 00:00:00] Sell 21 board lot shares at price 3610.31 (per share)
+Commission charge: 1895.41,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[7590446.37]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-12-18 00:00:00] Buy 21 board lot shares at price 3578.96 (per share)
+Commission charge: 1878.95
+Account: share[21 Board Lot], cash[72751.42]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+[2015-12-30 00:00:00] Sell 21 board lot shares at price 3572.88 (per share)
+Commission charge: 1875.76,    Stamp Tax: 0.00
+Account: share[0 Board Lot], cash[7573923.66]
