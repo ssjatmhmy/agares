@@ -41,35 +41,24 @@ class MACD_Strategy(Strategy):
 	return dif, dea, macd
 
 
-    def compute_trading_points(self, cst, actual_ahead):
-	"""
-	Args:
-            cst(pd.DataFrame): The variable name 'cst' is short for 'candlestick'
-            actual_ahead(int): Number of extra daily data. We add extra daily data 
-                        (before start date) for computing indexes such as MA, MACD. 
-			These may help to avoid nan at the beginning of indexes.
-			It can be set at the main program (var: n_ahead). However, 
-			it would be smaller than you set because of lack of data.
-			That's why we use a different variable name from that of main
-			program.
-	"""
-	df_1day = cst['1Day']
-	datetime_1day = df_1day.index
-	close_1day = df_1day['close'].values
+    def compute_trading_points(self, stocks, n_ahead):
+	assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
+        code = stocks.keys().pop()
+	cst = stocks[code].cst # get candlestick data
+	DataTimeAxis = cst['1Day'].index
 
 	# MACD
-	dif, dea, _ = self.MACD(close_1day, self.nslow, self.nfast, self.m)
-	df_macd = pd.DataFrame({'dif': dif, 'dea': dea}, 
-				index = datetime_1day)
+	dif, dea, _ = self.MACD(cst['1Day']['close'].values, self.nslow, self.nfast, self.m)
 
 	# skip extra data
-	df_macd = df_macd.iloc[actual_ahead:]
-	close_1day = close_1day[actual_ahead:]
+	TimeAxis = DataTimeAxis[n_ahead:]
+	df_macd = pd.DataFrame({'dif': dif[n_ahead:], 'dea': dea[n_ahead:]}, 
+				index = TimeAxis)
 
 	#df_macd.plot()
 	#plt.show()
 
-	# position management and Risk control parameters
+	# set position management and Risk control parameters
 	# the proportion of your current cash for the first investment (if you earn
 	# some profits, you would invest the rest of the cash).
 	first_position = 0.2
@@ -83,53 +72,53 @@ class MACD_Strategy(Strategy):
 	# start
 	start_flag = 0
 	state_flag = 0
-	for i, ticker in enumerate(df_macd.index):
+	for ticker in TimeAxis:
 	    # skip null value at the beginning
-	    if np.isnan(df_macd.iloc[i]['dif']) or np.isnan(df_macd.iloc[i]['dea']):
+	    if np.isnan(df_macd.at[ticker, 'dif']) or np.isnan(df_macd.at[ticker, 'dea']):
 		continue 
 	    # skip the days of 'dif'>='dea' at the beginning
 	    # those should be the days waiting fo selling, not buying, thus not suitable for a start
-	    if (start_flag == 0) and (df_macd.iloc[i]['dif'] >= df_macd.iloc[i]['dea']):
+	    if (start_flag == 0) and (df_macd.at[ticker, 'dif'] >= df_macd.at[ticker, 'dea']):
 		continue
 	    else:
 		start_flag = 1
 	    # start trading
 	    if (start_flag == 1):
-		price = float(close_1day[i])
-		if (state_flag == 0) and (df_macd.iloc[i]['dif'] > df_macd.iloc[i]['dea']): 
+		price = cst['1Day'].at[ticker,'close']
+		if (state_flag == 0) and (df_macd.at[ticker, 'dif'] > df_macd.at[ticker, 'dea']): 
 		    # quantity is the number of shares (unit: boardlot) you buy this time 
-		    quantity1 = buy(price, str(ticker), ratio = first_position) # record quantity1
+		    quantity1 = buy(code, price, str(ticker), ratio = first_position) # record quantity1
 		    price1 = price # record the first buying price
 		    state_flag = 1
 		if state_flag ==1:
 		    floating_earn_rate = (price - price1)/price1
 		    if floating_earn_rate <= -stop_loss:
 		        # stop out
-		        sell(price, str(ticker), quantity1)
+		        sell(code, price, str(ticker), quantity1)
 		        state_flag = 0
 		    elif floating_earn_rate >= lock_profit:
 			# enter state 2: lock in profits
-			quantity2 = buy(price, str(ticker), ratio = 1) # record quantity2
+			quantity2 = buy(code, price, str(ticker), ratio = 1) # record quantity2
 			price2 = first_position * price1 + (1-first_position) * price
 			state_flag = 2
 		    else:
 			pass
 		if state_flag == 2:
-		    if (price < price2) or (df_macd.iloc[i]['dif'] < df_macd.iloc[i]['dea']): 
+		    if (price < price2) or (df_macd.at[ticker, 'dif'] < df_macd.at[ticker, 'dea']): 
 		        # sell all the shares bought last time
-		        sell(price, str(ticker), quantity1 + quantity2) 
+		        sell(code, price, str(ticker), quantity1 + quantity2) 
 		        state_flag = 0
 	
 
 
 if __name__ == '__main__':
-    # list of candlestick data files, each item represents a period data of the interested stock
-    # 'mp' refers to 'multiple period'
-    mpstock = ['000001.sz-1Day']
+    # list of candlestick data files, each item represents a period data of a interested stock
+    # pstocks could contain multiple stock of multiple type of period
+    pstocks = ['000001.sz-1Day']
     # create a trading strategy
     strategy = MACD_Strategy('A MACD strategy with risk control and position management', 26, 12, 9)
     # set start and end datetime
-    dt_start, dt_end = datetime(1997,1,1), datetime(2016,1,27)
+    dt_start, dt_end = datetime(1997,1,1), datetime(2016,1,26)
     # number of extra daily data for computation (ahead of start datatime)
     n_ahead = 80
     # settings of a trading system
@@ -141,7 +130,7 @@ if __name__ == '__main__':
     #                         been considered in the program.
     settings = {'capital': 10000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 2.5e-4}
     # create a trading system
-    create_trading_system(strategy, mpstock, dt_start, dt_end, n_ahead, settings)
+    create_trading_system(strategy, pstocks, dt_start, dt_end, n_ahead, settings)
     # start back testing
     run()
     # report performance of the trading system

@@ -28,3 +28,6 @@ class BidTooLow(QError):
 class CanNotSplitShare(QError):
     msg = "You only have one share currently and can not be split.\n Try set ratio in sell() to 1."
 
+class SellError(QError):
+    msg = "Part of your sale does not exist. Please check your strategy."
+

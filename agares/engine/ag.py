@@ -8,16 +8,16 @@ from abc import ABCMeta, abstractmethod
 # global
 ag_simulator = None
 
-def create_trading_system(strategy, mpstock, dt_start, dt_end, n_ahead, settings = {}):
+def create_trading_system(strategy, pstocks, dt_start, dt_end, n_ahead, settings = {}):
     """
     Args:
-    	mpstock([str,]): list of candlestick data files, each item represents \             
-                         a period data of the interested stock
+    	pstocks([str,]): list of candlestick data files, each item represents \             
+                         a period data of a interested stock
     	dt_start(str): start datetime
     	dt_end(str): end datetime
     """
     global ag_simulator
-    ag_simulator = ExecuteUnit(mpstock, dt_start, dt_end, n_ahead)
+    ag_simulator = ExecuteUnit(pstocks, dt_start, dt_end, n_ahead)
     ag_simulator.add_strategy(strategy, settings)
 
 
@@ -25,7 +25,7 @@ def run():
     ag_simulator.run()
 
 
-def buy(price, datetime, **kargs):
+def buy(code, price, datetime, **kargs):
     """
     Args: 
 	kargs(optional): You have two choices, position or ratio (both within (0,1])
@@ -41,22 +41,24 @@ def buy(price, datetime, **kargs):
 	quantity(int): the number of shares (unit: boardlot) you buy this time
     """
     if kargs.has_key('ratio'):
-	quantity = ag_simulator.buy_ratio(price, datetime, ratio = kargs['ratio'])  
+	quantity = ag_simulator.buy_ratio(code, price, datetime, ratio = kargs['ratio'])  
     elif kargs.has_key('position'):   
-        quantity = ag_simulator.buy_position(price, datetime, position = kargs['position']) 
+        quantity = ag_simulator.buy_position(code, price, datetime, position = kargs['position']) 
     else:
 	print "Warning: ratio/position not given in buy(). Using default: position = 1."
-	quantity = ag_simulator.buy_position(price, datetime, position = 1) 
+	quantity = ag_simulator.buy_position(code, price, datetime, position = 1) 
+    ag_simulator.trading_stocks.add(code)
     return quantity
 
 
-def sell(price, datetime, quantity):
+def sell(code, price, datetime, quantity):
     """
     Args: 
         datetime(str): trading time
         quantity(int): the number of shares (unit: boardlot) you want to sell	
     """
-    ag_simulator.sell(price, datetime, quantity)
+    ag_simulator.sell(code, price, datetime, quantity)
+    ag_simulator.trading_stocks.add(code)
 
 
 def report(ReturnEquity = False):

@@ -51,57 +51,45 @@ class new_extreme_Strategy(Strategy):
 	    window.append(close[i])
 	return highest, lowest
 
-
-    # the variable name 'cst' is short for 'candlestick'
-    def compute_trading_points(self, cst, actual_ahead):
-	"""
-	Args:
-            cst(pd.DataFrame): The variable name 'cst' is short for 'candlestick'
-            actual_ahead(int): Number of extra daily data. We add extra daily data 
-                        (before start date) for computing indexes such as MA, MACD. 
-			These may help to avoid nan at the beginning of indexes.
-			It can be set at the main program (var: n_ahead). However, 
-			it would be smaller than you set because of lack of data.
-			That's why we use a different variable name from that of main
-			program.
-	"""
-	df_1day = cst['1Day']
-	datetime_1day = df_1day.index
-	close_1day = df_1day['close'].values
+    def compute_trading_points(self, stocks, n_ahead):
+	assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
+        code = stocks.keys().pop()
+	cst = stocks[code].cst # get candlestick data
+	DataTimeAxis = cst['1Day'].index
+	close = cst['1Day']['close'].values
 
 	# ExtremePrice
-	highest, lowest = self.ExtremePrice(close_1day, self.m)
-	df_extreme = pd.DataFrame({'close': close_1day, 'highest': highest, 'lowest': lowest}, 
-				index = datetime_1day)
+	highest, lowest = self.ExtremePrice(close, self.m)
 
 	# skip extra data
-	df_extreme = df_extreme.iloc[actual_ahead:]
-	close_1day = close_1day[actual_ahead:]
+	TimeAxis = DataTimeAxis[n_ahead:]
+	df_extreme = pd.DataFrame({'close': close[n_ahead:], 'highest': highest[n_ahead:], \
+				'lowest': lowest[n_ahead:]}, index = TimeAxis)
 
 	#df_extreme.plot()
 	#plt.show()
 	hold_flag = 0
-	for i, ticker in enumerate(df_extreme.index):
+	for ticker in TimeAxis:
 	    # skip null value at the beginning
-	    if np.isnan(df_extreme.iloc[i]['highest']) or np.isnan(df_extreme.iloc[i]['lowest']):
+	    if np.isnan(df_extreme.at[ticker, 'highest']) or np.isnan(df_extreme.at[ticker, 'lowest']):
 		continue 
 	    # start trading
-	    price = float(close_1day[i])
-	    if (hold_flag == 0) and (df_extreme.iloc[i]['close'] > df_extreme.iloc[i]['highest']): 
+	    price = cst['1Day'].at[ticker,'close']
+	    if (hold_flag == 0) and (df_extreme.at[ticker, 'close'] > df_extreme.at[ticker, 'highest']): 
 		# quantity is the number of shares (unit: boardlot) you buy this time 
-		quantity = buy(price, str(ticker), ratio = 1) 
+		quantity = buy(code, price, str(ticker), ratio = 1) 
 	        hold_flag = 1
-	    if (hold_flag == 1) and (df_extreme.iloc[i]['close'] < df_extreme.iloc[i]['lowest']): 
+	    if (hold_flag == 1) and (df_extreme.at[ticker, 'close'] < df_extreme.at[ticker, 'lowest']): 
 		# sell all the shares bought last time
-		sell(price, str(ticker), quantity) 
+		sell(code, price, str(ticker), quantity) 
 	        hold_flag = 0
 	
 
 
 if __name__ == '__main__':
-    # list of candlestick data files, each item represents a period data of the interested stock
-    # 'mp' refers to 'multiple period'
-    mpstock = ['000001.sz-1Day']
+    # list of candlestick data files, each item represents a period data of a interested stock
+    # pstocks could contain multiple stock of multiple type of period
+    pstocks = ['000001.sz-1Day']
     # create a trading strategy
     strategy = new_extreme_Strategy('The new extreme strategy no.1', 10)
     # set start and end datetime
@@ -117,7 +105,7 @@ if __name__ == '__main__':
     #                         been considered in the program.
     settings = {'capital': 1000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 2.5e-4}
     # create a trading system
-    create_trading_system(strategy, mpstock, dt_start, dt_end, n_ahead, settings)
+    create_trading_system(strategy, pstocks, dt_start, dt_end, n_ahead, settings)
     # start back testing
     run()
     # report performance of the trading system

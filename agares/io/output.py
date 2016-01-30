@@ -11,9 +11,10 @@ class Output(object):
 	# write blank lines so that the front lines are left for the most useful results
 	self._reportfile.write(' '*100000 + '\n')
 
-    def printsf(self, statement):
+    def report(self, statement):
         """
         Print statement on screen and write it into reportfile
+
 	Args:
 	    statement(str)
 	"""
@@ -28,4 +29,20 @@ class Output(object):
     def close(self):
 	if self._reportfile:
 	    self._reportfile.close()
+
+    def account(self, shares, cash):
+	"""
+	Print current equity in the account
+
+	Args:
+	    shares: {code(str): quantity(int), }
+	    cash: float
+	"""	
+	if shares:
+            self.report("shares: ")
+	    self.report("code" + " "*10 + "quantity (Board Lot)")
+	    for code in shares.keys():
+	        self.report("{0: ^14}{1:d} ".format(code, shares[code]))
+	self.report("cash: {:.2f}".format(cash))
+
 	
