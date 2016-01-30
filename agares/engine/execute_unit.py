@@ -159,7 +159,10 @@ class ExecuteUnit(object):
 	except KeyError:
 	    self._shares[code] = quantity
         # commission charge deduction
-	commission_charge = max(need_cash*self.CommissionChargeRate, 5) # at least 5 yuan 
+	if (self.CommissionChargeRate > 0): # require consider commission charge
+	    commission_charge = max(need_cash*self.CommissionChargeRate, 5) # at least 5 yuan 
+	else: 
+	    commission_charge = 0
         self._cash -= commission_charge
 	# update total commission charge 
 	self._total_commission_charge += commission_charge
@@ -210,7 +213,10 @@ class ExecuteUnit(object):
 	except KeyError:
 	    self._shares[code] = quantity
         # commission charge deduction
-	commission_charge = max(need_cash*self.CommissionChargeRate, 5) # at least 5 yuan 
+	if (self.CommissionChargeRate > 0): # require consider commission charge
+	    commission_charge = max(need_cash*self.CommissionChargeRate, 5) # at least 5 yuan 
+	else: 
+	    commission_charge = 0
         self._cash -= commission_charge
 	# update total commission charge 
 	self._total_commission_charge += commission_charge
@@ -247,7 +253,10 @@ class ExecuteUnit(object):
 	except KeyError:
 	    raise SellError
         # commission charge deduction
-	commission_charge = max(income*self.CommissionChargeRate, 5) # at least 5 yuan 
+	if (self.CommissionChargeRate > 0): # require consider commission charge
+	    commission_charge = max(income*self.CommissionChargeRate, 5) # at least 5 yuan 
+	else: 
+	    commission_charge = 0
         self._cash -= commission_charge
 	# stamp tax deduction
 	stamp_tax = income *self.StampTaxRate
@@ -295,6 +304,8 @@ class ExecuteUnit(object):
         maxpeak = 0 # store the largest floating equity
         max_withdraw = 0 # store the largest withdraw
         max_withdraw_ratio = 0 # store the largest withdraw ratio
+	mwr_dt_start = None # store the start datetime of maximum withdraw ratio
+	mwr_dt_end = None # store the end datetime of maximum withdraw ratio
         cur_ticker, cur_cash, cur_shares = self._records.pop(0)
         next_ticker, next_cash, next_shares = self._records.pop(0)
         next_ticker = datetime.strptime(next_ticker, "%Y-%m-%d %H:%M:%S") # datetime
@@ -320,9 +331,10 @@ class ExecuteUnit(object):
                     cur_1boardlot_price = price *100
 	            floating_equity += cur_shares[code] * cur_1boardlot_price
 	        equity.append(floating_equity)
-	    # update maxpeak
+	    # update maxpeak, mwr_dt_start, mwr_dt_end
 	    if floating_equity > maxpeak:
 	        maxpeak = floating_equity
+		temp_mwr_dt_start = str(ticker)
 	    else: 
 	        withdraw = maxpeak - floating_equity
 	        # update maximum withdraw 
@@ -331,13 +343,24 @@ class ExecuteUnit(object):
 	        # update maximum withdraw ratio 
 	        if withdraw/maxpeak > max_withdraw_ratio:
 		    max_withdraw_ratio = withdraw/maxpeak
+		    mwr_dt_start, mwr_dt_end = temp_mwr_dt_start, str(ticker)
         # continue writing report: 
 	self.o.report("Final equity convert into cash: {:.2f}".format(equity[-1]))
 	profit = equity[-1] -equity[0]
 	self.o.report("Profit: {:.2f}".format(profit))
-	self.o.report("Rate of return: {:.2f}%".format(profit/self._capital*100))
+	rate_of_return = profit/self._capital
+	self.o.report("Rate of return: {:.2f}%".format(rate_of_return*100))
+	# get time span
+	dt_start = datetime.strptime(str(dt_start), "%Y-%m-%d %H:%M:%S") # datetime
+	dt_end = datetime.strptime(str(dt_end), "%Y-%m-%d %H:%M:%S") # datetime
+	time_span_days = (dt_end -dt_start).days
+	time_span_years = time_span_days/365.0
+	annualized_return = math.exp(math.log(1 + rate_of_return)/19)-1
+	self.o.report("Annualized Return (compound interest): {:.2f}%".format(annualized_return*100))
 	self.o.report("Maximum withdraw: {:.2f}".format(max_withdraw))
 	self.o.report("Maximum withdraw ratio: {:.2f}%".format(max_withdraw_ratio*100))
+	self.o.report("The start datetime of maximum withdraw ratio: {:s}".format(mwr_dt_start))
+	self.o.report("The end datetime of maximum withdraw ratio: {:s}".format(mwr_dt_end))
 	self.o.report("Commission Charge: {:.2f}".format(self._total_commission_charge))
 	self.o.report("Stamp Tax: {:.2f}".format(self._total_stamp_tax))
 	# Done writing report

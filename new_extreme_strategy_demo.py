@@ -89,13 +89,13 @@ class new_extreme_Strategy(Strategy):
 if __name__ == '__main__':
     # list of candlestick data files, each item represents a period data of a interested stock
     # pstocks could contain multiple stock of multiple type of period
-    pstocks = ['000001.sz-1Day']
+    pstocks = ['159919.300ETF-1Day']
     # create a trading strategy
     strategy = new_extreme_Strategy('The new extreme strategy no.1', 10)
     # set start and end datetime
-    dt_start, dt_end = datetime(2005,1,1), datetime(2016,1,19)
+    dt_start, dt_end = datetime(2012,6,15), datetime(2016,1,29)
     # number of extra daily data for computation (ahead of start datatime)
-    n_ahead = 40
+    n_ahead = 10
     # settings of a trading system
     # capital:        Initial money for investment
     # StampTaxRate:   Usually 0.001. Only charge when sell.
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     #                 So set it to 0 if the 'mpstock' is a fund.
     # CommissionChargeRate:   Usually 2.5e-4. The fact that commission charge is at least 5 yuan has
     #                         been considered in the program.
-    settings = {'capital': 1000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 2.5e-4}
+    settings = {'capital': 100000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 2.5e-4}
     # create a trading system
     create_trading_system(strategy, pstocks, dt_start, dt_end, n_ahead, settings)
     # start back testing

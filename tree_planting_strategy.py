@@ -1,5 +1,5 @@
-# @file macd_strategy_demo.py
-# @brief standard MACD strategy demo
+# @file tree_planting_strategy.py
+# @brief tree planting strategy
 
 import ipdb
 from datetime import datetime
@@ -80,7 +80,9 @@ class MACD_Strategy(Strategy):
 if __name__ == '__main__':
     # list of candlestick data files, each item represents a period data of a interested stock
     # pstocks could contain multiple stock of multiple type of period
-    pstocks = ['000001.sz-1Day']
+    pstocks = ['000049.dsdc-1Day', '000518.shsw-1Day', '000544.zyhb-1Day', '600004.byjc-1Day', \
+		'600038.zzgf-1Day', '600054.hsly-1Day', '600256.ghny-1Day', '600373.zwcm-1Day', \
+		'600867.thdb-1Day', '600085.trt-1Day']
     # create a trading strategy
     strategy = MACD_Strategy('Standard MACD strategy no.1', 26, 12, 9)
     # set start and end datetime
@@ -94,7 +96,7 @@ if __name__ == '__main__':
     #                 So set it to 0 if the 'mpstock' is a fund.
     # CommissionChargeRate:   Usually 2.5e-4. The fact that commission charge is at least 5 yuan has
     #                         been considered in the program.
-    settings = {'capital': 100000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 0}
+    settings = {'capital': 1000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 2.5e-4}
     # create a trading system
     create_trading_system(strategy, pstocks, dt_start, dt_end, n_ahead, settings)
     # start back testing
