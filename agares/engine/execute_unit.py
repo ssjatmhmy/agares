@@ -55,8 +55,11 @@ class ExecuteUnit(object):
 	    else:
 		self.stocks[ID.code].load_cst(pstock, dt_start, dt_end, n_ahead)
 	    # get time axis
-	    if self.TimeAxis == None and period == '1Day':
-		self.TimeAxis = self.stocks[ID.code].cst['1Day'].index[n_ahead:] # pd.DataFrame.index
+	    try:
+	        if self.TimeAxis == None and period == '1Day':
+		    self.TimeAxis = self.stocks[ID.code].cst['1Day'].index[n_ahead:] # pd.DataFrame.index
+	    except TypeError: # .TimeAxis has been loaded.
+		pass
 	# check whether there is at least one daily candlestick data in pstocks
 	try:
 	    # read candlestick data timescope by the way
