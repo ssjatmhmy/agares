@@ -41,7 +41,7 @@ class MACD_Strategy(Strategy):
 	return dif, dea, macd
 
 
-    def compute_trading_points(self, stocks, n_ahead):
+    def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
 	assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
         code = stocks.keys().pop()
 	cst = stocks[code].cst # get candlestick data
@@ -101,7 +101,7 @@ class MACD_Strategy(Strategy):
 			quantity2 = buy(code, price, str(ticker), ratio = 1) # record quantity2
 			price2 = first_position * price1 + (1-first_position) * price
 			state_flag = 2
-		    else:
+		    else: # just wait
 			pass
 		if state_flag == 2:
 		    if (price < price2) or (df_macd.at[ticker, 'dif'] < df_macd.at[ticker, 'dea']): 
@@ -134,5 +134,5 @@ if __name__ == '__main__':
     # start back testing
     run()
     # report performance of the trading system
-    report(ReturnEquity = False)
+    report(PlotNetValue = True)
 

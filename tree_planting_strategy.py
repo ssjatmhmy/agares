@@ -66,7 +66,7 @@ class TreePlantingStrategy(Strategy):
 	return dif, dea, macd
 
     def compute_macd_for_all(self, stocks, n_ahead):
-	macd = {} # {code(str): pd.DataFrame('dif', 'dea', index = datatime)}
+	self.macd = {} # {code(str): pd.DataFrame('dif', 'dea', index = datatime)}
         for code in stocks.keys():
 	    cst = stocks[code].cst # get candlestick data
 
@@ -75,9 +75,8 @@ class TreePlantingStrategy(Strategy):
 
 	    # skip extra data
 	    TimeAxis = cst['1Day'].index[n_ahead:]
-	    macd[code] = pd.DataFrame({'dif': dif[n_ahead:], 'dea': dea[n_ahead:]}, 
+	    self.macd[code] = pd.DataFrame({'dif': dif[n_ahead:], 'dea': dea[n_ahead:]}, 
 				     index = TimeAxis)
-	return TimeAxis, macd
 
     def get_ready_saplings(self, stocks, ticker):
 	"""
@@ -125,8 +124,8 @@ class TreePlantingStrategy(Strategy):
 		
     def init_stock_status(self, stocks, n_ahead):
 	# compute MACD for all stocks
-	# .macd: {code(str): pd.DataFrame('dif', 'dea', index = datetime), }
-        self.TimeAxis, self.macd = self.compute_macd_for_all(stocks, n_ahead)
+	# store in self.macd: {code(str): pd.DataFrame('dif', 'dea', index = datetime), }
+        self.compute_macd_for_all(stocks, n_ahead)
 	# to record status of stocks
 	self.start_flags = {}
 	self.state_flags = {}
@@ -141,12 +140,12 @@ class TreePlantingStrategy(Strategy):
 	# to store the number of saplings (stocks) we have in the account
 	self.n_saplings = 0 
 
-    def compute_trading_points(self, stocks, n_ahead):
+    def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
 	assert len(stocks) >= self.N, \
 		"This strategy requires at least N daily candlestick data of different stocks."
 	self.init_stock_status(stocks, n_ahead)
 	# start
-	for ticker in self.TimeAxis:
+	for ticker in szTimeAxis:
 	    # try to plant saplings
 	    if self.check_ready_to_buy(stocks): # are we planting a sapling now? do the following if not
 	        ready_saplings = self.get_ready_saplings(stocks, ticker)
@@ -191,17 +190,20 @@ if __name__ == '__main__':
     # list of candlestick data files, each item represents a period data of a interested stock
     # pstocks could contain multiple stock of multiple type of period
     pstocks = ['000049.dsdc-1Day', '000518.shsw-1Day', '000544.zyhb-1Day', '600004.byjc-1Day', \
-		'600038.zzgf-1Day', '600054.hsly-1Day', '600256.ghny-1Day', '600373.zwcm-1Day', \
-		'600867.thdb-1Day', '600085.trt-1Day']
+    		'600038.zzgf-1Day', '600054.hsly-1Day', '600256.ghny-1Day', '600373.zwcm-1Day', \
+    		'600867.thdb-1Day', '600085.trt-1Day']
+
+    #pstocks = ['510050.50ETF-1Day', '510180.180ETF-1Day']
+    #pstocks = ['000049.dsdc-1Day', '000518.shsw-1Day', '000544.zyhb-1Day', '600004.byjc-1Day', '600038.zzgf-1Day']
     # stop_loss: stop out when your loss of a sapling reach this proportion 
-    stop_loss = 0.04
+    stop_loss = 0.02
     # alive_point: if the floating earning of a sapling reach this proportion, we say it is 'alive'
     #              and we can sell it at a proper time.
-    alive_point = 0.05
+    alive_point = 0.04
     # create a trading strategy
     strategy = TreePlantingStrategy('Tree Planting strategy', len(pstocks), stop_loss, alive_point)
     # set start and end datetime
-    dt_start, dt_end = datetime(2004,6,1), datetime(2016,1,26)
+    dt_start, dt_end = datetime(2006,7,15), datetime(2016,1,26)
     # number of extra daily data for computation (ahead of start datatime)
     n_ahead = 40
     # settings of a trading system
@@ -217,5 +219,5 @@ if __name__ == '__main__':
     # start back testing
     run()
     # report performance of the trading system
-    report(ReturnEquity = False)
+    report(ReturnEquity = False, PlotEquity = False, PlotNetValue = True)
 

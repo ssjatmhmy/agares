@@ -3,7 +3,7 @@ from datetime import datetime
 from agares.engine.execute_unit import ExecuteUnit
 import matplotlib.pyplot as plt
 from abc import ABCMeta, abstractmethod
-
+import pandas as pd
 
 # global
 ag_simulator = None
@@ -61,21 +61,33 @@ def sell(code, price, datetime, quantity):
     ag_simulator.trading_stocks.add(code)
 
 
-def report(ReturnEquity = False):
+def report(ReturnEquity = False, PlotEquity = False, PlotNetValue = False):
     """
     Args:
 	ReturnEquity(boolean): set to True if you want to return the variable 
                             df_equity(pd.DataFrame), which can be used to draw
-			    equity curve. If False, a simple graph of equity 
-			    curve will be drawn.
+			    equity curve. 
+	PlotEquity(boolean): If True, a simple graph of equity curve will be drawn.
+	PlotNetValue(boolean): If True, a net value curve of the strategy will be 
+			       drawn along with a scaled sz daily close price curve.
     """
     df_equity = ag_simulator.report()
     if ReturnEquity:
         return df_equity
-    else: # plot equity
-        df_equity.plot()
+    if PlotEquity: # plot equity
+        df_equity['equity'].plot()
     	print "Plot of equity curve is shown."
     	plt.show()
+    if PlotNetValue:
+	init_equity = df_equity['equity'].values[0]
+	init_sz = df_equity['sz'].values[0]
+	net_value = df_equity['equity'].values/float(init_equity)
+	scaled_sz = df_equity['sz'].values/float(init_sz)
+	df_nv = pd.DataFrame({'Net value': net_value, 'scaled sz': scaled_sz}, index = df_equity.index)
+	df_nv.plot()
+	print "Plot of net value curve is shown."
+	plt.show()
+	
 
 
 class Strategy(object):

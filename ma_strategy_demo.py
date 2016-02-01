@@ -27,7 +27,7 @@ class MA_Strategy(Strategy):
 	self.nslow = nslow
 
 
-    def compute_trading_points(self, stocks, n_ahead):
+    def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
 	assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
         code = stocks.keys().pop()
 	cst = stocks[code].cst # get candlestick data
@@ -93,4 +93,4 @@ if __name__ == '__main__':
     # start back testing
     run()
     # report performance of the trading system
-    report(ReturnEquity = False)
+    report(PlotNetValue = True)

@@ -34,8 +34,6 @@ class ExecuteUnit(object):
 	self._total_stamp_tax = 0
 	# actual timescope of the back test, depending on the user setting and the available data 
 	self.timescope = None
-	# daily time axis
-	self.TimeAxis = None
 	# number of extra daily data for computation (ahead of start datatime)
 	# set in the main program
 	self.n_ahead = n_ahead
@@ -43,6 +41,8 @@ class ExecuteUnit(object):
 	self.o = None
 	# check whether datetime is proper
 	assert(dt_start < dt_end)
+	# is_Day_cst: to check whether there is at least one daily candlestick data in pstocks
+	is_Day_cst_exist = False
 	# load candlestick(cst) data
 	# .stocks = {code(str): PStock,}
 	self.stocks = {}
@@ -50,25 +50,69 @@ class ExecuteUnit(object):
 	    # get info from filename 
 	    # .ID: class StockID, .period: class PeriodInfo
             ID, period = parse_cst_filename(pstock) 
+	    if period == '1Day':
+		is_Day_cst_exist = True
 	    if ID.code not in self.stocks:
 	        self.stocks[ID.code] = PStock(pstock, dt_start, dt_end, n_ahead)
 	    else:
 		self.stocks[ID.code].load_cst(pstock, dt_start, dt_end, n_ahead)
-	    # get time axis
-	    try:
-	        if self.TimeAxis == None and period == '1Day':
-		    self.TimeAxis = self.stocks[ID.code].cst['1Day'].index[n_ahead:] # pd.DataFrame.index
-	    except TypeError: # .TimeAxis has been loaded.
-		pass
-	# check whether there is at least one daily candlestick data in pstocks
-	try:
-	    # read candlestick data timescope by the way
-	    self.timescope = str(self.TimeAxis[0]), str(self.TimeAxis[-1]) # if .TimeAxis is None, then a TypeError will raise
-	except TypeError:
-	    assert False, "At least one item in pstocks should be daily candlestick data"
+	# remind user
+	assert is_Day_cst_exist, "At least one item in pstocks should be daily candlestick data"
+	# for convenience, store sz cst information as class PStock
+	self.sz = PStock('000001.sz-1Day', dt_start, dt_end, n_ahead)
+	# for convenience, store dayily close price of sz
+	self.sz_daily_close = self.sz.cst['1Day']['close'].values[n_ahead:]
+	# get sz daily time axis
+	self.szTimeAxis = self.sz.cst['1Day'].index[n_ahead:] # pd.DataFrame.index
+	# find missing daily candlestick data and fill them up in .stocks[code].missing_cst['1Day'] 
+	# as pd.DataFrame 
+	self.fill_missing_cst()
+	# read candlestick data timescope from sz
+	self.timescope = str(self.szTimeAxis[0]), str(self.szTimeAxis[-1]) 
 	# trading_stocks: To store the stocks that are traded. Note that although have been loaded,
 	#                 some stocks in self.stocks may not been traded in user's strategy.
 	self.trading_stocks = set()
+
+
+    def fill_missing_cst(self):
+	""" 
+	Find missing daily candlestick data and fill them 
+	up in .stocks[code].missing_cst['1Day'] as pd.DataFrame 
+	"""
+	for code in self.stocks.keys():
+	    # get pd.DataFrame.columns of cst data
+	    columns = self.stocks[code].cst['1Day'].columns
+	    # tmp_cst, tmp_tickers: to store missing daily candlestick data
+	    tmp_cst = {column: [] for column in columns}
+	    tmp_tickers = []
+	    # clear ivar: last_normal_cst at the beginning of each loop
+	    last_normal_cst = None
+	    # start to search missing cst data
+	    atbegin_flag = True
+	    for ticker in self.szTimeAxis:
+		if atbegin_flag: # if missing cst data at the beginning, fill up with zeros
+		    try:
+		        last_normal_cst = self.stocks[code].cst['1Day'].ix[ticker]
+		    except KeyError:
+			tmp_tickers.append(ticker)
+			for column in columns:
+			    tmp_cst[column].append(0.0)
+	            else:
+		        atbegin_flag = False
+		else:
+		    try:
+		        last_normal_cst = self.stocks[code].cst['1Day'].ix[ticker]
+		    except KeyError:
+			tmp_tickers.append(ticker)
+			for column in columns:
+			    tmp_cst[column].append(last_normal_cst[column])
+	            else:
+		        pass
+	    # to store missing candlestick data of different period type
+	    self.stocks[code].missing_cst = {}
+	    # store missing cst as pd.DataFrame 
+	    self.stocks[code].missing_cst['1Day'] = pd.DataFrame(tmp_cst, index = tmp_tickers)
+
 
     def add_strategy(self, strategy, settings = {}):
 	"""
@@ -111,7 +155,7 @@ class ExecuteUnit(object):
 	print 'Running back test for the trading system..'
 	self.o.report(' Blotter '.center(80, '='))
 	try:
-	    self._strategy.compute_trading_points(self.stocks, self.n_ahead)
+	    self._strategy.compute_trading_points(self.stocks, self.szTimeAxis, self.n_ahead)
 	except BidTooLow:
 	    self.o.report('[Abort] Your bid was too low for one board lot.')
 	    self.o.report('Try increaing initial capital or buying position.')
@@ -305,19 +349,21 @@ class ExecuteUnit(object):
         # compute and store the state of the equity
         equity = []
         maxpeak = 0 # store the largest floating equity
-        max_withdraw = 0 # store the largest withdraw
         max_withdraw_ratio = 0 # store the largest withdraw ratio
 	mwr_dt_start = None # store the start datetime of maximum withdraw ratio
 	mwr_dt_end = None # store the end datetime of maximum withdraw ratio
         cur_ticker, cur_cash, cur_shares = self._records.pop(0)
         next_ticker, next_cash, next_shares = self._records.pop(0)
         next_ticker = datetime.strptime(next_ticker, "%Y-%m-%d %H:%M:%S") # datetime
-        for i, ticker in enumerate(self.TimeAxis):
+        for ticker in self.szTimeAxis:
             ticker = datetime.strptime(str(ticker), "%Y-%m-%d %H:%M:%S") # datetime
             if ticker < next_ticker:
 	        floating_equity = cur_cash
 	        for code in cur_shares:
-		    price = self.stocks[code].cst['1Day'].at[ticker,'close']
+		    try:
+		        price = self.stocks[code].cst['1Day'].at[ticker,'close']
+		    except KeyError:
+		        price = self.stocks[code].missing_cst['1Day'].at[ticker,'close']
                     cur_1boardlot_price = price *100
 	            floating_equity += cur_shares[code] * cur_1boardlot_price
 	        equity.append(floating_equity)
@@ -330,7 +376,10 @@ class ExecuteUnit(object):
 	        next_ticker = datetime.strptime(next_ticker, "%Y-%m-%d %H:%M:%S") # datetime
 	        floating_equity = cur_cash
 	        for code in cur_shares:
-		    price = self.stocks[code].cst['1Day'].at[ticker,'close']
+		    try:
+		        price = self.stocks[code].cst['1Day'].at[ticker,'close']
+		    except KeyError:
+			price = self.stocks[code].missing_cst['1Day'].at[ticker,'close']
                     cur_1boardlot_price = price *100
 	            floating_equity += cur_shares[code] * cur_1boardlot_price
 	        equity.append(floating_equity)
@@ -340,9 +389,6 @@ class ExecuteUnit(object):
 		temp_mwr_dt_start = str(ticker)
 	    else: 
 	        withdraw = maxpeak - floating_equity
-	        # update maximum withdraw 
-	        if withdraw > max_withdraw:
-		    max_withdraw = withdraw
 	        # update maximum withdraw ratio 
 	        if withdraw/maxpeak > max_withdraw_ratio:
 		    max_withdraw_ratio = withdraw/maxpeak
@@ -360,7 +406,6 @@ class ExecuteUnit(object):
 	time_span_years = time_span_days/365.0
 	annualized_return = math.exp(math.log(1 + rate_of_return)/19)-1
 	self.o.report("Annualized Return (compound interest): {:.2f}%".format(annualized_return*100))
-	self.o.report("Maximum withdraw: {:.2f}".format(max_withdraw))
 	self.o.report("Maximum withdraw ratio: {:.2f}%".format(max_withdraw_ratio*100))
 	self.o.report("The start datetime of maximum withdraw ratio: {:s}".format(mwr_dt_start))
 	self.o.report("The end datetime of maximum withdraw ratio: {:s}".format(mwr_dt_end))
@@ -369,7 +414,7 @@ class ExecuteUnit(object):
 	# Done writing report
 	self.o.close()
         # return df_equity(pd.DataFrame)
-	df_equity = pd.DataFrame({'equity': equity}, index = self.TimeAxis)
+	df_equity = pd.DataFrame({'equity': equity, 'sz': self.sz_daily_close}, index = self.szTimeAxis)
 	return df_equity
 
 	    
