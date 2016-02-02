@@ -2,3 +2,4 @@
 *.py~
 *.md~
 *.txt~
+.gitignore~
