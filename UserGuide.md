@@ -1,31 +1,22 @@
 # User Guide of Agares
 
 ## What is it:
-  Agares is a back-testing tool for Chinese stock market, which can be used to test 
-investment strategies or verify theories. Unlike futures or other markets, Chinese 
-stock marker carries out a T+1 system. The regulations in Chinese stock marker allows 
-us to take our time instead of reacting promptly. Thus, agares is not for real-time 
-trading; it is instead a analysis tool that might cost a lot of time to see whether 
+  Agares is a back-testing tool for Chinese stock market, which can be used to test investment strategies or verify theories. Unlike futures or other markets, Chinese stock marker carries out a T+1 system. The regulations in Chinese stock marker allows us to take our time instead of reacting promptly. Thus, agares is not for real-time trading; it is instead a analysis tool that might cost a lot of time to see whether 
 an trading idea is reasonalbe by reviewing its performance in the pass.  
-  The framework of agares is simple and flexible. Besides technical approaches and
-value investing theory, you can also try the algorithms in machine learning theory. 
-For example, if you believe that market sentiment is helpful, you can deploy natural 
-language processing algorithms on netizen comments to perform sentiment analysis.
+  The framework of agares is simple and flexible. Besides technical approaches and value investing theory, you can also try the algorithms in machine learning theory. For example, if you believe that market sentiment is helpful, you can deploy natural language processing algorithms on netizen comments to perform sentiment analysis.
 
 ## Lib Dependency:
 see requirements.txt
 
 ## File Organization:
-agares: source files
-data: data files for back-testing and analysis
-report: store back-testing reports
-strategy: deploy user's personalized strategies
+agares: source files  
+data: data files for back-testing and analysis  
+report: store back-testing reports  
+strategy: deploy user's personalized strategies  
 
 
 ## How to use it:
-  To use agares to test your trading strategy, you need to write a strategy file. A 
-strategy file is a .py file that contains a subclass of Strategy class, in which a 
-class function 
+  To use agares to test your trading strategy, you need to write a strategy file. A strategy file is a .py file that contains a subclass of Strategy class, in which a class function 
 
     def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
 	"""
@@ -51,13 +42,9 @@ class function
 			  It can be set at the main program, specifically, in API create_trading_system(). 
 	"""
 
-should be implemented. Your idea should be described in this class function by calling the
-buy() and sell() API functions under user-designed conditions at a certain datetime. If you
-have finished the above work, just call the API ask_agares() in the main program, and everything
-would be done. When you run a strategy file, a back-testing report would be generated according 
-to those buy/sell functions.
+should be implemented. Your idea should be described in this class function by calling the buy() and sell() API functions under user-designed conditions at a certain datetime. If you have finished the above work, just call the API ask_agares() in the main program, and everything would be done. When you run a strategy file, a back-testing report would be generated according to those buy/sell functions.
 
-*## Note:*
+### Note:
 *Deploy your strategy file in the 'strategy' folder, and run it in this directory.
 e.g., enter the command: python strategy/(user_strategy).py 
 After that, the generated back-testing report would be in the 'report' folder.*
