@@ -1,6 +1,6 @@
-User Guide of Agares
+# User Guide of Agares
 
-What is it:
+## What is it:
   Agares is a back-testing tool for Chinese stock market, which can be used to test 
 investment strategies or verify theories. Unlike futures or other markets, Chinese 
 stock marker carries out a T+1 system. The regulations in Chinese stock marker allows 
@@ -12,17 +12,17 @@ value investing theory, you can also try the algorithms in machine learning theo
 For example, if you believe that market sentiment is helpful, you can deploy natural 
 language processing algorithms on netizen comments to perform sentiment analysis.
 
-Lib Dependency:
+## Lib Dependency:
 see requirements.txt
 
-File Organization:
+## File Organization:
 agares: source files
 data: data files for back-testing and analysis
 report: store back-testing reports
 strategy: deploy user's personalized strategies
 
 
-How to use it:
+## How to use it:
   To use agares to test your trading strategy, you need to write a strategy file. A 
 strategy file is a .py file that contains a subclass of Strategy class, in which a 
 class function 
@@ -57,12 +57,12 @@ have finished the above work, just call the API ask_agares() in the main program
 would be done. When you run a strategy file, a back-testing report would be generated according 
 to those buy/sell functions.
 
-Note:
-Deploy your strategy file in the 'strategy' folder, and run it in this directory.
-e.g., enter the command: python strategy/<user_strategy>.py 
-After that, the generated back-testing report would be in the 'report' folder.
+*## Note:*
+*Deploy your strategy file in the 'strategy' folder, and run it in this directory.
+e.g., enter the command: python strategy/(user_strategy).py 
+After that, the generated back-testing report would be in the 'report' folder.*
  
-API for writting a strategy file:
+## API for writting a strategy file:
 The following APIs are designed for writing a strategy. Before using them, you should 
 import them from agares.engine.ag. There are some demos in the 'strategy' folder that 
 might be helpful.
