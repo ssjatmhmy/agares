@@ -3,17 +3,18 @@
 
 import ipdb
 from datetime import datetime
-from agares.engine.ag import (
-	Strategy,
-	create_trading_system,
-	run,
-	buy,
-	sell,
-	report)
 from talib import (MA, MACD)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
+sys.path.append("../")
+from agares.engine.ag import (
+	Strategy,
+	buy,
+	sell,
+	ask_agares)
+
 
 class new_extreme_Strategy(Strategy):
     """ 
@@ -95,18 +96,20 @@ if __name__ == '__main__':
     # set start and end datetime
     dt_start, dt_end = datetime(1997,1,1), datetime(2016,1,26)
     # number of extra daily data for computation (ahead of start datatime)
-    n_ahead = 20
-    # settings of a trading system
+    n_ahead = 80
     # capital:        Initial money for investment
+    capital = 100000000
     # StampTaxRate:   Usually 0.001. Only charge when sell.
     #                 The program do not consider the fact that buying funds do not charge this tax.  
-    #                 So set it to 0 if the 'mpstock' is a fund.
+    #                 So set it to 0 if the 'pstocks' are ETF funds.
+    StampTaxRate = 0.001
     # CommissionChargeRate:   Usually 2.5e-4. The fact that commission charge is at least 5 yuan has
     #                         been considered in the program.
-    settings = {'capital': 100000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 2.5e-4}
-    # create a trading system
-    create_trading_system(strategy, pstocks, dt_start, dt_end, n_ahead, settings)
-    # start back testing
-    run()
-    # report performance of the trading system
-    report(PlotNetValue = True)
+    CommissionChargeRate = 2.5e-4
+    # set to True if you would like to see the Plot of net value after the back-testing
+    PlotNetValue = True
+
+    settings = {'pstocks': pstocks, 'strategy': strategy, 'dt_start': dt_start, 'dt_end': dt_end,
+    		'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
+		'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
+    ask_agares(settings)

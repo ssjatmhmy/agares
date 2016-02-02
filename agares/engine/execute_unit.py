@@ -17,21 +17,8 @@ class ExecuteUnit(object):
     One execute unit can only load one strategy, and the period \
     candlestick data should all belong to one specific stock. 
     """
-    def __init__(self, pstocks, dt_start, dt_end, n_ahead):
+    def __init__(self, pstocks, dt_start, dt_end, n_ahead, capital, StampTaxRate, CommissionChargeRate):
 	self._strategy = None 
-	# initial capital to invest, a constant once being set
-	self._capital = 0
-	# cash in the account, changing during the back test
-	self._cash = 0
-	# stock shares in the account, changing during the back test
-	self._shares = {} # ._shares: {code(str): quantity(int)}
-	# records. add one record after each transaction(buy or sell)
-	# _records = [(datetime(str), cash, shares),]
-	self._records = []
-	# store total commission charge in the back test
-	self._total_commission_charge = 0
-	# store total stamp tax in the back test
-	self._total_stamp_tax = 0
 	# actual timescope of the back test, depending on the user setting and the available data 
 	self.timescope = None
 	# number of extra daily data for computation (ahead of start datatime)
@@ -69,6 +56,23 @@ class ExecuteUnit(object):
 	self.fill_missing_cst()
 	# read candlestick data timescope from sz
 	self.timescope = str(self.szTimeAxis[0]), str(self.szTimeAxis[-1]) 
+	# initial capital to invest, a constant once being set
+	self._capital = capital
+	# cash in the account, changing during the back test
+	self._cash = capital
+	# stock shares in the account, changing during the back test
+	self._shares = {} # ._shares: {code(str): quantity(int)}
+	# records. add one record after each transaction(buy or sell)
+	# _records = [(datetime(str), cash, shares),]
+	self._records = []
+	self._records.append((self.timescope[0], self._cash, self._shares.copy()))
+	# set stamp tax rate and commission charge rate
+	self.StampTaxRate = StampTaxRate
+	self.CommissionChargeRate = CommissionChargeRate
+	# to store total commission charge in the back test
+	self._total_commission_charge = 0
+	# to store total stamp tax in the back test
+	self._total_stamp_tax = 0
 	# trading_stocks: To store the stocks that are traded. Note that although have been loaded,
 	#                 some stocks in self.stocks may not been traded in user's strategy.
 	self.trading_stocks = set()
@@ -76,8 +80,8 @@ class ExecuteUnit(object):
 
     def fill_missing_cst(self):
 	""" 
-	Find missing daily candlestick data and fill them 
-	up in .stocks[code].missing_cst['1Day'] as pd.DataFrame 
+	Find missing daily candlestick data and fill them up 
+	in .stocks[code].missing_cst['1Day'] as pd.DataFrame 
 	"""
 	for code in self.stocks.keys():
 	    # get pd.DataFrame.columns of cst data
@@ -108,47 +112,22 @@ class ExecuteUnit(object):
 			    tmp_cst[column].append(last_normal_cst[column])
 	            else:
 		        pass
-	    # to store missing candlestick data of different period type
-	    self.stocks[code].missing_cst = {}
 	    # store missing cst as pd.DataFrame 
 	    self.stocks[code].missing_cst['1Day'] = pd.DataFrame(tmp_cst, index = tmp_tickers)
 
 
-    def add_strategy(self, strategy, settings = {}):
+    def add_strategy(self, strategy):
 	"""
-	Add the strategy and examine the settings
+	Add the strategy and set the settings
 	"""
 	self._strategy = strategy
-	if settings:
-	    # check and set capital
-	    try:
-		self._capital = settings['capital']
-	        assert(settings['capital'] > 0)
-	    except KeyError:
-		print 'Capital unknown. Setting default to 10,000.'
-		self._capital = 10000
-	    finally:
-		self._cash = self._capital
-		self._records.append((self.timescope[0], self._cash, self._shares.copy()))
-	    # check and set StampTaxRate
-	    try:
-		self.StampTaxRate = settings['StampTaxRate']
-	        assert((0 <= settings['StampTaxRate']) & (settings['StampTaxRate'] < 1))
-	    except KeyError:
-		print 'StampTaxRate unknown. Setting default to 0.001.'
-		self.StampTaxRate = 0.001
-	    # check and set CommissionChargeRate
-	    try:
-		self.CommissionChargeRate = settings['CommissionChargeRate']
-	        assert((0 <= settings['CommissionChargeRate']) & (settings['CommissionChargeRate'] < 1))
-	    except KeyError:
-		print 'CommissionChargeRate unknown. Setting default to 2.5e-4.'
-		self.CommissionChargeRate = 2.5e-4
-
 	# create an output instance for the strategy report
-	root = os.path.join(os.getcwd(),'report')
+	root = os.path.join(os.getcwd(),'../report')
 	fname = self._strategy.name + ".report"
 	self.o = Output(root, fname)
+	# check whether repot file has been created
+	if self.o.ReportFileExist == False:
+	    print "A 'report' folder should be provided in the parent directory of current directory."
 
 	    
     def run(self):

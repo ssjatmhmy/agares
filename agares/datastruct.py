@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-from agares.errors import PeriodTypeError
+from agares.errors import PeriodTypeError, FileDoesNotExist
 
 def parse_cst_filename(pstock):
     """
@@ -55,6 +55,9 @@ class PStock(object):
 	# .cst: to store candlestick data of different periods
 	# .cst: {period(str): pd.DataFrame(datetime, open, close, high, low, volume, ..), }
 	self.cst = {}
+	# .missing_cst: similar to .cst, to store missing candlestick data of different period type
+	# .missing_cst: {period(str): pd.DataFrame(datetime, open, close, high, low, volume, ..), }
+	self.missing_cst = {}
 	# read information in file name
         # .ID: class StockID, .period: class PeriodInfo
         self.ID, self.period = parse_cst_filename(pstock) 
@@ -81,7 +84,7 @@ class PStock(object):
 	try:
 	    return self.cst[period]
 	except KeyError:
-	    root = os.path.join(os.getcwd(),'data')
+	    root = os.path.join(os.getcwd(),'../data')
 	    fname = os.path.join(root, pstock + ".csv")
 	    try:
 	        cst_data = pd.read_csv(fname, index_col = 0, parse_dates = True, sep=' ')

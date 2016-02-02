@@ -4,12 +4,14 @@ class Output(object):
     def __init__(self, root, fname):
 	try:
 	    self._reportfile = open(os.path.join(root, fname), 'wt')
+	    self.ReportFileExist = True
 	except IOError:
-	    self._reportfile = None
-	    print "IOError: report file will not be created."
-    	    pass
-	# write blank lines so that the front lines are left for the most useful results
-	self._reportfile.write(' '*100000 + '\n')
+	    self.ReportFileExist = False
+	    print "IOError: Report file can not be created."
+	    pass
+	else:
+	    # write blank lines so that the front lines are left for the most useful results
+	    self._reportfile.write(' '*100000 + '\n')
 
     def report(self, statement):
         """
@@ -19,15 +21,15 @@ class Output(object):
 	    statement(str)
 	"""
 	print statement
-	if self._reportfile:
+	if self.ReportFileExist:
 	    self._reportfile.write(statement+'\n') 
 
     def seek(self, offset):
-	if self._reportfile:
+	if self.ReportFileExist:
 	    self._reportfile.seek(offset)	
 
     def close(self):
-	if self._reportfile:
+	if self.ReportFileExist:
 	    self._reportfile.close()
 
     def account(self, shares, cash):

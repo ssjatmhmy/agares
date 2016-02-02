@@ -3,17 +3,18 @@
 
 import ipdb
 from datetime import datetime
-from agares.engine.ag import (
-	Strategy,
-	create_trading_system,
-	run,
-	buy,
-	sell,
-	report)
 from talib import (MA, EMA)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
+sys.path.append("../")
+from agares.engine.ag import (
+	Strategy,
+	buy,
+	sell,
+	ask_agares)
+
 
 class TreePlantingStrategy(Strategy):
     """ 
@@ -195,6 +196,7 @@ if __name__ == '__main__':
 
     #pstocks = ['510050.50ETF-1Day', '510180.180ETF-1Day']
     #pstocks = ['000049.dsdc-1Day', '000518.shsw-1Day', '000544.zyhb-1Day', '600004.byjc-1Day', '600038.zzgf-1Day']
+
     # stop_loss: stop out when your loss of a sapling reach this proportion 
     stop_loss = 0.02
     # alive_point: if the floating earning of a sapling reach this proportion, we say it is 'alive'
@@ -203,21 +205,23 @@ if __name__ == '__main__':
     # create a trading strategy
     strategy = TreePlantingStrategy('Tree Planting strategy', len(pstocks), stop_loss, alive_point)
     # set start and end datetime
-    dt_start, dt_end = datetime(2006,7,15), datetime(2016,1,26)
+    dt_start, dt_end = datetime(2004,7,1), datetime(2016,1,26)
     # number of extra daily data for computation (ahead of start datatime)
-    n_ahead = 40
-    # settings of a trading system
+    n_ahead = 80
     # capital:        Initial money for investment
+    capital = 100000000
     # StampTaxRate:   Usually 0.001. Only charge when sell.
     #                 The program do not consider the fact that buying funds do not charge this tax.  
-    #                 So set it to 0 if the 'mpstock' is a fund.
+    #                 So set it to 0 if the 'pstocks' are ETF funds.
+    StampTaxRate = 0.001
     # CommissionChargeRate:   Usually 2.5e-4. The fact that commission charge is at least 5 yuan has
     #                         been considered in the program.
-    settings = {'capital': 1000000, 'StampTaxRate': 0.00, 'CommissionChargeRate': 2.5e-4}
-    # create a trading system
-    create_trading_system(strategy, pstocks, dt_start, dt_end, n_ahead, settings)
-    # start back testing
-    run()
-    # report performance of the trading system
-    report(ReturnEquity = False, PlotEquity = False, PlotNetValue = True)
+    CommissionChargeRate = 2.5e-4
+    # set to True if you would like to see the Plot of net value after the back-testing
+    PlotNetValue = True
+
+    settings = {'pstocks': pstocks, 'strategy': strategy, 'dt_start': dt_start, 'dt_end': dt_end,
+    		'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
+		'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
+    ask_agares(settings)
 
