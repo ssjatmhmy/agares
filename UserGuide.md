@@ -47,7 +47,8 @@ should be implemented. Your idea should be described in this class function by c
 ### Note:
 *Deploy your strategy file in the 'strategy' folder, and run it in this directory.
 e.g., enter the command:  
-`python strategy/(user_strategy).py`  
+`cd strategy
+python (user_strategy).py`  
 After that, the generated back-testing report would be in the 'report' folder.*
  
 ## API for writting a strategy file:
