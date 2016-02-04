@@ -21,7 +21,7 @@ strategy: deploy user's personalized strategies
   
         pandas.read_csv(fname, index_col = 0, parse_dates = True, sep=',')    
         
-where fname is your data file name.
+where fname is your data file name and should be of the form '(code.name-period).csv'. For daily candlestick data, they should at least contain the dates and the close price column 'close'.
 
 ### Test your trading strategy
   To use agares to test your trading strategy, you need to write a strategy file. A strategy file is a .py file that contains a subclass of Strategy class, in which a class function 
