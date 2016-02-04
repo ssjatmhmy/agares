@@ -17,7 +17,7 @@ strategy: deploy user's personalized strategies
 
 ## How to use it:
 ### Download candlestick data
-  Agares uses tushare to download candlestick data (often abbreviated as 'cst' in the code). To download new data, run the script in /agares/datasource/cst_loader.py. If you want to use your own data, put them in the 'data' folder and make sure they can be read by the following code
+  Agares uses tushare to download candlestick data (often abbreviated as 'cst' in the code). To download new data, run the script in /agares/datasource/cst_loader.py. If you want to use your own data, put them in the 'data/cst' folder and make sure they can be read by the following code
   
         pandas.read_csv(fname, index_col = 0, parse_dates = True, sep=',')    
         

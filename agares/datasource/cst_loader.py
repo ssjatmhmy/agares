@@ -21,12 +21,12 @@ class cst_loader(object):
         """
         self.ktypes = {"5Minute": '5', "15Minute": '15', "30Minute": '30', 
         "60Minute": '60', "1Day": 'D', "1Week": 'W', "1Month": 'M'}
-        self.dir_data = os.path.join(root,'data')
+        self.dir_data = os.path.join(root,'data','cst')
         self.stock_basics = ts.get_stock_basics()
         
     def load(self, pstocks):
         """
-        Download cst data and save them in .csv file (in /data)
+        Download cst data and save them in .csv file (in /data/cst)
         
         Args:
             pstocks(str): filename of cst data

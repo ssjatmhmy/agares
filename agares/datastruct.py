@@ -84,31 +84,33 @@ class PStock(object):
 	try:
 	    return self.cst[period]
 	except KeyError:
-	    root = os.path.join(os.getcwd(),'../data')
-	    fname = os.path.join(root, pstock + ".csv")
-	    try:
+	    fdir = os.path.split(os.path.realpath(__file__))[0]
+        root = os.path.split(fdir)[0]
+        datapath = os.path.join(root, 'data', 'cst')
+        fname = os.path.join(datapath, pstock + ".csv")
+        try:
 	        cst_data = pd.read_csv(fname, index_col = 0, parse_dates = True, sep=',')
-	    except IOError:
-		raise FileDoesNotExist(file = fname)
-	    else:
-		# check whether we have the require data
-		dt_start = pd.to_datetime(dt_start)
-		dt_end = pd.to_datetime(dt_end)
-		File_dt_start, File_dt_end = cst_data.index[0], cst_data.index[-1] 
-		assert dt_start >= File_dt_start, \
-			"Candlestick Data do not exist before {0:s}".format(str(File_dt_start))
-		assert dt_end <= File_dt_end, \
-			"Candlestick Data do not exist after {0:s}".format(str(File_dt_end))
-		# start to select data
-		index = np.arange(len(cst_data.index))
-		select = index[(dt_start <= cst_data.index) & (cst_data.index <= dt_end)]	
-		# add (n_head) extra data for strategy computation 
-		assert select[0] >= n_ahead, \
-			"Not enough extra candlestick data. Try turn down variable: n_ahead."
-		start_index = select[0] - n_ahead
-		end_index = select[-1] + 1
-		cst_data = cst_data.iloc[start_index: end_index]
-		assert cst_data.index.is_unique
-		# load data
-		self.cst[period] = cst_data
+        except IOError:
+            raise FileDoesNotExist(file = fname)
+        else:
+            # check whether we have the require data
+            dt_start = pd.to_datetime(dt_start)
+            dt_end = pd.to_datetime(dt_end)
+            File_dt_start, File_dt_end = cst_data.index[0], cst_data.index[-1] 
+            assert dt_start >= File_dt_start, \
+	            "Candlestick Data do not exist before {0:s}".format(str(File_dt_start))
+            assert dt_end <= File_dt_end, \
+	            "Candlestick Data do not exist after {0:s}".format(str(File_dt_end))
+            # start to select data
+            index = np.arange(len(cst_data.index))
+            select = index[(dt_start <= cst_data.index) & (cst_data.index <= dt_end)]	
+            # add (n_head) extra data for strategy computation 
+            assert select[0] >= n_ahead, \
+	            "Not enough extra candlestick data. Try turn down variable: n_ahead."
+            start_index = select[0] - n_ahead
+            end_index = select[-1] + 1
+            cst_data = cst_data.iloc[start_index: end_index]
+            assert cst_data.index.is_unique
+            # load data
+            self.cst[period] = cst_data
 
