@@ -19,7 +19,7 @@ def parse_cst_filename(pstock):
 	# get ID
         ID, period = StockID(t[0]), t[1]
 	# check the type of period in file name
-	Periods = ["1Minute", "5Minute", "30Minute", "60Minute", 
+	Periods = ["1Minute", "5Minute", "15Minute", "30Minute", "60Minute", 
 			"1Day", "1Week", "1Month"]
         if period not in Periods:
             raise PeriodTypeError
@@ -87,7 +87,7 @@ class PStock(object):
 	    root = os.path.join(os.getcwd(),'../data')
 	    fname = os.path.join(root, pstock + ".csv")
 	    try:
-	        cst_data = pd.read_csv(fname, index_col = 0, parse_dates = True, sep=' ')
+	        cst_data = pd.read_csv(fname, index_col = 0, parse_dates = True, sep=',')
 	    except IOError:
 		raise FileDoesNotExist(file = fname)
 	    else:

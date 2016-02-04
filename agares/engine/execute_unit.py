@@ -35,7 +35,7 @@ class ExecuteUnit(object):
 	self.stocks = {}
 	for pstock in pstocks:
 	    # get info from filename 
-	    # .ID: class StockID, .period: class PeriodInfo
+	    # .ID(class StockID), .period(str)
             ID, period = parse_cst_filename(pstock) 
 	    if period == '1Day':
 		is_Day_cst_exist = True

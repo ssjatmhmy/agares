@@ -7,8 +7,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
+import os
+fdir = os.path.split(os.path.realpath(__file__))[0]
+root = os.path.split(fdir)[0]
 import sys
-sys.path.append("../")
+sys.path.append(root)
 from agares.engine.ag import (
 	Strategy,
 	buy,

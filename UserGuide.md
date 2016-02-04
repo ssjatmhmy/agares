@@ -16,6 +16,12 @@ strategy: deploy user's personalized strategies
 
 
 ## How to use it:
+### Download candlestick data
+  Agares uses tushare to download candlestick data (often abbreviated as 'cst' in the code). To download new data, run the script in /agares/datasource/cst_loader.py. If you want to use your own data, put them in the 'data' folder and make sure they can be read by the following code
+        pandas.read_csv(fname, index_col = 0, parse_dates = True, sep=',')    
+where fname is your data file name.
+
+### Test your trading strategy
   To use agares to test your trading strategy, you need to write a strategy file. A strategy file is a .py file that contains a subclass of Strategy class, in which a class function 
 
     def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
@@ -45,11 +51,7 @@ strategy: deploy user's personalized strategies
 should be implemented. Your idea should be described in this class function by calling the buy() and sell() API functions under user-designed conditions at a certain datetime. If you have finished the above work, just call the API ask_agares() in the main program, and everything would be done. When you run a strategy file, a back-testing report would be generated according to those buy/sell functions.
 
 ### Note:
-*Deploy your strategy file in the 'strategy' folder, and run it in this directory.
-e.g., enter the command:  
-	cd strategy  
-	python (user_strategy).py  
-After that, the generated back-testing report would be in the 'report' folder.*
+*The code does not require installation. So please deploy your strategy file in the 'strategy' folder so that the program can find the report/data file path. The generated report of your strategy would be in the 'report' folder.*
  
 ## API for writting a strategy file:
 The following APIs are designed for writing a strategy. Before using them, you should 
