@@ -31,12 +31,7 @@ class cst_loader(object):
         Args:
             pstocks(str): filename of cst data
         """
-        DataReleasedTime = datetime.strptime("15:10:00", "%H:%M:%S").time()
-        # compute the last date of cst data
-        if datetime.now().time() >= DataReleasedTime:
-            end = datetime.now().date() + timedelta(days = 1)
-        else:
-            end = datetime.now().date()
+        end = datetime.now().date() - timedelta(days = 1)
         # download cst data for all required pstocks 
         for pstock in pstocks:
 	        # get info from filename 
@@ -46,13 +41,10 @@ class cst_loader(object):
             fname = pstock + ".csv"      
             pathname = os.path.join(self.dir_data, fname)                  
             if os.path.exists(pathname): # if cst data file exists
-                # get modified date and time
+                # get modified date
                 file_mtime = time.ctime(os.path.getmtime(pathname))
                 file_mtime = datetime.strptime(file_mtime, "%a %b %d %H:%M:%S %Y")
-                if file_mtime.time() >= DataReleasedTime:
-                    start = file_mtime.date() + timedelta(days = 1)
-                else:
-                    start = file_mtime.date()
+                start = file_mtime.date()
                 # make the cst data file up-to-date
                 if start < end:
                     # download using tushare
@@ -66,8 +58,9 @@ class cst_loader(object):
                 ListingDate = datetime.strptime(str(ListingDate), '%Y%m%d').date()
                 # download using tushare
                 df = self.download(ID.code, str(ListingDate), str(end), period)
-                # save         
-                df.to_csv(pathname)
+                if df is not None: # not empty
+                    # save         
+                    df.to_csv(pathname)
 
     def download(self, code, start, end, period):
         """
