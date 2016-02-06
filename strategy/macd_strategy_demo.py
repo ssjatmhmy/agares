@@ -10,7 +10,7 @@ from datetime import datetime
 import os
 fdir = os.path.split(os.path.realpath(__file__))[0]
 root = os.path.split(fdir)[0]
-import sys
+import sys 
 sys.path.append(root)
 from agares.engine.ag import (
 	Strategy,

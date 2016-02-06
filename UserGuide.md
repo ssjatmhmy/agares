@@ -5,7 +5,7 @@
 an trading idea is reasonalbe by reviewing its performance in the pass.  
   The framework of agares is simple and flexible. Besides technical approaches and value investing theory, you can also try the algorithms in machine learning theory. For example, if you believe that market sentiment is helpful, you can deploy natural language processing algorithms on netizen comments to perform sentiment analysis.
 
-## Lib Dependency:
+## Dependencies:
 see requirements.txt
 
 ## File Organization:
