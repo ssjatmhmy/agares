@@ -34,8 +34,8 @@ class cst_loader(object):
         end = datetime.now().date() - timedelta(days = 1)
         # download cst data for all required pstocks 
         for pstock in pstocks:
-	        # get info from filename 
-	        # .ID(class StockID), .period(str)
+            # get info from filename 
+            # .ID(class StockID), .period(str)
             ID, period = parse_cst_filename(pstock)
             # get cst data file path
             fname = pstock + ".csv"      

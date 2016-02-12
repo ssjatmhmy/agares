@@ -13,10 +13,10 @@ root = os.path.split(fdir)[0]
 import sys 
 sys.path.append(root)
 from agares.engine.ag import (
-	Strategy,
-	buy,
-	sell,
-	ask_agares)
+    Strategy,
+    buy,
+    sell,
+    ask_agares)
 
 
 class MACD_Strategy(Strategy):
@@ -26,59 +26,59 @@ class MACD_Strategy(Strategy):
     and sell it vice versa.
     """
     def __init__(self, name, nslow, nfast, m):
-	super(MACD_Strategy, self).__init__(name)
-	self.nfast = nfast
-	self.nslow = nslow
-	self.m = m
+        super(MACD_Strategy, self).__init__(name)
+        self.nfast = nfast
+        self.nslow = nslow
+        self.m = m
 
     @staticmethod
     def MACD(price, nslow, nfast, m):
-	emas = EMA(price, nslow)
-	emaf = EMA(price, nfast)
-	dif = emaf - emas
-	dea = EMA(dif, m)
-	macd = dif - dea
-	return dif, dea, macd
+        emas = EMA(price, nslow)
+        emaf = EMA(price, nfast)
+        dif = emaf - emas
+        dea = EMA(dif, m)
+        macd = dif - dea
+        return dif, dea, macd
 
     def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
-	assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
+        assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
         code = stocks.keys().pop()
-	cst = stocks[code].cst # get candlestick data
-	DataTimeAxis = cst['1Day'].index
+        cst = stocks[code].cst # get candlestick data
+        DataTimeAxis = cst['1Day'].index
 
-	# MACD
-	dif, dea, _ = self.MACD(cst['1Day']['close'].values, self.nslow, self.nfast, self.m)
+        # MACD
+        dif, dea, _ = self.MACD(cst['1Day']['close'].values, self.nslow, self.nfast, self.m)
 
-	# skip extra data
-	TimeAxis = DataTimeAxis[n_ahead:]
-	df_macd = pd.DataFrame({'dif': dif[n_ahead:], 'dea': dea[n_ahead:]}, 
-				index = TimeAxis)
+        # skip extra data
+        TimeAxis = DataTimeAxis[n_ahead:]
+        df_macd = pd.DataFrame({'dif': dif[n_ahead:], 'dea': dea[n_ahead:]}, 
+                    index = TimeAxis)
 
-	#df_macd.plot()
-	#plt.show()
-	start_flag = 0
-	hold_flag = 0
-	for ticker in TimeAxis:
-	    # skip null value at the beginning
-	    if np.isnan(df_macd.at[ticker, 'dif']) or np.isnan(df_macd.at[ticker, 'dea']):
-		continue 
-	    # skip the days of 'dif'>='dea' at the beginning
-	    # those should be the days waiting fo selling, not buying, thus not suitable for a start
-	    if (start_flag == 0) and (df_macd.at[ticker, 'dif'] >= df_macd.at[ticker, 'dea']):
-		continue
-	    else:
-		start_flag = 1
-	    # start trading
-	    if (start_flag == 1):
-		price = cst['1Day'].at[ticker,'close']
-		if (hold_flag == 0) and (df_macd.at[ticker, 'dif'] > df_macd.at[ticker, 'dea']): 
-		    # quantity is the number of shares (unit: boardlot) you buy this time 
-		    quantity = buy(code, price, str(ticker), ratio = 1) 
-		    hold_flag = 1
-		if (hold_flag == 1) and (df_macd.at[ticker, 'dif'] < df_macd.at[ticker, 'dea']): 
-		    # sell all the shares bought last time
-		    sell(code, price, str(ticker), quantity) 
-		    hold_flag = 0
+        #df_macd.plot()
+        #plt.show()
+        start_flag = 0
+        hold_flag = 0
+        for ticker in TimeAxis:
+            # skip null value at the beginning
+            if np.isnan(df_macd.at[ticker, 'dif']) or np.isnan(df_macd.at[ticker, 'dea']):
+                continue 
+            # skip the days of 'dif'>='dea' at the beginning
+            # those should be the days waiting fo selling, not buying, thus not suitable for a start
+            if (start_flag == 0) and (df_macd.at[ticker, 'dif'] >= df_macd.at[ticker, 'dea']):
+                continue
+            else:
+                start_flag = 1
+            # start trading
+            if (start_flag == 1):
+                price = cst['1Day'].at[ticker,'close']
+                if (hold_flag == 0) and (df_macd.at[ticker, 'dif'] > df_macd.at[ticker, 'dea']): 
+                    # quantity is the number of shares (unit: boardlot) you buy this time 
+                    quantity = buy(code, price, str(ticker), ratio = 1) 
+                    hold_flag = 1
+                if (hold_flag == 1) and (df_macd.at[ticker, 'dif'] < df_macd.at[ticker, 'dea']): 
+                    # sell all the shares bought last time
+                    sell(code, price, str(ticker), quantity) 
+                    hold_flag = 0
 
 
 if __name__ == '__main__':
@@ -104,8 +104,8 @@ if __name__ == '__main__':
     PlotNetValue = True
 
     settings = {'pstocks': pstocks, 'strategy': strategy, 'dt_start': dt_start, 'dt_end': dt_end,
-    		'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
-		'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
+                'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
+                'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
     ask_agares(settings)
 
 

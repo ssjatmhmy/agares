@@ -13,10 +13,10 @@ root = os.path.split(fdir)[0]
 import sys
 sys.path.append(root)
 from agares.engine.ag import (
-	Strategy,
-	buy,
-	sell,
-	ask_agares)
+    Strategy,
+    buy,
+    sell,
+    ask_agares)
 
 
 class new_extreme_Strategy(Strategy):
@@ -26,68 +26,68 @@ class new_extreme_Strategy(Strategy):
     and sell it when close price falls under the lowest price in last m days.
     """
     def __init__(self, name, m):
-	super(new_extreme_Strategy, self).__init__(name)
-	self.m = m
+        super(new_extreme_Strategy, self).__init__(name)
+        self.m = m
 
     @staticmethod
     def ExtremePrice(close, m):
-	"""
-	    Return highest and lowest prices of the last m timeunit.
-	    Note that both return variables (highest and lowest) start 
-	    from the (m+1)-th timeunit. The first m-th timeunit are np.nan
-	    Return:
-		highest(np.ndarray)
-		lowest(np.ndarray)
-	"""
-	window = []
-	highest = np.zeros(len(close)) 
-	lowest = np.zeros(len(close)) 
-	for i, price in enumerate(close):
-	    if i < m: 
-		highest[i], lowest[i] = np.nan, np.nan # skip m timeunit.
-		window.append(close[i])		
-		continue 
-	    # note that both highest and lowest start from the (m+1)-th timeunit
-	    # the first m-th timeunit are np.nan
-	    highest[i] = np.max(window)
-	    lowest[i] = np.min(window)
-	    window.pop(0)
-	    window.append(close[i])
-	return highest, lowest
+        """
+        Return highest and lowest prices of the last m timeunit.
+        Note that both return variables (highest and lowest) start 
+        from the (m+1)-th timeunit. The first m-th timeunit are np.nan
+
+        Return:
+            highest(np.ndarray)
+            lowest(np.ndarray)
+        """
+        window = []
+        highest = np.zeros(len(close)) 
+        lowest = np.zeros(len(close)) 
+        for i, price in enumerate(close):
+            if i < m: 
+                highest[i], lowest[i] = np.nan, np.nan # skip m timeunit.
+                window.append(close[i])		
+                continue 
+            # note that both highest and lowest start from the (m+1)-th timeunit
+            # the first m-th timeunit are np.nan
+            highest[i] = np.max(window)
+            lowest[i] = np.min(window)
+            window.pop(0)
+            window.append(close[i])
+        return highest, lowest
 
     def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
-	assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
+        assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
         code = stocks.keys().pop()
-	cst = stocks[code].cst # get candlestick data
-	DataTimeAxis = cst['1Day'].index
-	close = cst['1Day']['close'].values
+        cst = stocks[code].cst # get candlestick data
+        DataTimeAxis = cst['1Day'].index
+        close = cst['1Day']['close'].values
 
-	# ExtremePrice
-	highest, lowest = self.ExtremePrice(close, self.m)
+        # ExtremePrice
+        highest, lowest = self.ExtremePrice(close, self.m)
 
-	# skip extra data
-	TimeAxis = DataTimeAxis[n_ahead:]
-	df_extreme = pd.DataFrame({'close': close[n_ahead:], 'highest': highest[n_ahead:], \
-				'lowest': lowest[n_ahead:]}, index = TimeAxis)
+        # skip extra data
+        TimeAxis = DataTimeAxis[n_ahead:]
+        df_extreme = pd.DataFrame({'close': close[n_ahead:], 'highest': highest[n_ahead:], \
+                                'lowest': lowest[n_ahead:]}, index = TimeAxis)
 
-	#df_extreme.plot()
-	#plt.show()
-	hold_flag = 0
-	for ticker in TimeAxis:
-	    # skip null value at the beginning
-	    if np.isnan(df_extreme.at[ticker, 'highest']) or np.isnan(df_extreme.at[ticker, 'lowest']):
-		continue 
-	    # start trading
-	    price = cst['1Day'].at[ticker,'close']
-	    if (hold_flag == 0) and (df_extreme.at[ticker, 'close'] > df_extreme.at[ticker, 'highest']): 
-		# quantity is the number of shares (unit: boardlot) you buy this time 
-		quantity = buy(code, price, str(ticker), ratio = 1) 
-	        hold_flag = 1
-	    if (hold_flag == 1) and (df_extreme.at[ticker, 'close'] < df_extreme.at[ticker, 'lowest']): 
-		# sell all the shares bought last time
-		sell(code, price, str(ticker), quantity) 
-	        hold_flag = 0
-	
+        #df_extreme.plot()
+        #plt.show()
+        hold_flag = 0
+        for ticker in TimeAxis:
+            # skip null value at the beginning
+            if np.isnan(df_extreme.at[ticker, 'highest']) or np.isnan(df_extreme.at[ticker, 'lowest']):
+                continue 
+            # start trading
+            price = cst['1Day'].at[ticker,'close']
+            if (hold_flag == 0) and (df_extreme.at[ticker, 'close'] > df_extreme.at[ticker, 'highest']): 
+                # quantity is the number of shares (unit: boardlot) you buy this time 
+                quantity = buy(code, price, str(ticker), ratio = 1) 
+                hold_flag = 1
+            if (hold_flag == 1) and (df_extreme.at[ticker, 'close'] < df_extreme.at[ticker, 'lowest']): 
+                # sell all the shares bought last time
+                sell(code, price, str(ticker), quantity) 
+                hold_flag = 0
 
 
 if __name__ == '__main__':
@@ -113,6 +113,6 @@ if __name__ == '__main__':
     PlotNetValue = True
 
     settings = {'pstocks': pstocks, 'strategy': strategy, 'dt_start': dt_start, 'dt_end': dt_end,
-    		'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
-		'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
+                'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
+                'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
     ask_agares(settings)

@@ -13,10 +13,10 @@ root = os.path.split(fdir)[0]
 import sys
 sys.path.append(root)
 from agares.engine.ag import (
-	Strategy,
-	buy,
-	sell,
-	ask_agares)
+    Strategy,
+    buy,
+    sell,
+    ask_agares)
 
 
 class MA_Strategy(Strategy):
@@ -26,52 +26,52 @@ class MA_Strategy(Strategy):
     its 20-timeunit average, and sell it vice versa.
     """
     def __init__(self, name, nfast, nslow):
-	super(MA_Strategy, self).__init__(name)
-	self.nfast = nfast
-	self.nslow = nslow
+        super(MA_Strategy, self).__init__(name)
+        self.nfast = nfast
+        self.nslow = nslow
 
 
     def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
-	assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
+        assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
         code = stocks.keys().pop()
-	cst = stocks[code].cst # get candlestick data
-	DataTimeAxis = cst['1Day'].index
+        cst = stocks[code].cst # get candlestick data
+        DataTimeAxis = cst['1Day'].index
 
-	# Moving average
-	maf = MA(cst['1Day']['close'].values, self.nfast)
-	mas = MA(cst['1Day']['close'].values, self.nslow)
+        # Moving average
+        maf = MA(cst['1Day']['close'].values, self.nfast)
+        mas = MA(cst['1Day']['close'].values, self.nslow)
 
-	# skip extra data
-	TimeAxis = DataTimeAxis[n_ahead:]
-	df_ma = pd.DataFrame({'ma_fast': maf[n_ahead:], 'ma_slow': mas[n_ahead:]}, 
-				index = TimeAxis)
+        # skip extra data
+        TimeAxis = DataTimeAxis[n_ahead:]
+        df_ma = pd.DataFrame({'ma_fast': maf[n_ahead:], 'ma_slow': mas[n_ahead:]}, 
+                    index = TimeAxis)
 
-	#df_ma.plot()
-	#plt.show()
-	start_flag = 0
-	hold_flag = 0
-	for ticker in TimeAxis:
-	    # skip null value at the beginning
-	    if np.isnan(df_ma.at[ticker, 'ma_fast']) or np.isnan(df_ma.at[ticker, 'ma_slow']):
-		continue 
-	    # skip the days of 'ma_fast'>='ma_slow' at the beginning
-	    # those should be the days waiting fo selling, not buying, thus not suitable for a start
-	    if (start_flag == 0) and (df_ma.at[ticker, 'ma_fast'] <= df_ma.at[ticker, 'ma_slow']):
-		continue
-	    else:
-		start_flag = 1
-	    # start trading
-	    if (start_flag == 1):
-		price = cst['1Day'].at[ticker,'close']
-		if (hold_flag == 0) and (df_ma.at[ticker, 'ma_fast'] > df_ma.at[ticker, 'ma_slow']): 
-		    # quantity is the number of shares (unit: boardlot) you buy this time 
-		    quantity = buy(code, price, str(ticker), ratio = 1) 
-		    hold_flag = 1
-		if (hold_flag == 1) and (df_ma.at[ticker, 'ma_fast'] < df_ma.at[ticker, 'ma_slow']): 
-		    # sell all the shares bought last time
-		    sell(code, price, str(ticker), quantity) 
-		    hold_flag = 0
-	
+        #df_ma.plot()
+        #plt.show()
+        start_flag = 0
+        hold_flag = 0
+        for ticker in TimeAxis:
+            # skip null value at the beginning
+            if np.isnan(df_ma.at[ticker, 'ma_fast']) or np.isnan(df_ma.at[ticker, 'ma_slow']):
+                continue 
+            # skip the days of 'ma_fast'>='ma_slow' at the beginning
+            # those should be the days waiting fo selling, not buying, thus not suitable for a start
+            if (start_flag == 0) and (df_ma.at[ticker, 'ma_fast'] <= df_ma.at[ticker, 'ma_slow']):
+                continue
+            else:
+                start_flag = 1
+            # start trading
+            if (start_flag == 1):
+                price = cst['1Day'].at[ticker,'close']
+                if (hold_flag == 0) and (df_ma.at[ticker, 'ma_fast'] > df_ma.at[ticker, 'ma_slow']): 
+                    # quantity is the number of shares (unit: boardlot) you buy this time 
+                    quantity = buy(code, price, str(ticker), ratio = 1) 
+                    hold_flag = 1
+                if (hold_flag == 1) and (df_ma.at[ticker, 'ma_fast'] < df_ma.at[ticker, 'ma_slow']): 
+                    # sell all the shares bought last time
+                    sell(code, price, str(ticker), quantity) 
+                    hold_flag = 0
+
 
 
 if __name__ == '__main__':
@@ -97,6 +97,6 @@ if __name__ == '__main__':
     PlotNetValue = True
 
     settings = {'pstocks': pstocks, 'strategy': strategy, 'dt_start': dt_start, 'dt_end': dt_end,
-    		'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
-		'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
+                'n_ahead': n_ahead, 'capital': capital, 'StampTaxRate': StampTaxRate, 
+                'CommissionChargeRate': CommissionChargeRate, 'PlotNetValue': PlotNetValue}
     ask_agares(settings)
