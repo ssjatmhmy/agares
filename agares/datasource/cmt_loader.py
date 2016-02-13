@@ -8,6 +8,7 @@ import sqlite3
 import urllib2
 import json
 from urlparse import urljoin, urlparse
+from datetime import datetime, timedelta
 import codecs
 import re
 import os
@@ -56,33 +57,32 @@ class crawler(object):
         else:
             return True
     
-    def record_SnowBallUser(self, uid, url):
+    def record_SnowBallUser(self, PageUserID, url):
         """
-        Record SnowBall user in database
+        Record SnowBall user id and its page url into database
         """
         self.con.execute("insert into SnowBall_Users \
-            values ('{0:s}', '{1:s}')".format(uid, url))  
+            values ('{0:s}', '{1:s}')".format(PageUserID, url))  
         self.dbcommit()       
     
     def mark_as_indexed(self, url):
         """
-        Mark the uid/url as indexed
+        Mark the url as indexed
         """
         self.con.execute("insert into Indexed_Links \
             values ('{0:s}')".format(url))
         self.dbcommit() 
     
-    def get_user_id(self, html):
+    def get_PageUserID(self, html):
         """
-        Extract the SnowBall user id from an HTML page of SnowBall website
+        Extract the SnowBall user id from an HTML page of the SnowBall website
         """
-        uid_pattern = re.compile("data-user-id='\w+'")
-        uid_obj = uid_pattern.search(html)
-        if uid_obj is None:
+        PageUserID_obj = re.search("data-user-id='\w+'", html)
+        if PageUserID_obj is None:
             return ''
         else:
-            uid = html[uid_obj.start()+len("data-user-id='"):uid_obj.end()-1]
-            return uid
+            PageUserID = PageUserID_obj.group(0)[14:-1] # get the '\w+' part
+            return PageUserID
     
     def get_raw_comments(self, html):
         """
@@ -101,7 +101,27 @@ class crawler(object):
         data = html[pos_start:pos_end]
         return data
     
-    def write_raw_comments(self, cmtfile, uid, data):
+    def to_datetime(self, SBdatetime):
+        """
+        Convert SnowBall webstie page datetime format into (datetime.date, '%H:%M').
+        If SBdatetime is '' or None, return (None, '').
+        """
+        if SBdatetime == '' or SBdatetime == None:
+            return None, ''
+        if SBdatetime.find(u'今天') is not -1:
+            hour_minute = re.search('\d{2}:\d{2}', SBdatetime).group() # search %H:%M
+            return datetime.now().date(), hour_minute 
+        if SBdatetime.find(u'分钟前') is not -1:
+            minutebefore = re.search('\d+', SBdatetime).group() # search %M
+            date_time = datetime.now() - timedelta(minutes=int(minutebefore))
+            return date_time.date(), '{0:02d}:{1:02d}'.format(date_time.hour, date_time.minute)
+        if re.search('\d{4}-\d{2}-\d{2}', SBdatetime) is None:
+            SBdatetime = str(datetime.now().year) +'-'+ SBdatetime # convert to '%Y-%m-%d %H:%M'
+        # convert to datetime
+        SBdatetime = datetime.strptime(SBdatetime, '%Y-%m-%d %H:%M')
+        return SBdatetime.date(), '{0:02d}:{1:02d}'.format(SBdatetime.hour, SBdatetime.minute) 
+    
+    def write_raw_comments(self, cmtfile, PageUserID, data, one_day):
         """
         Write raw comments into cmtfile
         """
@@ -109,7 +129,15 @@ class crawler(object):
         dic = json.loads(data)
         comments = dic['statuses']
         for i in range(len(comments)):
-            cmtfile.write('"{0:s}", "{1:s}"'.format(uid, comments[i]['text']))
+            # get created time of the comment
+            SBdatetime = comments[i]['timeBefore']
+            date, hour_minute = self.to_datetime(SBdatetime)       
+            # process the comments whose created date is equal to one_day             
+            #if one_day == date: ?? can not write
+            print one_day == date
+            comment_userID = comments[i]['user_id']
+            raw_comment = comments[i]['text']
+            cmtfile.write('{0:s} %_% {1:d} %_% {2:s} %_% {3:s}'.format(PageUserID, comment_userID, hour_minute, raw_comment))
             cmtfile.write('\n')
         
     def dbcommit(self):
@@ -150,28 +178,29 @@ class crawler(object):
                 url = url.split('#')[0]  # remove location portion
                 if url[0:4]=='http' and not self.isindexed(url):
                     self.newpages.add(url)    
-        # get SnowBall user id
-        uid = self.get_user_id(html)   
-        if uid == '':
+        # get SnowBall user id of the page
+        PageUserID = self.get_PageUserID(html)   
+        if PageUserID == '':
+            print "Could not get page user ID"
             return     
         # get raw comments
         cmtdata = self.get_raw_comments(html) 
         if cmtdata == '':
+            print "Could not get raw comments"
             return
         print 'Data obtained from ' + page
-        # record user id and url of the SnowBall user  
-        self.record_SnowBallUser(uid, page)     
-        # try to create a file and store comments
-        fname = uid
-        pathname = os.path.join(self.dir_data, fname) 
-        try:                    
-            cmtfile = codecs.open(pathname, 'wb', 'utf-8')
-        except IOError:
-            print 'Error: Could not store cmt data of ' + page
-            return
-        else:
-            self.write_raw_comments(cmtfile, uid, cmtdata) 
-            cmtfile.close()   
+        # record page user id and page url of the SnowBall user  
+        self.record_SnowBallUser(PageUserID, page)
+        # create one file for each date and store comments
+        one_day = self.dt_start
+        while one_day < self.dt_end:            
+            fname = str(one_day) + '.csv'
+            pathname = os.path.join(self.dir_data, fname) 
+            with codecs.open(pathname, 'wb', 'utf-8') as cmtfile:
+                cmtfile.write('PageUserID %_% CommentUserID %_% Datetime %_% RawComment\n')
+                self.write_raw_comments(cmtfile, PageUserID, cmtdata, one_day)
+            one_day += timedelta(days=1)
+
                 
     def parse_pages(self):
         # to store new pages that to be crawl in next loop
@@ -182,13 +211,24 @@ class crawler(object):
         # update pages
         self.pages = self.newpages 
     
-    def crawl(self, init_pages, depth=3):
-        self.pages = init_pages # init pages
+    def crawl(self, dt_start, dt_end, init_pages, depth=2):
+        # init pages
+        self.pages = init_pages 
+        # check time scope setting
+        assert dt_start < dt_end, "Time scope setting (dt_start, dt_end) is not correct"
+        # set time scope
+        self.dt_start, self.dt_end = dt_start, dt_end
+        # start crawling
         for i in range(depth):
             self.parse_pages()
             
             
 if __name__ == '__main__':
-    pages = [r'http://xueqiu.com/'] #[r'http://xueqiu.com/comy28']
+    init_pages = [r'http://xueqiu.com/', r'http://xueqiu.com/comy28', r'http://xueqiu.com/6049709616']
     crawler = crawler('SnowBallUsers.db')
-    crawler.crawl(pages)
+    # set start and end datetime
+    dt_start, dt_end = datetime.now().date(), datetime.now().date()+timedelta(days=1) 
+    crawler.crawl(dt_start, dt_end, init_pages, depth=1)
+    
+    
+    

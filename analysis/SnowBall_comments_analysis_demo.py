@@ -24,8 +24,10 @@ class SnowBallCommentsAnalysis(Analysis):
         super(SnowBallCommentsAnalysis, self).__init__(name)
 
     def perform_analysis(self, stocks, szTimeAxis, n_ahead):
-        print 'haha'
-
+        cmtfilepath = os.path.join(root, 'data', 'cmt', '2454158445')
+        print cmtfilepath
+        df_cmt = pd.read_csv(cmtfilepath, sep='%_%', encoding="utf-8", engine='python')
+        print df_cmt
 
 if __name__ == '__main__':
     # list of candlestick data files, each item represents a period data of a interested stock
