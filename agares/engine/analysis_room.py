@@ -100,7 +100,7 @@ class AnalysisRoom(object):
         self._analysis = analysis
 	    
     def run(self):
-        print 'Running analysis..'
+        print('Running analysis..')
         self._analysis.perform_analysis(self.stocks, self.szTimeAxis, self.n_ahead)
 
 

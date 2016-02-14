@@ -7,7 +7,7 @@ class Output(object):
             self.ReportFileExist = True
         except IOError:
             self.ReportFileExist = False
-            print "IOError: Report file can not be created."
+            print("IOError: Report file can not be created.")
             pass
         else:
             # write blank lines so that the front lines are left for the most useful results
@@ -20,7 +20,7 @@ class Output(object):
         Args:
             statement(str)
         """
-        print statement
+        print(statement)
         if self.ReportFileExist:
             self._reportfile.write(statement+'\n') 
 

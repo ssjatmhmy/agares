@@ -42,7 +42,7 @@ class MACD_Strategy(Strategy):
 
     def compute_trading_points(self, stocks, szTimeAxis, n_ahead):
         assert len(stocks) == 1, "This strategy allows only a daily candlestick data of one stock."
-        code = stocks.keys().pop()
+        code = next(iter(stocks))
         cst = stocks[code].cst # get candlestick data
         DataTimeAxis = cst['1Day'].index
 

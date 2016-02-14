@@ -1,30 +1,43 @@
-# -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
+import ipdb
 from bs4 import BeautifulSoup
 import sqlite3 
-import urllib2
+import urllib.request
 import json
-from urlparse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse
 from datetime import datetime, timedelta
 import codecs
 import re
 import os
 fdir = os.path.split(os.path.realpath(__file__))[0]
 root = os.path.split(os.path.split(fdir)[0])[0]
+import sys
 sys.path.append(root)
 
-class crawler(object):
+class SnowBallCmtCrawler(object):
+    """
+    A crawler class that can download comment data ('cmt' for short ) from SnowBall website
+    into 'data/SnowBall_cmt' folder. The data are preserved according to their created date.
+    
+    To load the downloaded SnowBall cmt data, use
+        pd.read_csv(cmtfilename, sep='%_%', encoding="utf-8", engine='python'),
+    where cmtfilename is the date of the cmt data that you would like to load plus '.csv'
+    
+    You can use the SnowBallCmtLoader class to load the downloaded data for you. Here is 
+    an example:
+        from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
+        SBLoader = SnowBallCmtLoader()
+        df_cmt = SBLoader.load('2016-02-14')
+        print(df_cmt) 
+    """
     def __init__(self, dbname):
         # check the data directory
-        self.dir_data = os.path.join(root,'data','cmt')
+        self.dir_data = os.path.join(root,'data','SnowBall_cmt')
         if not os.path.exists(self.dir_data): # if dir does not exist
-            print 'Error: Data directory {:s} does not exist.'.format(self.dir_data)
+            print('Error: Data directory {:s} does not exist.'.format(self.dir_data))
             exit()
         # connect database
-        self.con = sqlite3.connect(dbname)
+        dbpathname = os.path.join(self.dir_data, dbname)
+        self.con = sqlite3.connect(dbpathname)
         self.con.execute('''
             create table if not exists Indexed_Links
             (url text)
@@ -108,12 +121,16 @@ class crawler(object):
         """
         if SBdatetime == '' or SBdatetime == None:
             return None, ''
-        if SBdatetime.find(u'今天') is not -1:
+        if SBdatetime.find('今天') is not -1:
             hour_minute = re.search('\d{2}:\d{2}', SBdatetime).group() # search %H:%M
             return datetime.now().date(), hour_minute 
-        if SBdatetime.find(u'分钟前') is not -1:
+        if SBdatetime.find('分钟前') is not -1:
             minutebefore = re.search('\d+', SBdatetime).group() # search %M
             date_time = datetime.now() - timedelta(minutes=int(minutebefore))
+            return date_time.date(), '{0:02d}:{1:02d}'.format(date_time.hour, date_time.minute)
+        if SBdatetime.find('秒前') is not -1:
+            secondbefore = re.search('\d+', SBdatetime).group() # search %S
+            date_time = datetime.now() - timedelta(seconds=int(secondbefore))
             return date_time.date(), '{0:02d}:{1:02d}'.format(date_time.hour, date_time.minute)
         if re.search('\d{4}-\d{2}-\d{2}', SBdatetime) is None:
             SBdatetime = str(datetime.now().year) +'-'+ SBdatetime # convert to '%Y-%m-%d %H:%M'
@@ -121,23 +138,28 @@ class crawler(object):
         SBdatetime = datetime.strptime(SBdatetime, '%Y-%m-%d %H:%M')
         return SBdatetime.date(), '{0:02d}:{1:02d}'.format(SBdatetime.hour, SBdatetime.minute) 
     
-    def write_raw_comments(self, cmtfile, PageUserID, data, one_day):
+    def write_raw_comments(self, cmtfile, PageUserID, cmtdata, one_day):
         """
         Write raw comments into cmtfile
         """
         # convert these comment data into dict via json
-        dic = json.loads(data)
+        dic = json.loads(cmtdata)
         comments = dic['statuses']
         for i in range(len(comments)):
             # get created time of the comment
             SBdatetime = comments[i]['timeBefore']
-            date, hour_minute = self.to_datetime(SBdatetime)       
-            # process the comments whose created date is equal to one_day             
-            #if one_day == date: ?? can not write
-            print one_day == date
+            date, hour_minute = self.to_datetime(SBdatetime)   
+            # SnowBall comment data were written over a period of time. We can pass the comments
+            # whose created date is after one_day      
+            if one_day < date:
+                continue
+            # if one_day > date, we have processed all the cases that one_day==date. So return.
+            if one_day > date:
+                return      
+            # process the comments whose created date is equal to one_day          
             comment_userID = comments[i]['user_id']
             raw_comment = comments[i]['text']
-            cmtfile.write('{0:s} %_% {1:d} %_% {2:s} %_% {3:s}'.format(PageUserID, comment_userID, hour_minute, raw_comment))
+            cmtfile.write('{0:s} %_% {1:s} %_% {2:s} %_% {3:s}'.format(PageUserID, str(comment_userID), hour_minute, raw_comment))
             cmtfile.write('\n')
         
     def dbcommit(self):
@@ -149,26 +171,26 @@ class crawler(object):
         if netloc != r'xueqiu.com':
             return
         # try to open the page
-        print 'Requesting ' + page 
+        print('Requesting ' + page) 
         # mark this url as indexed
         self.mark_as_indexed(page) 
         try:
-            req = urllib2.Request(page, headers=self.send_headers)
-            resp = urllib2.urlopen(req, timeout=5)
+            req = urllib.request.Request(page, headers=self.send_headers)
+            resp = urllib.request.urlopen(req, timeout=5)
         except:
-            print "Could not open {:s}".format(page) 
+            print("Could not open {:s}".format(page)) 
             return
         # try to read the page
         try:
-            html = resp.read()
+            html = resp.read().decode('UTF-8')
         except:
-            print "Could not read page {:s}".format(page) 
+            print("Could not read page {:s}".format(page)) 
             return
         # try to parse the page
         try:
             soup = BeautifulSoup(html, 'lxml')
         except:
-            print "Could not parse page {:s}".format(page) 
+            print("Could not parse page {:s}".format(page)) 
             return
         # get useful links in this page
         for link in soup.find_all('a'):
@@ -181,14 +203,12 @@ class crawler(object):
         # get SnowBall user id of the page
         PageUserID = self.get_PageUserID(html)   
         if PageUserID == '':
-            print "Could not get page user ID"
             return     
         # get raw comments
         cmtdata = self.get_raw_comments(html) 
         if cmtdata == '':
-            print "Could not get raw comments"
             return
-        print 'Data obtained from ' + page
+        print('Data obtained from ' + page)
         # record page user id and page url of the SnowBall user  
         self.record_SnowBallUser(PageUserID, page)
         # create one file for each date and store comments
@@ -196,8 +216,8 @@ class crawler(object):
         while one_day < self.dt_end:            
             fname = str(one_day) + '.csv'
             pathname = os.path.join(self.dir_data, fname) 
-            with codecs.open(pathname, 'wb', 'utf-8') as cmtfile:
-                cmtfile.write('PageUserID %_% CommentUserID %_% Datetime %_% RawComment\n')
+            #with codecs.open(pathname, 'wb', 'utf-8') as cmtfile:
+            with open(pathname, 'a') as cmtfile:
                 self.write_raw_comments(cmtfile, PageUserID, cmtdata, one_day)
             one_day += timedelta(days=1)
 
@@ -218,6 +238,14 @@ class crawler(object):
         assert dt_start < dt_end, "Time scope setting (dt_start, dt_end) is not correct"
         # set time scope
         self.dt_start, self.dt_end = dt_start, dt_end
+        # initial cmtfiles with indexes
+        one_day = self.dt_start
+        while one_day < self.dt_end:            
+            fname = str(one_day) + '.csv'
+            pathname = os.path.join(self.dir_data, fname) 
+            with open(pathname, 'wt') as cmtfile:
+                cmtfile.write('PageUserID %_% CommentUserID %_% Datetime %_% RawComment\n')
+            one_day += timedelta(days=1)
         # start crawling
         for i in range(depth):
             self.parse_pages()
@@ -225,10 +253,10 @@ class crawler(object):
             
 if __name__ == '__main__':
     init_pages = [r'http://xueqiu.com/', r'http://xueqiu.com/comy28', r'http://xueqiu.com/6049709616']
-    crawler = crawler('SnowBallUsers.db')
+    crawler = SnowBallCmtCrawler('SnowBallUsers.db')
     # set start and end datetime
-    dt_start, dt_end = datetime.now().date(), datetime.now().date()+timedelta(days=1) 
-    crawler.crawl(dt_start, dt_end, init_pages, depth=1)
+    dt_start, dt_end = datetime.now().date()-timedelta(days=1), datetime.now().date()+timedelta(days=1) 
+    crawler.crawl(dt_start, dt_end, init_pages, depth=3)
     
     
     

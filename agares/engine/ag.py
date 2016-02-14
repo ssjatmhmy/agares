@@ -60,12 +60,12 @@ def buy(code, price, datetime, **kargs):
     Return:
         quantity(int): the number of shares (unit: boardlot) you buy this time
     """
-    if kargs.has_key('ratio'):
+    if 'ratio' in kargs:
         quantity = ag_simulator.buy_ratio(code, price, datetime, ratio = kargs['ratio'])  
-    elif kargs.has_key('position'):   
+    elif 'position' in kargs:   
         quantity = ag_simulator.buy_position(code, price, datetime, position = kargs['position']) 
     else:
-        print "Warning: ratio/position not given in buy(). Using default: position = 1."
+        print("Warning: ratio/position not given in buy(). Using default: position = 1.")
         quantity = ag_simulator.buy_position(code, price, datetime, position = 1) 
     ag_simulator.trading_stocks.add(code)
     return quantity
@@ -93,7 +93,7 @@ def report(PlotEquity = False, PlotNetValue = False):
     df_equity = ag_simulator.report()
     if PlotEquity: # plot equity
         df_equity['equity'].plot()
-        print "Plot of equity curve is shown."
+        print("Plot of equity curve is shown.")
         plt.show()
     if PlotNetValue:
         init_equity = df_equity['equity'].values[0]
@@ -102,17 +102,15 @@ def report(PlotEquity = False, PlotNetValue = False):
         scaled_sz = df_equity['sz'].values/float(init_sz)
         df_nv = pd.DataFrame({'Net value': net_value, 'scaled sz': scaled_sz}, index = df_equity.index)
         df_nv.plot()
-        print "Plot of net value curve is shown."
+        print("Plot of net value curve is shown.")
         plt.show()
     return df_equity
 
 
-class Strategy(object):
+class Strategy(metaclass = ABCMeta):
     """
     Base class of strategy
     """
-    __metaclass__ = ABCMeta
-
     def __init__(self, name):
         self.name = name
 
@@ -139,12 +137,10 @@ class Strategy(object):
         pass
 
 
-class Analysis(object):
+class Analysis(metaclass = ABCMeta):
     """
     Base class of analysis
     """
-    __metaclass__ = ABCMeta
-
     def __init__(self, name):
         self.name = name
 	
@@ -216,9 +212,9 @@ def ask_agares(settings):
                           may help to avoid nan at the beginning of indexes.
     """
     # if ask about strategy
-    if settings.has_key('strategy'):
-        if settings.has_key('analysis'):
-            print "Error: can not process strategy and analysis at the same time!"
+    if 'strategy' in settings:
+        if 'analysis' in settings:
+            print("Error: can not process strategy and analysis at the same time!")
             exit()
         strategy = settings['strategy']
         pstocks = settings['pstocks']
@@ -230,21 +226,21 @@ def ask_agares(settings):
             capital = settings['capital']
             assert(settings['capital'] > 0)
         except KeyError:
-            print 'Capital unknown. Setting default to 10,000.'
+            print('Capital unknown. Setting default to 10,000.')
             capital = 10000
         # check and set StampTaxRate
         try:
             StampTaxRate = settings['StampTaxRate']
             assert((0 <= settings['StampTaxRate']) & (settings['StampTaxRate'] < 1))
         except KeyError:
-            print 'StampTaxRate unknown. Setting default to 0.001.'
+            print('StampTaxRate unknown. Setting default to 0.001.')
             StampTaxRate = 0.001
         # check and set CommissionChargeRate
         try:
             CommissionChargeRate = settings['CommissionChargeRate']
             assert((0 <= settings['CommissionChargeRate']) & (settings['CommissionChargeRate'] < 1))
         except KeyError:
-            print 'CommissionChargeRate unknown. Setting default to 2.5e-4.'
+            print('CommissionChargeRate unknown. Setting default to 2.5e-4.')
             CommissionChargeRate = 2.5e-4
         # check and set report parameters
         try:
@@ -269,7 +265,7 @@ def ask_agares(settings):
             return df_equity
             
     # if ask about analysis        
-    if settings.has_key('analysis'):
+    if 'analysis' in settings:
         analysis = settings['analysis']
         pstocks = settings['pstocks']
         dt_start = settings['dt_start'] 

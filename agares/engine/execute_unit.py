@@ -122,16 +122,16 @@ class ExecuteUnit(object):
         """
         self._strategy = strategy
         # create an output instance for the strategy report
-        root = os.path.join(os.getcwd(),'../report')
+        root = os.path.join(os.getcwd(), '..', 'report')
         fname = self._strategy.name + ".report"
         self.o = Output(root, fname)
         # check whether repot file has been created
         if self.o.ReportFileExist == False:
-            print "A 'report' folder should be provided in the parent directory of current directory."
+            print("A 'report' folder should be provided in the parent directory of current directory.")
 
 
     def run(self):
-        print 'Running back test for the trading system..'
+        print('Running back test for the trading system..')
         self.o.report(' Blotter '.center(80, '='))
         try:
             self._strategy.compute_trading_points(self.stocks, self.szTimeAxis, self.n_ahead)
@@ -320,7 +320,7 @@ class ExecuteUnit(object):
         self.o.account(self._shares, self._cash)
 
         # create equity curve data
-        print "Creating equity curve data.."
+        print("Creating equity curve data..")
         # see whether there is any transaction, if not, why bother
         if len(self._records) == 1: # that means no transaction
             return

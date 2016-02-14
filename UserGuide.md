@@ -126,7 +126,7 @@ might be helpful.
             """
 
 ### Download comments from SnowBall website
-  SnowBall is a well-known investment website in China. You can obtain comments from this website and perform analysis with natural language processing/machine learning algorithms. To download comment data (often abbreviated as 'cmt' in the code), run the script in /agares/datasource/cmt_loader.py.
+  SnowBall is a well-known investment website in China. You can obtain comments from this website and perform analysis with natural language processing/machine learning algorithms. To download comment data (often abbreviated as 'cmt' in the code), run the script /agares/datasource/SnowBallCmtCrawler.py.
   
 ### Perform analysis
   Agares allows you to verify some ideas that does not directly involve trading. These ideas would be something involving using natural language processing/machine learning algorithms to process your self-download data. To do so, you need to write an analysis file. A analysis file is a .py file that contains a subclass of Analysis class, in which a class function 
@@ -157,7 +157,14 @@ should be implemented. Similar to the strategy file, the cst data is available f
 *Please deploy your analysis file in the 'analysis' folder.*
  
 ## API for writting an analysis file:
-The API ask_agares() is the only API for an analysis file. Before using it, you should import it from agares.engine.ag. There are some demos in the 'analysis' folder that might be helpful.
+The API ask_agares() is the only indispensable API for an analysis file. Before using it, you should import it from agares.engine.ag. There are some demos in the 'analysis' folder that might be helpful.
+
+If you want to use the comment data from the SnowBall website, agares has a loader class for you. Here is an example to show how to use it:
+        from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
+        SBLoader = SnowBallCmtLoader()
+        df_cmt = SBLoader.load('2016-02-14')
+        print(df_cmt)
+Make sure you have download the SnowBall cmt data before you load the data. If you have not download the data yet, use the script /agares/datasource/SnowBallCmtCrawler.py to do so.
 
 
 
