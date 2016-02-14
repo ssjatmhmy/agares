@@ -159,7 +159,7 @@ should be implemented. Similar to the strategy file, the cst data is available f
 ## API for writting an analysis file:
 The API ask_agares() is the only indispensable API for an analysis file. Before using it, you should import it from agares.engine.ag. There are some demos in the 'analysis' folder that might be helpful.
 
-If you want to use the comment data from the SnowBall website, agares has a loader class for you. Here is an example to show how to use it:
+If you want to use the comment data from the SnowBall website, agares has a loader class for you. Here is an example showing how to use it:
 
         from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
         SBLoader = SnowBallCmtLoader()
