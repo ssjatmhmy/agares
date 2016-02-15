@@ -14,6 +14,7 @@ sys.path.append(root)
 from agares.engine.ag import (
     Analysis,
     ask_agares)
+import jieba
 
 class SnowBallCommentsAnalysis(Analysis):
     """ 
@@ -21,12 +22,20 @@ class SnowBallCommentsAnalysis(Analysis):
     """
     def __init__(self, name):
         super(SnowBallCommentsAnalysis, self).__init__(name)
-
+   
+    
     def perform_analysis(self, stocks, szTimeAxis, n_ahead):
+        # load SnowBall comment data
         from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
         SBLoader = SnowBallCmtLoader()
-        df_cmt = SBLoader.load('2016-02-14')
-        print(df_cmt)
+        df_cmt = SBLoader.load('2016-02-15')
+        # Chinese text segmentation
+        sentence = df_cmt.at[0, 'RawComment']
+        #df_cmt['RawComment'].map(jieba.cut)
+        words = jieba.cut(sentence)
+        for word in words:
+            print(word)
+
 
 if __name__ == '__main__':
     # list of candlestick data files, each item represents a period data of a interested stock
