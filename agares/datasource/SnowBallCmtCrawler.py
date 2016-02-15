@@ -308,4 +308,4 @@ if __name__ == '__main__':
     # set start and end date (end date is not included)
     dt_start, dt_end = datetime.now().date()-timedelta(days=1), datetime.now().date()+timedelta(days=1)     
     crawler = SnowBallCmtCrawler(dt_start, dt_end, init_pages)
-    crawler.crawl(max_PageUser=3)
+    crawler.crawl(max_PageUser=500)
