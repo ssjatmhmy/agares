@@ -2,8 +2,8 @@ import ipdb
 from bs4 import BeautifulSoup
 import sqlite3 
 import urllib.request
+from urllib.parse import urljoin, urlparse, urlunparse, quote
 import json
-from urllib.parse import urljoin, urlparse
 from datetime import datetime, timedelta
 import re
 import os
@@ -28,12 +28,12 @@ class SnowBallCmtCrawler(object):
         df_cmt = SBLoader.load('2016-02-14')
         print(df_cmt) 
     """
-    def __init__(self, dt_start, dt_end, init_pages):
+    def __init__(self, dt_start, dt_end, init_pages, UseStoreURL = False, DropIsRecorded = False):
         """
         Args:
             dt_start(datetime.date): start date
             dt_end(datetime.date): the day after end date, i.e., the cmt data at this date will 
-                                    not be recorded.
+                                    not be downloaded.
             init_pages(str): list of urls that are used to start     
         """
         # check the data directory
@@ -58,10 +58,14 @@ class SnowBallCmtCrawler(object):
         # connect database
         dbpathname = os.path.join(self.dir_data, 'SnowBallUsers.db')
         self.con = sqlite3.connect(dbpathname)
+        # drop recorded data (Table Is_Recorded) if required
+        if DropIsRecorded == True:
+            self.drop_table_Is_Recorded()
+        # create table of database
         self.con.execute('''
             create table if not exists Indexed_Links
             (url text)
-            ''')
+            ''')        
         self.con.execute('''
             create table if not exists Is_Recorded
             (cmt_id text, user_id text)
@@ -70,6 +74,7 @@ class SnowBallCmtCrawler(object):
             create table if not exists SnowBallUsers
             (uid text, url text)
             ''')
+        # define header
         self.send_headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) \
         AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36', 
         'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -77,22 +82,45 @@ class SnowBallCmtCrawler(object):
         'Host':'xueqiu.com',
         'Cookie':r'xxxxxx'}     
         # init pages
-        self.pages = init_pages 
+        self.pages = []
+        for page in init_pages:
+            quote_page = self.check_and_quote_url(page)
+            if quote_page is None: 
+                print("Error: Bad initial page {:s}".format(page))
+                print("Initial page should belong to xueqiu.com")
+                exit()
+            # mark this url as indexed
+            self.mark_as_indexed(quote_page)
+            self.pages.append(quote_page)
+        # use stored urls if required
+        if UseStoreURL == True:
+            # append stored PageUser urls as initial pages
+            stored_urls = self.con.execute('''select * from SnowBallUsers''')
+            for PageUser, url in stored_urls:
+                quote_url = self.check_and_quote_url(url)
+                if quote_url is None:
+                    continue
+                # mark this url as indexed
+                self.mark_as_indexed(quote_url)            
+                self.pages.append(url)
         # to store the number of PageUsers we have crawled in this run
         self.n_PageUser = 0
         # prepare timescope for printing at the end
-        self.Timescope = (str(dt_start), str(dt_end-timedelta(days=1)))
+        self.Timescope = (str(dt_start), str(dt_end-timedelta(days=1)))      
 
     def __del__(self):
         self.con.execute('drop table Indexed_Links')
         self.con.close()
         print("\nDone. New comments of {:d} PageUsers were recorded in this run.".format(self.n_PageUser))
         print("Timescope: from {0:s} to {1:s}".format(self.Timescope[0], self.Timescope[1]))
-        print("Turn up var: depth if the number is smaller than you set.\n")
 
     def dbcommit(self):
         self.con.commit()
-    
+
+    def drop_table_Is_Recorded(self):
+        self.con.execute('drop table Is_Recorded')
+        print("Table Is_Recorded is droped")
+        
     def is_indexed(self, url):
         """
         Return true if this url has been indexed
@@ -204,16 +232,14 @@ class SnowBallCmtCrawler(object):
         for i in range(len(comments)):
             # get created time of the comment
             SBdatetime = comments[i]['timeBefore']
-            date, hour_minute = self.to_datetime(SBdatetime)   
+            SBdate, hour_minute = self.to_datetime(SBdatetime)   
             # SnowBall comment data were written over a period of time. We can pass the comments
             # whose created date is after one_day      
-            if one_day < date:
+            if one_day < SBdate:
                 continue
-            # if one_day > date, we have processed all the cases that one_day==date. So return.
-            if one_day > date:
-                if do_record: self.n_PageUser += 1
-                if self.n_PageUser >= self.max_PageUser: exit()
-                return      
+            # if one_day > SBdate, we have processed all the cases that one_day==SBdate. So return.
+            if one_day > SBdate:
+                return do_record     
             # process the comments whose created date is equal to one_day   
             comment_ID = comments[i]['id']
             comment_userID = comments[i]['user_id']
@@ -223,22 +249,44 @@ class SnowBallCmtCrawler(object):
                 cmtfile.write('\n')
                 self.mark_as_recorded(comment_ID, comment_userID)
                 do_record = True
-        # count how many PageUser we have crawl in this run
-        if do_record: self.n_PageUser += 1
-        if self.n_PageUser >= self.max_PageUser: exit()
+        return do_record
         
     def dbcommit(self):
         self.con.commit()
     
-    def parse_page(self, page):
+    def check_and_quote_url(self, url):
+        """
+        check url and quote it to avoid Chinese character errors
+        return None if the page is inappropriate; otherwise return a quote page.
+        """
+        if url == 'http://xueqiu.com/':
+            return url
+        obj = urlparse(url)
+        scheme, netloc, path = obj.scheme, obj.netloc, obj.path
+        # check the scheme of url
+        if scheme != 'http':
+            return None
         # check whether this page belongs to SnowBall website
-        netloc = urlparse(page).netloc
-        if netloc != r'xueqiu.com':
-            return
-        # try to open the page
-        print('Requesting ' + page) 
-        # mark this url as indexed
-        self.mark_as_indexed(page) 
+        if netloc != 'xueqiu.com':
+            return None
+        # check path
+        if len(path) >= 4:
+            if path[0:3] == '/S/' or path[0:3] == '/P/' or \
+                path[0:3] == '/s/' or path[0:3] == '/p/' or path[0:4] == '/hq/':
+                return None
+            if path[0:3] == '/g/' or path.find('profile') > 0:
+                pass
+            elif path[3:].find('#') > 0:
+                return None
+        # quote the url (avoid Chinese character errors)
+        quote_path = quote(path)
+        quote_url = urlunparse((scheme, netloc, quote_path, '', '', ''))
+        return quote_url
+    
+    def parse_page(self, page):
+        # print
+        print('Requesting ' + page)   
+        # request page 
         try:
             req = urllib.request.Request(page, headers=self.send_headers)
             resp = urllib.request.urlopen(req, timeout=5)
@@ -261,10 +309,13 @@ class SnowBallCmtCrawler(object):
         for link in soup.find_all('a'):
             if 'href' in link.attrs.keys():
                 url = urljoin(page, link['href'])
-                if urlparse(url).netloc != r'xueqiu.com': continue
-                url = url.split('#')[0]  # remove location portion
-                if url[0:4]=='http' and not self.is_indexed(url):
-                    self.newpages.add(url)    
+                quote_url = self.check_and_quote_url(url)   
+                if quote_url is None:
+                    continue
+                if not self.is_indexed(quote_url):
+                    self.newpages.add(quote_url)
+                    # mark this url as indexed
+                    self.mark_as_indexed(quote_url)
         # get SnowBall user id of the page
         PageUserID = self.get_PageUserID(html)   
         if PageUserID == '':
@@ -274,19 +325,27 @@ class SnowBallCmtCrawler(object):
         if cmtdata == '':
             return
         print('Data obtained from ' + page)
-        # record page user id and page url of the SnowBall user  
-        self.record_SnowBallUser(PageUserID, page)
         # create one file for each date and store comments
         one_day = self.dt_start
+        do_record = False
         while one_day < self.dt_end:            
             fname = str(one_day) + '.csv'
             pathname = os.path.join(self.dir_data, fname) 
-            #with codecs.open(pathname, 'wb', 'utf-8') as cmtfile:
             with open(pathname, 'a') as cmtfile:
-                self.write_raw_comments(cmtfile, PageUserID, cmtdata, one_day)
+                if self.write_raw_comments(cmtfile, PageUserID, cmtdata, one_day):
+                    do_record = True
             one_day += timedelta(days=1)
-
-                
+        # count how many PageUser we have crawl in this run
+        if do_record is True: 
+            # record page user id and page url of the SnowBall user  
+            self.record_SnowBallUser(PageUserID, page)  
+            # update n_PageUser          
+            self.n_PageUser += 1
+            if self.n_PageUser >= self.max_PageUser: 
+                exit()
+        # print
+        print('{:d} PageUsers have been reached.'.format(self.n_PageUser))
+     
     def parse_pages(self):
         # to store new pages that to be crawl in next loop
         self.newpages = set()
@@ -296,7 +355,7 @@ class SnowBallCmtCrawler(object):
         # update pages
         self.pages = self.newpages 
     
-    def crawl(self, max_PageUser, depth=15):
+    def crawl(self, max_PageUser, depth=1000):
         self.max_PageUser = max_PageUser
         # start crawling
         for i in range(depth):
@@ -304,8 +363,8 @@ class SnowBallCmtCrawler(object):
             
             
 if __name__ == '__main__':
-    init_pages = [r'http://xueqiu.com/', r'http://xueqiu.com/comy28', r'http://xueqiu.com/6049709616']
+    init_pages = ['http://xueqiu.com/']
     # set start and end date (end date is not included)
     dt_start, dt_end = datetime.now().date()-timedelta(days=1), datetime.now().date()+timedelta(days=1)     
-    crawler = SnowBallCmtCrawler(dt_start, dt_end, init_pages)
-    crawler.crawl(max_PageUser=500)
+    crawler = SnowBallCmtCrawler(dt_start, dt_end, init_pages, UseStoreURL = True, DropIsRecorded = False)
+    crawler.crawl(max_PageUser=300)
