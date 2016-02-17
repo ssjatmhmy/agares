@@ -5,6 +5,7 @@ import ipdb
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from time import time
 from datetime import datetime
 import os
 fdir = os.path.split(os.path.realpath(__file__))[0]
@@ -16,7 +17,6 @@ from agares.engine.ag import (
     ask_agares)
 from agares.util.handle_Chinese import contain_Chinese
 import jieba
-from time import time
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     # create an analysis class
     analysis = SnowBallCommentsAnalysis('SnowBall Comments Analysis', '2016-02-16')
     # set start and end datetime of pstocks
-    dt_start, dt_end = datetime(2015,10,1), datetime(2016,1,26)
+    dt_start, dt_end = datetime(2015,12,1), datetime(2016,1,26)
     # number of extra daily data for computation (ahead of start datatime)
     n_ahead = 30
 
