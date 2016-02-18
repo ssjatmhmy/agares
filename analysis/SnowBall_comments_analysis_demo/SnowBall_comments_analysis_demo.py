@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from time import time
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 fdir = os.path.split(os.path.realpath(__file__))[0]
 root = os.path.split(os.path.split(fdir)[0])[0]
@@ -26,9 +26,12 @@ class SnowBallCommentsAnalysis(Analysis):
     Extract primary topics at certain date from the SnowBall website.
     Use NMF and LDA algorithm.
     """
-    def __init__(self, name, date):
+    def __init__(self, name, dt_start, dt_end):
         super(SnowBallCommentsAnalysis, self).__init__(name)
-        self.date = date
+        # start date
+        self.dt_start = datetime.strptime(dt_start, '%Y-%m-%d').date() 
+        # end date
+        self.dt_end = datetime.strptime(dt_end, '%Y-%m-%d').date() 
         
     def set_jieba(self):
         """
@@ -65,7 +68,13 @@ class SnowBallCommentsAnalysis(Analysis):
         # load SnowBall comment data
         from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
         SBLoader = SnowBallCmtLoader()
-        df_cmt = SBLoader.load(str(self.date))
+        date = self.dt_start
+        df_cmt_list = []
+        while date < self.dt_end:
+            df_cmt_list.append(SBLoader.load(str(date)))
+            date += timedelta(days=1)
+        df_cmt = pd.concat(df_cmt_list, ignore_index=True)
+        print(df_cmt)
         # Chinese text segmentation
         self.set_jieba()
         df_cmt['RawComment'] = df_cmt['RawComment'].map(jieba.cut)
@@ -106,7 +115,7 @@ if __name__ == '__main__':
     # pstocks could contain multiple stock of multiple type of period
     pstocks = ['000001.sz-1Day']
     # create an analysis class
-    analysis = SnowBallCommentsAnalysis('SnowBall Comments Analysis', '2016-02-16')
+    analysis = SnowBallCommentsAnalysis('SnowBall Comments Analysis', '2016-02-17', '2016-02-19')
     # set start and end datetime of pstocks
     dt_start, dt_end = datetime(2015,12,1), datetime(2016,1,26)
     # number of extra daily data for computation (ahead of start datatime)
