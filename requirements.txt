@@ -1,2 +1,3 @@
 talib (include python wrapper)
 tushare
+jieba

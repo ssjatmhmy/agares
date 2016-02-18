@@ -29,9 +29,9 @@ class SnowBallCommentsAnalysis(Analysis):
     def __init__(self, name, dt_start, dt_end):
         super(SnowBallCommentsAnalysis, self).__init__(name)
         # start date
-        self.dt_start = datetime.strptime(dt_start, '%Y-%m-%d').date() 
+        self.dt_start = dt_start
         # end date
-        self.dt_end = datetime.strptime(dt_end, '%Y-%m-%d').date() 
+        self.dt_end = dt_end
         
     def set_jieba(self):
         """
@@ -68,13 +68,12 @@ class SnowBallCommentsAnalysis(Analysis):
         # load SnowBall comment data
         from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
         SBLoader = SnowBallCmtLoader()
-        date = self.dt_start
+        date = self.dt_start.date()
         df_cmt_list = []
-        while date < self.dt_end:
+        while date <= self.dt_end.date():
             df_cmt_list.append(SBLoader.load(str(date)))
             date += timedelta(days=1)
         df_cmt = pd.concat(df_cmt_list, ignore_index=True)
-        print(df_cmt)
         # Chinese text segmentation
         self.set_jieba()
         df_cmt['RawComment'] = df_cmt['RawComment'].map(jieba.cut)
@@ -88,7 +87,7 @@ class SnowBallCommentsAnalysis(Analysis):
         tfidf = tfidf_vectorizer.fit_transform(cmt)
         
         # Fit the NMF model
-        n_topics = 10
+        n_topics = 5
         n_top_words = 20
         print("Fitting the NMF model with tf-idf features..")
         t0 = time()
@@ -108,19 +107,34 @@ class SnowBallCommentsAnalysis(Analysis):
         print("done in %0.3fs." % (time() - t0))
         print("\nTopics in LDA model:")
         self.print_top_words(lda, tfidf_feature_names, n_top_words)
+        
+        # load sz daily candlestick data
+        sz = next(iter(stocks))
+        cst_Day = stocks[sz].cst['1Day'] 
+        # print close price within the timescope
+        date = self.dt_start
+        print()
+        print("The ShangHai stock Index (close index) within the timescope")
+        while date <= self.dt_end:
+            ts = pd.to_datetime(date)
+            try:
+                print("Date: {0:s}, Index: {1:.2f}".format(str(date.date()), cst_Day.at[ts, 'close']))
+            except KeyError: # sz candlestick data does not exist at this datetime
+                print("Date: {0:s}, Index: (market closed)".format(str(date.date())))
+            date += timedelta(days=1)
 
 
 if __name__ == '__main__':
+    # set start and end datetime of pstocks
+    dt_start, dt_end = datetime(2016,2,16), datetime(2016,2,17)
     # list of candlestick data files, each item represents a period data of a interested stock
     # pstocks could contain multiple stock of multiple type of period
     pstocks = ['000001.sz-1Day']
     # create an analysis class
-    analysis = SnowBallCommentsAnalysis('SnowBall Comments Analysis', '2016-02-17', '2016-02-19')
-    # set start and end datetime of pstocks
-    dt_start, dt_end = datetime(2015,12,1), datetime(2016,1,26)
+    analysis = SnowBallCommentsAnalysis('SnowBall Comments Analysis', dt_start, dt_end)
     # number of extra daily data for computation (ahead of start datatime)
-    n_ahead = 30
-
+    n_ahead = 20
+    # ask agares
     settings = {'pstocks': pstocks, 'analysis': analysis, 'dt_start': dt_start, 'dt_end': dt_end,
                 'n_ahead': n_ahead}
     ask_agares(settings)

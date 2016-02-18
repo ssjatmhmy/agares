@@ -154,6 +154,9 @@ class SnowBallCmtCrawler(object):
         con.commit()
 
     def drop_table_Is_Recorded(self, con):
+        """
+        Drop the table Is_Recorded
+        """
         con.execute('drop table Is_Recorded')
         print("Table Is_Recorded is droped")
         
@@ -268,26 +271,20 @@ class SnowBallCmtCrawler(object):
         for i in range(len(comments)):
             # get created time of the comment
             SBdatetime = comments[i]['timeBefore']
-            SBdate, hour_minute = self.to_datetime(SBdatetime)   
-            # SnowBall comment data were written over a period of time. We can pass the comments
-            # whose created date is after one_day      
-            if one_day < SBdate:
-                continue
-            # if one_day > SBdate, we have processed all the cases that one_day==SBdate. So return.
-            if one_day > SBdate:
-                return do_record     
-            # process the comments whose created date is equal to one_day   
-            date = str(one_day)
-            comment_ID = comments[i]['id']
-            comment_userID = comments[i]['user_id']
-            if not self.is_recorded(con, comment_ID, comment_userID):
-                raw_comment = comments[i]['text']
-                with self.cmtfile_mutex[date]:
-                    self.cmtfiles[date].write('{0:s}%_%{1:s}%_%{2:s}%_%{3:s}'.format(PageUserID, \
-                                                str(comment_userID), hour_minute, raw_comment))
-                    self.cmtfiles[date].write('\n')
-                self.mark_as_recorded(con, comment_ID, comment_userID)
-                do_record = True
+            SBdate, hour_minute = self.to_datetime(SBdatetime)     
+            # process the comments whose created date is equal to one_day  
+            if one_day == SBdate: 
+                date = str(one_day)
+                comment_ID = comments[i]['id']
+                comment_userID = comments[i]['user_id']
+                if not self.is_recorded(con, comment_ID, comment_userID):
+                    raw_comment = comments[i]['text']
+                    with self.cmtfile_mutex[date]:
+                        self.cmtfiles[date].write('{0:s}%_%{1:s}%_%{2:s}%_%{3:s}'.format(PageUserID, \
+                                                    str(comment_userID), hour_minute, raw_comment))
+                        self.cmtfiles[date].write('\n')
+                    self.mark_as_recorded(con, comment_ID, comment_userID)
+                    do_record = True
         return do_record
     
     def check_and_quote_url(self, url):
@@ -310,11 +307,8 @@ class SnowBallCmtCrawler(object):
             return None
         if path[-1] == '＃':
             path = path[:-1]
-        if path == '/hq':
-            return None
         if len(path) >= 4:
-            if path[0:3] == '/P/' or path[0:3] == '/p/' or \
-                path[0:4] == '/hq/':
+            if path[0:3] == '/P/' or path[0:3] == '/p/':
                 return None
         if len(path) >= 8:
             if path[0:8] == '/n/GT%25':
@@ -339,6 +333,9 @@ class SnowBallCmtCrawler(object):
         return quote_url
     
     def parse_page(self, con, page): 
+        """
+        Parse one page
+        """
         # request page 
         try:
             req = urllib.request.Request(page, headers=self.send_headers)
@@ -428,7 +425,6 @@ class SnowBallCmtCrawler(object):
         for i in t.keys():
             t[i].join()
     
-    
     def crawl(self, max_PageUser):
         self.max_PageUser = max_PageUser
         # start crawling
@@ -436,8 +432,9 @@ class SnowBallCmtCrawler(object):
             
             
 if __name__ == '__main__':
-    init_pages = ['http://xueqiu.com/']
+    init_pages = ['http://xueqiu.com/', 'http://xueqiu.com/g/2257796463', 'http://xueqiu.com/g/8389168261', \
+                'http://xueqiu.com/g/1131705413']
     # set start and end date (end date is not included)
-    dt_start, dt_end = datetime.now().date()-timedelta(days=1), datetime.now().date()+timedelta(days=1)     
+    dt_start, dt_end = datetime.now().date()-timedelta(days=2), datetime.now().date()+timedelta(days=1)     
     crawler = SnowBallCmtCrawler(dt_start, dt_end, init_pages)
-    crawler.crawl(max_PageUser=1000)
+    crawler.crawl(max_PageUser=4000)
