@@ -5,10 +5,11 @@ agares目前是一个基于python的量化回测框架，其定位是帮助设�
 项目名阿加雷斯(agares)来自西方神话故事。阿加雷斯原指所罗门王72柱魔神中排第2位的魔神。据说他有能预见未来的能力，能道破世间的所有谜题，但是说出来的话却真假半掺，不能轻易相信。
 
 目前，agares实现的基本功能有：
-### 使用tushare下载A股历史K线数据;
-### 爬虫脚本爬取雪球网（知名投资网站）用户在某段时间内的发言；
-### 提供strategy类：可根据buy和sell函数计算用户策略在历史上的performance;
-### 提供analysis类：仅加载K线数据，用于与用户自行提供的各类数据做交叉分析。
+
+> * 使用tushare下载A股历史K线数据
+> * 爬虫脚本爬取雪球网（知名投资网站）用户在某段时间内的发言
+> * 提供strategy类：可根据buy和sell函数计算用户策略在历史上的performance
+> * 提供analysis类：仅加载K线数据，用于与用户自行提供的各类数据做交叉分析
 
 最后一个功能可能大家不太明白。其实这个类是用来实现agares的特色任务：用机器学习的算法对各类数据做分析。analysis文件夹提供了一个demo给大家开脑洞。在这个demo里，agares加载了雪球近几天的用户发言数据，分别用Nonnegtive Matrix Factorization（NMF）和Latent Dirichlet Allocation（LDA）算法提取了这几天的雪球股民们讨论的主题。
 

@@ -1,8 +1,7 @@
 # User Guide of Agares
 
 ## What is it:
-  Agares is a back-testing tool for Chinese stock market, which can be used to test investment strategies or verify theories. Unlike futures or other markets, Chinese stock marker carries out a T+1 system. The regulations in Chinese stock marker allows us to take our time instead of reacting promptly. Thus, agares is not for real-time trading; it is instead a analysis tool that might cost a lot of time to see whether 
-an trading idea is reasonalbe by reviewing its performance in the pass.  
+  Agares is a back-testing tool for Chinese stock market, which can be used to test investment strategies or verify investment theories. Unlike futures or other markets, Chinese stock marker carries out a T+1 system. The regulations in Chinese stock marker allows us to take our time instead of reacting promptly. Thus, agares is not for real-time trading; it is instead an analysis tool that might cost a lot of time to see whether an trading idea is reasonalbe by reviewing its performance in the pass.  
   The framework of agares is simple and flexible. Besides technical approaches and value investing theory, you can also try the algorithms in machine learning theory. For example, if you believe that market sentiment is helpful, you can deploy natural language processing algorithms on netizen comments to perform sentiment analysis.
 
 ## Dependencies:
@@ -12,7 +11,8 @@ see requirements.txt
 agares: source files  
 data: data files for back-testing and analysis  
 report: store back-testing reports  
-strategy: deploy user's personalized strategies  
+strategy: deploy user's personalized strategy files
+analysis: deploy user's personalized analysis files
 
 
 ## How to use it:
