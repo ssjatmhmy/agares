@@ -11,6 +11,6 @@ agares目前是一个基于python的量化回测框架，其定位是帮助设�
 > * 提供strategy类：可根据buy和sell函数计算用户策略在历史上的performance
 > * 提供analysis类：仅加载K线数据，用于与用户自行提供的各类数据做交叉分析
 
-最后一个功能可能大家不太明白。其实这个类是用来实现agares的特色任务：用机器学习的算法对各类数据做分析。analysis文件夹提供了一个demo给大家开脑洞。在这个demo里，agares加载了雪球近几天的用户发言数据，分别用Nonnegtive Matrix Factorization（NMF）和Latent Dirichlet Allocation（LDA）算法提取了这几天的雪球股民们讨论的主题。
+最后一个功能可能大家不太明白。其实这个类是用来实现agares的特色任务：用机器学习的算法对各类数据做分析。analysis文件夹提供了一个demo（SnowBall\_comments\_analysis\_demo）给大家参考，抛砖引玉。在这个demo里，agares加载了雪球近几天的用户发言数据，分别用Nonnegtive Matrix Factorization（NMF）和Latent Dirichlet Allocation（LDA）算法提取了这几天的雪球股民们讨论的主题。
 
 agares的代码比较简单，大家有兴趣的可以自己拓展。
