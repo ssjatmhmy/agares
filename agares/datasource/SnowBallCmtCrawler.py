@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import ipdb
 from bs4 import BeautifulSoup
 import sqlite3 
@@ -305,25 +307,21 @@ class SnowBallCmtCrawler(object):
         # check path
         if len(path) <= 1 or len(path) >= 40:
             return None
-        if path[-1] == '＃':
+        if path.endswith('＃'):
             path = path[:-1]
-        if len(path) >= 4:
-            if path[0:3] == '/P/' or path[0:3] == '/p/':
-                return None
-        if len(path) >= 8:
-            if path[0:8] == '/n/GT%25':
-                return None
-            if path[0:7] == '/about/':
-                return None
-            if path[-7:] == '/report':
-                path = path[:-7]
-        if len(path) >= 9:
-            if path[0:9] == '/account/':
-                return None
-        if len(path) >= 10:
-            if path[0:10] == '/calendar/':
-                return None
-        if path.find('/n/')>0 and path.find('%2525')>0:
+        if path.endswith('/report'):
+            path = path[:-7]
+        if path.startswith('/P/') or path.startswith('/p/'):
+            return None
+        if path.startswith('/n/GT%25'):
+            return None
+        if path.startswith('/about/'):
+            return None
+        if path.startswith('/account/'):
+            return None
+        if path.startswith('/calendar/'):
+            return None
+        if path.startswith('/n/') and path.find('%2525')>0:
             return None  
         if path.find('http:/')>0:
             return None        
@@ -432,8 +430,8 @@ class SnowBallCmtCrawler(object):
             
             
 if __name__ == '__main__':
-    init_pages = ['http://xueqiu.com/', 'http://xueqiu.com/g/2257796463', 'http://xueqiu.com/g/8389168261', \
-                'http://xueqiu.com/g/1131705413']
+    init_pages = ['http://xueqiu.com/hq', 'http://xueqiu.com/', 'http://xueqiu.com/g/2257796463', \
+                    'http://xueqiu.com/g/8389168261', 'http://xueqiu.com/g/1131705413']
     # set start and end date (end date is not included)
     dt_start, dt_end = datetime.now().date()-timedelta(days=2), datetime.now().date()+timedelta(days=1)     
     crawler = SnowBallCmtCrawler(dt_start, dt_end, init_pages)
