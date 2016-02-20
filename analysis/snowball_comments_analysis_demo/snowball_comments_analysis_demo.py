@@ -1,5 +1,5 @@
-# @file SnowBall_comments_analysis_demo.py
-# @brief analysis the topics at certain time in the SnowBall website
+# @file Snowball_comments_analysis_demo.py
+# @brief analysis the topics at certain time in the Snowball website
 
 import ipdb
 import numpy as np
@@ -21,13 +21,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 
 
-class SnowBallCommentsAnalysis(Analysis):
+class SnowballCommentsAnalysis(Analysis):
     """ 
-    Extract primary topics at certain date from the SnowBall website.
+    Extract primary topics at certain date from the Snowball website.
     Use NMF and LDA algorithm.
     """
     def __init__(self, name, dt_start, dt_end):
-        super(SnowBallCommentsAnalysis, self).__init__(name)
+        super(SnowballCommentsAnalysis, self).__init__(name)
         # start date
         self.dt_start = dt_start
         # end date
@@ -65,9 +65,9 @@ class SnowBallCommentsAnalysis(Analysis):
         print() 
    
     def perform_analysis(self, stocks, szTimeAxis, n_ahead):
-        # load SnowBall comment data
-        from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
-        SBLoader = SnowBallCmtLoader()
+        # load Snowball comment data
+        from agares.datasource.snowball_cmt_loader import SnowballCmtLoader
+        SBLoader = SnowballCmtLoader()
         date = self.dt_start.date()
         df_cmt_list = []
         while date <= self.dt_end.date():
@@ -131,7 +131,7 @@ if __name__ == '__main__':
     # pstocks could contain multiple stock of multiple type of period
     pstocks = ['000001.sz-1Day']
     # create an analysis class
-    analysis = SnowBallCommentsAnalysis('SnowBall Comments Analysis', dt_start, dt_end)
+    analysis = SnowballCommentsAnalysis('Snowball Comments Analysis', dt_start, dt_end)
     # number of extra daily data for computation (ahead of start datatime)
     n_ahead = 20
     # ask agares

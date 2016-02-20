@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3.5
 
 import ipdb
 from bs4 import BeautifulSoup
@@ -18,19 +18,19 @@ sys.path.append(root)
 from threading import Thread, Lock
 from queue import Queue
 
-class SnowBallCmtCrawler(object):
+class SnowballCmtCrawler(object):
     """
-    A crawler class that can download comment data ('cmt' for short ) from SnowBall website
-    into 'data/SnowBall_cmt' folder. The data are preserved according to their created date.
+    A crawler class that can download comment data ('cmt' for short ) from Snowball website
+    into 'data/snowball_cmt' folder. The data are preserved according to their created date.
     
-    To load the downloaded SnowBall cmt data, use
+    To load the downloaded Snowball cmt data, use
         pd.read_csv(cmtfilename, sep='%_%', encoding="utf-8", engine='python'),
     where cmtfilename is the date of the cmt data that you would like to load plus '.csv'
     
-    You can use the SnowBallCmtLoader class to load the downloaded data for you. Here is 
+    You can use the SnowballCmtLoader class to load the downloaded data for you. Here is 
     an example:
-        from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
-        SBLoader = SnowBallCmtLoader()
+        from agares.datasource.SnowballCmtLoader import SnowballCmtLoader
+        SBLoader = SnowballCmtLoader()
         df_cmt = SBLoader.load('2016-02-14')
         print(df_cmt) 
     """
@@ -43,7 +43,7 @@ class SnowBallCmtCrawler(object):
             init_pages(str): list of urls that are used to start     
         """
         # check the data directory
-        dir_data = os.path.join(root,'data','SnowBall_cmt')
+        dir_data = os.path.join(root,'data','snowball_cmt')
         if not os.path.exists(dir_data): # if dir does not exist
             print('Error: Data directory {:s} does not exist.'.format(dir_data))
             exit()
@@ -77,7 +77,7 @@ class SnowBallCmtCrawler(object):
             self.cmtfile_mutex[date] = Lock()
             one_day += timedelta(days=1)   
         # compute the path of the database     
-        self.dbpathname = os.path.join(dir_data, 'SnowBallUsers.db')        
+        self.dbpathname = os.path.join(dir_data, 'SnowballUsers.db')        
         # get modified date if database already exists
         dbdate = datetime.now().date()
         if os.path.exists(self.dbpathname):
@@ -100,7 +100,7 @@ class SnowBallCmtCrawler(object):
             (cmt_id text, user_id text)
             ''')
         con.execute('''
-            create table if not exists SnowBallUsers
+            create table if not exists SnowballUsers
             (uid text, url text)
             ''')
         # define header
@@ -125,7 +125,7 @@ class SnowBallCmtCrawler(object):
         # is required (i.e., UseStoredURL is set to True)
         if dbdate < datetime.now().date() or UseStoredURL == True:
             # append stored PageUser urls as initial pages
-            stored_urls = con.execute('''select * from SnowBallUsers''')
+            stored_urls = con.execute('''select * from SnowballUsers''')
             for PageUser, url in stored_urls:
                 quote_url = self.check_and_quote_url(url)
                 if quote_url is None:
@@ -184,11 +184,11 @@ class SnowBallCmtCrawler(object):
         else:
             return True
     
-    def record_SnowBallUser(self, con, PageUserID, url):
+    def record_SnowballUser(self, con, PageUserID, url):
         """
-        Record SnowBall user id and its page url into database
+        Record Snowball user id and its page url into database
         """
-        con.execute("insert into SnowBallUsers \
+        con.execute("insert into SnowballUsers \
             values ('{0:s}', '{1:s}')".format(PageUserID, url))  
         self.dbcommit(con)       
     
@@ -210,7 +210,7 @@ class SnowBallCmtCrawler(object):
     
     def get_PageUserID(self, html):
         """
-        Extract the SnowBall user id from an HTML page of the SnowBall website
+        Extract the Snowball user id from an HTML page of the Snowball website
         """
         PageUserID_obj = re.search("data-user-id='\w+'", html)
         if PageUserID_obj is None:
@@ -221,7 +221,7 @@ class SnowBallCmtCrawler(object):
     
     def get_raw_comments(self, html):
         """
-        Extract comments from an HTML page of SnowBall website
+        Extract comments from an HTML page of Snowball website
         """
         # get start position of the comments
         pos_start = html.find('SNB.data.statuses = ') + len('SNB.data.statuses = ')
@@ -238,7 +238,7 @@ class SnowBallCmtCrawler(object):
     
     def to_datetime(self, SBdatetime):
         """
-        Convert SnowBall webstie page datetime format into (datetime.date, '%H:%M').
+        Convert Snowball webstie page datetime format into (datetime.date, '%H:%M').
         If SBdatetime is '' or None, return (None, '').
         """
         if SBdatetime == '' or SBdatetime == None:
@@ -301,7 +301,7 @@ class SnowBallCmtCrawler(object):
         # check the scheme of url
         if scheme != 'http':
             return None
-        # check whether this page belongs to SnowBall website
+        # check whether this page belongs to Snowball website
         if netloc != 'xueqiu.com':
             return None
         # check path
@@ -364,7 +364,7 @@ class SnowBallCmtCrawler(object):
                     self.pages.put(quote_url)
                     # mark this url as indexed
                     self.mark_as_indexed(con, quote_url)
-        # get SnowBall user id of the page
+        # get Snowball user id of the page
         PageUserID = self.get_PageUserID(html)   
         if PageUserID == '':
             return     
@@ -382,8 +382,8 @@ class SnowBallCmtCrawler(object):
             one_day += timedelta(days=1)
         # count how many PageUser we have crawl in this run
         if do_record is True: 
-            # record page user id and page url of the SnowBall user  
-            self.record_SnowBallUser(con, PageUserID, page)  
+            # record page user id and page url of the Snowball user  
+            self.record_SnowballUser(con, PageUserID, page)  
             # update n_PageUser
             with self.n_PageUser_mutex:  
                 self.n_PageUser += 1
@@ -434,5 +434,5 @@ if __name__ == '__main__':
                     'http://xueqiu.com/g/8389168261', 'http://xueqiu.com/g/1131705413']
     # set start and end date (end date is not included)
     dt_start, dt_end = datetime.now().date()-timedelta(days=2), datetime.now().date()+timedelta(days=1)     
-    crawler = SnowBallCmtCrawler(dt_start, dt_end, init_pages)
+    crawler = SnowballCmtCrawler(dt_start, dt_end, init_pages)
     crawler.crawl(max_PageUser=4000)

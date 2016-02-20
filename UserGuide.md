@@ -17,7 +17,7 @@ analysis: deploy user's personalized analysis files
 
 ## How to use it:
 ### Download candlestick data
-  Agares uses tushare to download candlestick data (often abbreviated as 'cst' in the code). To download new data, run the script in /agares/datasource/cst_loader.py. If you want to use your own data, put them in the 'data/cst' folder and make sure they can be read by the following code
+  Agares uses tushare to download candlestick data (often abbreviated as 'cst' in the code). To download new data, run the script in /agares/datasource/CstLoader.py. If you want to use your own data, put them in the 'data/cst' folder and make sure they can be read by the following code
   
         pandas.read_csv(fname, index_col = 0, parse_dates = True, sep=',')    
         
@@ -125,8 +125,8 @@ might be helpful.
                                   may help to avoid nan at the beginning of indexes.
             """
 
-### Download comments from SnowBall website
-  SnowBall is a well-known investment website in China. You can obtain comments from this website and perform analysis with natural language processing/machine learning algorithms. To download comment data (often abbreviated as 'cmt' in the code), run the script /agares/datasource/SnowBallCmtCrawler.py.
+### Download comments from Snowball website
+  Snowball is a well-known investment website in China. You can obtain comments from this website and perform analysis with natural language processing/machine learning algorithms. To download comment data (often abbreviated as 'cmt' in the code), run the script /agares/datasource/snowball\_cmt\_crawler.py.
   
 ### Perform analysis
   Agares allows you to verify some ideas that does not directly involve trading. These ideas would be something involving using natural language processing/machine learning algorithms to process your self-download data. To do so, you need to write an analysis file. A analysis file is a .py file that contains a subclass of Analysis class, in which a class function 
@@ -159,14 +159,14 @@ should be implemented. Similar to the strategy file, the cst data is available f
 ## API for writting an analysis file:
 The API ask_agares() is the only indispensable API for an analysis file. Before using it, you should import it from agares.engine.ag. There are some demos in the 'analysis' folder that might be helpful.
 
-If you want to use the comment data from the SnowBall website, agares has a loader class for you. Here is an example showing how to use it:
+If you want to use the comment data from the Snowball website, agares has a loader class for you. Here is an example showing how to use it:
 
-        from agares.datasource.SnowBallCmtLoader import SnowBallCmtLoader
-        SBLoader = SnowBallCmtLoader()
+        from agares.datasource.SnowballCmtLoader import SnowballCmtLoader
+        SBLoader = SnowballCmtLoader()
         df_cmt = SBLoader.load('2016-02-14')
         print(df_cmt)
         
-Make sure you have download the SnowBall cmt data before you load the data. If you have not download the data yet, use the script /agares/datasource/SnowBallCmtCrawler.py to do so.
+Make sure you have download the Snowball cmt data before you load the data. If you have not download the data yet, use the script /agares/datasource/snowball\_cmt\_crawler.py to do so.
 
 
 

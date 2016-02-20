@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3.5
 
 import tushare as ts
 import pandas as pd
@@ -12,9 +12,9 @@ from agares.datastruct import parse_cst_filename
 from datetime import datetime, timedelta, date
 
 
-class cst_loader(object):
+class CstLoader(object):
     """
-    Call tushare API to download stock candlestick data
+    Call tushare API to download stock candlestick data.
     """
     def __init__(self):
         """
@@ -28,7 +28,7 @@ class cst_loader(object):
         
     def load(self, pstocks):
         """
-        Download cst data and save them in .csv file (in /data/cst)
+        Download cst data and save them in .csv file (in /data/cst).
         
         Args:
             pstocks(str): filename of cst data
@@ -66,7 +66,7 @@ class cst_loader(object):
 
     def download(self, code, start, end, period):
         """
-        Download using tushare
+        Download using tushare.
         
         Returns:
             df: pd.DataFrame(datetime, open, close, high, low, [turnover], ...)
@@ -102,6 +102,6 @@ if __name__ == '__main__':
     pstocks = ['000001.sz-1Day', '000049.dsdc-1Day', '000518.shsw-1Day', '000544.zyhb-1Day', \
                 '600004.byjc-1Day', '600038.zzgf-1Day', '600054.hsly-1Day', '600256.ghny-1Day', \
                 '600373.zwcm-1Day', '600867.thdb-1Day', '600085.trt-1Day']
-    cl = cst_loader()
+    cl = CstLoader()
     cl.load(pstocks)
          

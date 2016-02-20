@@ -5,13 +5,13 @@ root = os.path.split(os.path.split(fdir)[0])[0]
 import sys 
 sys.path.append(root)
 
-class SnowBallCmtLoader(object):
+class SnowballCmtLoader(object):
     def __init__(self):
         pass
         
     def load(self, date):
         fname = date+'.csv'
-        cmtfilepath = os.path.join(root, 'data', 'SnowBall_cmt', fname)
+        cmtfilepath = os.path.join(root, 'data', 'snowball_cmt', fname)
         try:
             df_cmt = pd.read_csv(cmtfilepath, sep='%_%', encoding="utf-8", engine='python')
         except IOError:
