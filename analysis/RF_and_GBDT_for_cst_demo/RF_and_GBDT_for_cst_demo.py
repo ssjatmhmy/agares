@@ -18,12 +18,12 @@ from agares.engine.ag import (
     ask_agares)
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
-class RFForCstAnalysis(Analysis):
+class RFandGBDTforCstAnalysis(Analysis):
     """ 
     predict stock price with Random Forest (RF) algorithm on cst data.
     """
     def __init__(self, name):
-        super(RFForCstAnalysis, self).__init__(name)
+        super(RFandGBDTforCstAnalysis, self).__init__(name)
    
     @staticmethod
     def MACD(price, nslow=26, nfast=12, m=9):
@@ -213,7 +213,7 @@ if __name__ == '__main__':
     # pstocks could contain multiple stock of multiple type of period
     pstocks = ['000001.sz-1Day']
     # create an analysis class
-    analysis = RFForCstAnalysis('Predict stock price with Random Forest (RF)')
+    analysis = RFandGBDTforCstAnalysis('Predict stock price with Random Forest (RF) and GBDT')
     # number of extra daily data for computation (ahead of start datatime)
     n_ahead = 80
     # ask agares
