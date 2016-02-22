@@ -126,7 +126,7 @@ class SnowballCommentsAnalysis(Analysis):
 
 if __name__ == '__main__':
     # set start and end datetime of pstocks
-    dt_start, dt_end = datetime(2016,2,16), datetime(2016,2,17)
+    dt_start, dt_end = datetime(2016,2,16), datetime(2016,2,19)
     # list of candlestick data files, each item represents a period data of a interested stock
     # pstocks could contain multiple stock of multiple type of period
     pstocks = ['000001.sz-1Day']
