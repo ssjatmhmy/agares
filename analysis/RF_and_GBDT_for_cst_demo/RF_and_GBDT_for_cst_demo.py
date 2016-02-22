@@ -82,8 +82,8 @@ class RFandGBDTforCstAnalysis(Analysis):
             ['close', 'PriceChangeRatio', 'dif', 'dea', 'macd', 'ma5', 'ma10', 'ma20', 'ma5-ma10', \
             'ma5-ma20', 'ma10-ma20', 'vol', 'VolChangeRatio', 'VolChangeRatioAverage']
             and labels/turnouts of train_data are:
-            ['after1d', 'after2d', 'after3d', 'after4d', 'after5d', 'after5dChange2%?', \
-            'after3dChangeRatio', 'after5dChangeRatio']
+            ['after1d', 'after2d', 'after3d', 'after4d', 'after5d', 'after5dRise?', \
+            'after5dChange2%?', 'after3dChangeRatio', 'after5dChangeRatio']
         """
         # get time axis of the cst data
         DataTimeAxis = cst_d.index
