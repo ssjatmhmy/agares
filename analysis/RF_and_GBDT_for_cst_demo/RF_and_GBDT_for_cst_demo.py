@@ -20,7 +20,7 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
 class RFandGBDTforCstAnalysis(Analysis):
     """ 
-    predict stock price with Random Forest (RF) algorithm on cst data.
+    predict stock price (rise or fall) with Random Forest (RF) and GBDT algorithm on cst data.
     """
     def __init__(self, name):
         super(RFandGBDTforCstAnalysis, self).__init__(name)
@@ -180,7 +180,7 @@ class RFandGBDTforCstAnalysis(Analysis):
         # separate train data and test data
         print("Total number of samples: ", df_data.shape[0])
         print("Total number of features: ", df_data.shape[1])
-        num_train = 200        
+        num_train = 150        
         print("Number of train data: ", num_train)           
         df_train = df_data.iloc[:num_train,:]
         df_test = df_data.iloc[num_train:,:] 
@@ -204,7 +204,7 @@ class RFandGBDTforCstAnalysis(Analysis):
         gbc.fit(X_train, y_train)
         score = gbc.score(X_test, y_test)
         print("Test score with Gradient Boosting: ", score)
-        #df_test['predict'] = y_pred 
+        
 
 if __name__ == '__main__':
     # set start and end datetime of pstocks
