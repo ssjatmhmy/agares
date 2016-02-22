@@ -1,5 +1,5 @@
-# @file RF_for_cst_demo.py
-# @brief predict stock price with Random Forest (RF) algorithm on cst data
+# @file RF_and_GBDT_for_cst_demo.py
+# @brief predict stock price (rise or fall) with Random Forest (RF) and GBDT algorithm on cst data
 
 import ipdb
 import numpy as np
@@ -73,10 +73,10 @@ class RFForCstAnalysis(Analysis):
         
     def generate_data(self, cst_d, n_ahead):
         """ 
-        Generate train data from cst data.
+        Generate data for ML algorithms from cst data.
         
         Returns:
-            train_data(pd.dataframe), with index of pd.TimeStamp type
+            df_data(pd.dataframe), with index of pd.TimeStamp type
             
             the feature columns of train_data are:
             ['close', 'PriceChangeRatio', 'dif', 'dea', 'macd', 'ma5', 'ma10', 'ma20', 'ma5-ma10', \
@@ -156,10 +156,10 @@ class RFForCstAnalysis(Analysis):
                 wait_dc, wait_gc = True, False
             if df_features.at[ticker, 'dif'] < df_features.at[ticker, 'dea']:
                 wait_dc, wait_gc = False, True
-        # create train data
-        train_data = df_features.loc[tmp_tickers,:]
-        train_data = train_data.join(pd.DataFrame(tmp_turnout, index=tmp_tickers))
-        return train_data
+        # create data
+        df_data = df_features.loc[tmp_tickers,:]
+        df_data = df_data.join(pd.DataFrame(tmp_turnout, index=tmp_tickers))
+        return df_data
                 
     def perform_analysis(self, stocks, szTimeAxis, n_ahead):
         assert len(stocks) == 1, "This analysis allows only a daily candlestick data of one stock."
