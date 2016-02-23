@@ -151,6 +151,64 @@ class ExecuteUnit(object):
             self.o.report('Please check your strategy.')
             return
 
+    def buy_cash(self, code, price, datetime, cash):
+        """
+        Use this buy function if your want to invest with your profit  
+
+        Args: 
+            datetime(str): trading time
+            cash(float): the amount of cash that you would like to bid. It should be smaller than
+                        those in the account.
+        Returns:
+            quantity(int): the number of shares (unit: boardlot) you buy this time
+            shares(int): {code: int}. a dict of the amount of current shares (unit:boardlot) in \
+                            the account.
+            cash(float): the amount of current cash in the account
+        """
+        # check
+        assert(price > 0)
+        assert(cash <= self._cash)
+        # bid: how much money we can use to buy shares
+        bid = cash
+        # can we buy one board lot?
+        oneboardlot = 100 * price # One board lot is 100 shares in Chinese market 
+        if bid < oneboardlot: 
+            raise BidTooLow(need_cash = oneboardlot, bid = bid)
+        if self._cash < oneboardlot: 
+            raise NotEnoughMoney(need_cash = oneboardlot, cash = self._cash)
+        # can we buy more?
+        quantity = int(math.floor(bid / oneboardlot))
+        need_cash = quantity * oneboardlot # if run to here, we must have bid >= need_cash
+        while self._cash < need_cash:
+            quantity = quantity - 1
+            need_cash = quantity * oneboardlot
+        # now buy it
+        self._cash -= need_cash
+        try:
+            self._shares[code] += quantity
+        except KeyError:
+            self._shares[code] = quantity
+        # commission charge deduction
+        if (self.CommissionChargeRate > 0): # require consider commission charge
+            commission_charge = max(need_cash*self.CommissionChargeRate, 5) # at least 5 yuan 
+        else: 
+            commission_charge = 0
+        self._cash -= commission_charge
+        # update total commission charge 
+        self._total_commission_charge += commission_charge
+        # add transaction record
+        self._records.append((datetime, self._cash, self._shares.copy()))
+        # print infomation
+        self.o.report('- - '*20)
+        self.o.report("[" + str(datetime) + "] ") 
+        self.o.report("[stock code: {:s}]".format(code)) 
+        self.o.report("Buy {0:d} board lot shares at price {1:.2f} (per share)".format(quantity, price))
+        self.o.report("Commission charge: {:.2f}".format(commission_charge))
+        self.o.report("Account: ")
+        self.o.account(self._shares, self._cash)
+        # return the number of shares (unit: boardlot) you buy this time 
+        return quantity, self._shares, self._cash
+
     def buy_ratio(self, code, price, datetime, ratio):
         """
         Use this buy function if your want to invest with your profit  
@@ -160,6 +218,11 @@ class ExecuteUnit(object):
             ratio(float): the proportion of the current cash that you would like to bid. 	
                         Note that the current cash is the money in your account and would 
                         vary during the back test.
+        Returns:
+            quantity(int): the number of shares (unit: boardlot) you buy this time
+            shares(int): {code: int}. a dict of the amount of current shares (unit:boardlot) in \
+                            the account.
+            cash(float): the amount of current cash in the account
         """
         # check
         assert(price > 0)
@@ -203,7 +266,7 @@ class ExecuteUnit(object):
         self.o.report("Account: ")
         self.o.account(self._shares, self._cash)
         # return the number of shares (unit: boardlot) you buy this time 
-        return quantity
+        return quantity, self._shares, self._cash
 
     def buy_position(self, code, price, datetime, position):
         """
@@ -214,6 +277,11 @@ class ExecuteUnit(object):
             position(float): the proportion of the capital that you would like to bid. 	
                             Note that the capital is the initial money amount and is 
                             a constant once set at the beginning.
+        Returns:
+            quantity(int): the number of shares (unit: boardlot) you buy this time
+            shares(int): {code: int}. a dict of the amount of current shares (unit:boardlot) in \
+                            the account.
+            cash(float): the amount of current cash in the account
         """
         # check
         assert(price > 0)
@@ -257,7 +325,8 @@ class ExecuteUnit(object):
         self.o.report("Account: ")
         self.o.account(self._shares, self._cash)
         # return the number of shares (unit: boardlot) you buy this time 
-        return quantity
+        # and the the amount of current cash and shares (unit:boardlot) in the account
+        return quantity, self._shares, self._cash
 
 
     def sell(self, code, price, datetime, quantity):
@@ -265,6 +334,10 @@ class ExecuteUnit(object):
         Args: 
             datetime(str): trading time
             quantity(int): the number of shares (unit: boardlot) you want to sell	
+        Returns:
+            shares(dict): {code: int}. a dict of the amount of current shares (unit:boardlot) in \
+                            the account.
+            cash(float): the amount of current cash in the account
         """
         # check
         assert(price > 0)
@@ -297,10 +370,13 @@ class ExecuteUnit(object):
         self.o.report('- - '*20)
         self.o.report("[" + str(datetime) + "] ") 
         self.o.report("[stock code: {:s}]".format(code)) 
-        self.o.report("Sell {0:d} board lot shares at price {1:.2f} (per share)".format(quantity, price))
-        self.o.report("Commission charge: {0:.2f},    Stamp Tax: {1:.2f}".format(commission_charge, stamp_tax))
+        self.o.report("Sell {0:d} board lot shares at price {1:.2f} (per share)".format(quantity, \
+                                                                                            price))
+        self.o.report("Commission charge: {0:.2f},    Stamp Tax: {1:.2f}".format(commission_charge,\
+                                                                                         stamp_tax))
         self.o.report("Account: ")
         self.o.account(self._shares, self._cash)
+        return self._shares, self._cash
 
     def report(self):
         # operate: reportfile.seek(0)

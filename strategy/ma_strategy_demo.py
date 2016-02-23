@@ -65,7 +65,7 @@ class MA_Strategy(Strategy):
                 price = cst['1Day'].at[ticker,'close']
                 if (hold_flag == 0) and (df_ma.at[ticker, 'ma_fast'] > df_ma.at[ticker, 'ma_slow']): 
                     # quantity is the number of shares (unit: boardlot) you buy this time 
-                    quantity = buy(code, price, str(ticker), ratio = 1) 
+                    quantity, _, _ = buy(code, price, str(ticker), ratio = 1) 
                     hold_flag = 1
                 if (hold_flag == 1) and (df_ma.at[ticker, 'ma_fast'] < df_ma.at[ticker, 'ma_slow']): 
                     # sell all the shares bought last time

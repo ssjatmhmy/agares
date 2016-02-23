@@ -73,7 +73,7 @@ class MACD_Strategy(Strategy):
                 price = cst['1Day'].at[ticker,'close']
                 if (hold_flag == 0) and (df_macd.at[ticker, 'dif'] > df_macd.at[ticker, 'dea']): 
                     # quantity is the number of shares (unit: boardlot) you buy this time 
-                    quantity = buy(code, price, str(ticker), ratio = 1) 
+                    quantity, _, _ = buy(code, price, str(ticker), ratio = 1) 
                     hold_flag = 1
                 if (hold_flag == 1) and (df_macd.at[ticker, 'dif'] < df_macd.at[ticker, 'dea']): 
                     # sell all the shares bought last time

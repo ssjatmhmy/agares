@@ -91,7 +91,8 @@ class MACD_Strategy(Strategy):
                 price = cst['1Day'].at[ticker,'close']
                 if (state_flag == 0) and (df_macd.at[ticker, 'dif'] > df_macd.at[ticker, 'dea']): 
                     # quantity is the number of shares (unit: boardlot) you buy this time 
-                    quantity1 = buy(code, price, str(ticker), ratio = first_position) # record quantity1
+                    # record quantity1
+                    quantity1, _, _ = buy(code, price, str(ticker), ratio = first_position) 
                     price1 = price # record the first buying price
                     state_flag = 1
                 if state_flag ==1:
@@ -102,7 +103,8 @@ class MACD_Strategy(Strategy):
                         state_flag = 0
                     elif floating_earn_rate >= lock_profit:
                         # enter state 2: lock in profits
-                        quantity2 = buy(code, price, str(ticker), ratio = 1) # record quantity2
+                        # record quantity2
+                        quantity2, _, _ = buy(code, price, str(ticker), ratio = 1) 
                         price2 = first_position * price1 + (1-first_position) * price
                         state_flag = 2
                     else: # just wait

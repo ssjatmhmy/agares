@@ -41,6 +41,7 @@ def create_analysis_room(analysis, pstocks, dt_start, dt_end, n_ahead):
     ag_simulator = AnalysisRoom(pstocks, dt_start, dt_end, n_ahead)
     ag_simulator.add_analysis(analysis)    
 
+
 def run():
     ag_simulator.run()
 
@@ -48,37 +49,51 @@ def run():
 def buy(code, price, datetime, **kargs):
     """
     Args: 
-        kargs(optional): You have two choices, position or ratio (both within (0,1])
+        kargs(optional): You have three choices, position, ratio (both within (0,1]) and cash.
                         Below are some detail descriptions.
 
-        position(float): the proportion of the capital that you would like to bid. 	
+        position(float): The proportion of the capital that you would like to bid. 	
                         Note that the capital is the initial money amount and is 
                         a contant once set at the beginning.
-        ratio(float): the proportion of the current cash that you would like to bid. 	
+        ratio(float): The proportion of the current cash that you would like to bid. 	
                         Note that the current cash is the money in your account and 
                         would vary during the back test.
-    Return:
-        quantity(int): the number of shares (unit: boardlot) you buy this time
+        cash(float): The amount of cash that you would like to bid. It should be smaller than
+                        those in the account.
+    Returns:
+        quantity(int): The number of shares (unit: boardlot) you buy this time
+        shares(dict): {code: int}. a dict of the amount of current shares (unit:boardlot) in the \
+                        account.
+        cash(float): the amount of current cash in the account
     """
     if 'ratio' in kargs:
-        quantity = ag_simulator.buy_ratio(code, price, datetime, ratio = kargs['ratio'])  
+        quantity, shares, cash = ag_simulator.buy_ratio(code, price, datetime, \
+                                                        ratio = kargs['ratio'])  
     elif 'position' in kargs:   
-        quantity = ag_simulator.buy_position(code, price, datetime, position = kargs['position']) 
+        quantity, shares, cash = ag_simulator.buy_position(code, price, datetime, \
+                                                    position = kargs['position']) 
+    elif 'cash' in kargs:
+        quantity, shares, cash = ag_simulator.buy_cash(code, price, datetime, cash = kargs['cash'])          
     else:
-        print("Warning: ratio/position not given in buy(). Using default: position = 1.")
-        quantity = ag_simulator.buy_position(code, price, datetime, position = 1) 
+        print("Warning: ratio/position/cash not given in buy(). Using default: position = 1.")
+        quantity, shares, cash = ag_simulator.buy_position(code, price, datetime, position = 1) 
     ag_simulator.trading_stocks.add(code)
-    return quantity
+    return quantity, shares, cash
 
 
 def sell(code, price, datetime, quantity):
     """
     Args: 
-        datetime(str): trading time
-        quantity(int): the number of shares (unit: boardlot) you want to sell	
+        datetime(str): Trading time
+        quantity(int): The number of shares (unit: boardlot) you want to sell	
+    Returns:
+        shares(dict): {code: int}. a dict of the amount of current shares (unit:boardlot) in the \
+                        account.
+        cash(float): the amount of current cash in the account
     """
-    ag_simulator.sell(code, price, datetime, quantity)
+    shares, cash = ag_simulator.sell(code, price, datetime, quantity)
     ag_simulator.trading_stocks.add(code)
+    return shares, cash
 
 
 def report(PlotEquity = False, PlotNetValue = False):

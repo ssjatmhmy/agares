@@ -156,7 +156,7 @@ class TreePlantingStrategy(Strategy):
                 if len(ready_saplings) > 0: 
                     planting_sapling = ready_saplings.pop(0)
                     price = stocks[planting_sapling].cst['1Day'].at[ticker,'close']
-                    stocks[planting_sapling].quantity = buy(planting_sapling, price, str(ticker), \
+                    stocks[planting_sapling].quantity, _, _ = buy(planting_sapling, price, str(ticker), \
                                 ratio = self.ratios[self.n_saplings])
                     stocks[planting_sapling].buy_price = price
                     self.state_flags[planting_sapling] = 1
