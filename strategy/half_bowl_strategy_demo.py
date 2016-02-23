@@ -23,8 +23,8 @@ class HalfBowlStrategy(Strategy):
     """ 
     The half bowl strategy on daily candlestick data.
     Divide your initial cash into two equal parts and use one part to buy shares at the first day.
-    If the price of your shares falls (ivar:fall_ratio), use the cash to buy more and make two\
-    parts of the equities even again. If the price of your shares rises (ivar:rise_ratio), sell \
+    If the price of your shares falls (ivar:fall_ratio), use the cash to buy more and make two
+    parts of the equities even again. If the price of your shares rises (ivar:rise_ratio), sell 
     some of them to make two parts of the equities even again. 
     """
     def __init__(self, name, rise_ratio, fall_ratio):
