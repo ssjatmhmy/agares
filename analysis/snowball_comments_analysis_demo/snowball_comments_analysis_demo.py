@@ -83,7 +83,7 @@ class SnowballCommentsAnalysis(Analysis):
         df_cmt['RawComment'] = df_cmt['RawComment'].map(self.drop_useless_word)
         cmt = df_cmt['RawComment'].tolist()
         # construct tfidf matrix
-        tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=2)
+        tfidf_vectorizer = TfidfVectorizer(ngram_range=(1, 3), max_df=0.95, min_df=0.05)
         tfidf = tfidf_vectorizer.fit_transform(cmt)
         
         # Fit the NMF model
