@@ -16,4 +16,5 @@ agares目前是一个基于python的量化回测框架，其定位是帮助设�
 agares的代码比较简单，大家有兴趣的可以自己拓展。
 
 使用说明：
-(https://github.com/ssjatmhmy/agares/blob/master/UserGuide.md)
+
+https://github.com/ssjatmhmy/agares/blob/master/UserGuide.md
