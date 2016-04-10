@@ -11,7 +11,7 @@ see requirements.txt
 agares: source files  
 data: data files for back-testing and analysis  
 report: store back-testing reports  
-strategy: deploy user's personalized strategy files
+strategy: deploy user's personalized strategy files  
 analysis: deploy user's personalized analysis files
 
 
